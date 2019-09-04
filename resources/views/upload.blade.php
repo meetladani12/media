@@ -45,7 +45,6 @@
 			        <button type="submit" class="btn btn-primary btn-block">Upload</button>
 			    </div>    
 			    </div> 
-				
 				</form>
 			</div>
 			</div>

@@ -1,5 +1,5 @@
 @extends('layout.tem')
 
 @section('body')
-  <div class="offset-2 col-8 offset-2" style="align-content: center;"><img src="image/cam2.jpg" style="width: 700px;height: 450px"></div>
+  <div class="offset-3 col-6 offset-3" style="align-content: center;"><img src="image/fcb.jpg" style="width: 650px;height: 425px"></div>
 @endsection

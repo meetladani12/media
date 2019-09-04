@@ -38,15 +38,15 @@ class farmerController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|unique:farmers',
-            'mobile_no' => 'required|unique:farmers',
-            'village_id' => 'required',
-            'address' => 'required',
-            'password' => 'required',
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'email' => 'required|unique:farmers',
+        //     'mobile_no' => 'required|unique:farmers',
+        //     'village_id' => 'required',
+        //     'address' => 'required',
+        //     'password' => 'required',
 
-        ]);
+        // ]);
         $farmer = new farmer;
         $farmer->name = $request->fullname;
         $farmer->email = $request->email;
@@ -114,15 +114,21 @@ class farmerController extends Controller
             return redirect('/question');
         }
         else{
+            $file=$request->file('file');
+            $filename = $file->getClientOriginalName();
+            $path = public_path().'/image/';
+            $file->move($path, $filename);
             $question = new question;
             $farmerid=$_COOKIE['farmerid'];
             $question->farmer_id = $farmerid;
             $question->scientist_id = $scientist[0]->id;
             $question->group_id = $request->group;
             $question->question = $request->question;
+            $question->path = $filename;
             $question->save();
+            echo $filename;
 
-            return redirect('/question');
+            //return redirect('/question');
         }
 
 

@@ -3,7 +3,7 @@
 @section('body')
 <br>
 <div class="row">
-	<div class="col-lg-6 offset-lg-3">
+	<div class="offset-3 col-6 offset-3">
 		<div class="card">
 			<div class="card-body" >
 			<div class="jumbotron">
@@ -16,6 +16,7 @@
 				<thead>
 					<th>Farmer Profile</th>
 					<th>Question</th>
+					<th>View Image</th>
 					<th>Reply</th>
 				</thead>
 					@foreach($question as $q)
@@ -50,8 +51,18 @@
 							{{$q->question}}
 						</td>
 						<td>
-							<button class="btn btn-info meet" name="abc" data="{{$q->id}}" id="{{$q->id}}" ><i class="fa fa-reply" aria-hidden="true"></i></button>
+							<img src="image/{{$q->path}}" style="width:50px;height:50px;cursor:zoom-in" onclick="document.getElementById('modal{{$q->id}}').style.display='block'">
+
+						  <div id="modal{{$q->id}}" class="w3-modal" onclick="this.style.display='none'">
+						    <span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+						    <div class="w3-modal-content w3-animate-zoom">
+						      <img src="image/{{$q->path}}" style="width:100%;height: 500px">
+						    </div>
+						  </div>
 						</td>
+						<td>
+							<button class="btn btn-info meet" name="abc" data="{{$q->id}}" id="{{$q->id}}" ><i class="fa fa-reply" aria-hidden="true"></i></button>
+						</td>	
 					</tr>
 					@if($q->flag=='0')
 						<tr>
@@ -146,6 +157,8 @@ $(".farmer_modal").click(function(e){
 		});
 	});
 });
+
+
 
 </script> 
 @endsection

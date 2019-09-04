@@ -16,41 +16,41 @@
 					<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 					 </div>
-			        <input name="fullname" class="form-control" placeholder="Full name" type="text">
+			        <input name="fullname" class="form-control" placeholder="Full name" type="text" required>
 			    </div>
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 					 </div>
-			        <input name="email" class="form-control" placeholder="Email address" type="email">
+			        <input name="email" class="form-control" placeholder="Email address" type="email" required>
 			    </div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="phone" class="form-control" placeholder="Phone number" type="text">
+			    	<input name="phone" class="form-control" placeholder="Phone number" type="text" required>
 			    </div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="mobile" class="form-control" placeholder="Mobile number" type="text">
+			    	<input name="mobile" class="form-control" placeholder="Mobile number" type="text" required>
 			    </div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="designation" class="form-control" placeholder="Designation" type="text">
+			    	<input name="designation" class="form-control" placeholder="Designation" type="text" required>
 			    </div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i></span>
 					</div>
-					<select class="form-control" name="dept" id="dept">
+					<select class="form-control" name="dept" id="dept" required>
 						<option selected=""> Select Department Type</option>
 						@foreach($dept as $d)
 							<option value="{{$d->id}}">{{$d->type}}</option>
@@ -62,7 +62,7 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i></span>
 					</div>
-					<select name="department" id="department" class="form-control">
+					<select name="department" id="department" class="form-control" required>
 						<option selected=""> Select Department</option>
 					</select>
 				</div>
@@ -78,7 +78,7 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-briefcase" aria-hidden="true"></i></span>
 					</div>
-					<select class="form-control" name="grouptype" id="grouptype">
+					<select class="form-control" name="grouptype" id="grouptype" required>
 						<option selected=""> Select Group</option>
 						@foreach($group as $g)
 							<option value="{{$g->id}}">{{$g->type}}</option>
@@ -90,7 +90,7 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-briefcase" aria-hidden="true"></i></span>
 					</div>
-					<select name="group" id="group" class="form-control">
+					<select name="group" id="group" class="form-control" required>
 						<option selected=""> Select sub group</option>
 					</select>
 				</div>
@@ -99,21 +99,21 @@
 					<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-address-card"></i></span>
 					 </div>
-			        <textarea name="address" class="form-control" placeholder="Address"></textarea>
+			        <textarea name="address" class="form-control" placeholder="Address" required></textarea>
 			    </div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-			        <input name="password" class="form-control" placeholder="Enter password" type="password">
+			        <input name="password" class="form-control" placeholder="Enter password" type="password" required>
 			    </div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-			        <input class="form-control" placeholder="Re-Enter password" type="password">
+			        <input class="form-control" placeholder="Re-Enter password" type="password" required>
 			    </div>                      
 			    <div class="col-lg-6 offset-lg-3">            
 			    <div class="form-group">

@@ -16,25 +16,25 @@
 						<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 						 </div>
-				        <input name="fullname" class="form-control" placeholder="Full name" type="text">
+				        <input name="fullname" class="form-control" placeholder="Full name" type="text" required>
 				    </div> <!-- form-group// -->
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
 						 </div>
-				        <input name="email" class="form-control" placeholder="Email address" type="email">
+				        <input name="email" class="form-control" placeholder="Email address" type="email" required>
 				    </div> <!-- form-group// -->
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="mobile" class="form-control" placeholder="Mobile number" type="text">
+				    	<input name="mobile" class="form-control" placeholder="Mobile number" type="text" required>
 				    </div> <!-- form-group// -->
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
 						</div>
-						<select name="district" id="district" class="form-control">
+						<select name="district" id="district" class="form-control" required>
 							<option selected=""> Select District</option>
 							@foreach($dist as $d)
 								<option value="{{$d->id}}">{{$d->name}}</option>
@@ -46,7 +46,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
 						</div>
-						<select name="taluka" id="taluka" class="form-control">
+						<select name="taluka" id="taluka" class="form-control" required>
 							<option selected=""> Select Taluka</option>
 						</select>
 					</div>
@@ -55,7 +55,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
 						</div>
-						<select name="village" id="village" class="form-control">
+						<select name="village" id="village" class="form-control" required>
 							<option selected=""> Select Village</option>
 						</select>
 					</div>
@@ -64,19 +64,19 @@
 						<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-address-card"></i></span>
 						 </div>
-				        <textarea name="address" class="form-control" placeholder="Address"></textarea>
+				        <textarea name="address" class="form-control" placeholder="Address" required></textarea>
 				    </div>
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 						</div>
-				        <input class="form-control" name="password" placeholder="Enter password" type="password">
+				        <input class="form-control" name="password" placeholder="Enter password" type="password" required>
 				    </div> <!-- form-group// -->
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 						</div>
-				        <input class="form-control" name="re-enter" placeholder="Re-Enter password" type="password">
+				        <input class="form-control" name="re-enter" placeholder="Re-Enter password" type="password" required>
 				    </div> <!-- form-group// --> 
 				    <div class="col-lg-6 offset-lg-3">                                     
 				    <div class="form-group">

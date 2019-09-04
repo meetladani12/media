@@ -38,19 +38,19 @@ class scientistcontroller extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|unique:scientists',
-            'phone_no' => 'required|unique:scientists',
-            'mobile_no' => 'required|unique:scientists',
-            'designation' => 'required',
-            'department_id' => 'required',
-            'date_of_join' => 'required',
-            'group_id' => 'required',
-            'address' => 'required',
-            'password' => 'required',
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'email' => 'required|unique:scientists',
+        //     'phone_no' => 'required|unique:scientists',
+        //     'mobile_no' => 'required|unique:scientists',
+        //     'designation' => 'required',
+        //     'department_id' => 'required',
+        //     'date_of_join' => 'required',
+        //     'group_id' => 'required',
+        //     'address' => 'required',
+        //     'password' => 'required',
 
-        ]);
+        // ]);
         $scientist = new scientist;   
         $scientist->name = $request->fullname;
         $scientist->email = $request->email;

@@ -150,7 +150,6 @@ if ($client->getAccessToken()) {
         $videoTags = implode(",",$status['snippet']['tags']);
         $videoId = $status['id'];
         video::where('id',$vid)->update(['youtube_video_id'=>$videoId]);
-        unlink('/video/'.$filename);
 
         return redirect('/upload');
        }

@@ -11,10 +11,12 @@
 |
 */
 use Illuminate\Support\Facades\Input;
+use App\district;
 use App\taluka;
 use App\village;
 use App\department;
 use App\group;
+use App\video;
 
 Route::get('/', function () {
     return view('welcome');
@@ -86,4 +88,21 @@ Route::get('/ajax-farmer',function(){
                 ->select('farmers.name AS name','farmers.email AS email','farmers.mobile_no AS mono','villages.name AS vnm')
                 ->get();
 	return $farmer;
+});
+
+Route::get('/ajax-group',function(){
+	$group_id = Input::get('group') ;
+	$videos= video::where('group_id','=',$group_id)->get();
+	return $videos;
+});
+Route::get('/ajax-video',function(){
+	$videos= video::get();
+	return $videos;
+});
+
+Route::get('/ajax-distedit',function(){
+	$dist_id = Input::get('did') ;
+	$dist_name = Input::get('dnm') ;
+	$update=district::where('id', $dist_id)->update(['name' => $dist_name]);
+	return $update;
 });

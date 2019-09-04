@@ -6,7 +6,7 @@
 	<div class="col-lg-6 offset-lg-3">
 		<div class="card">
 			<div class="card-body" >
-				<form method="POST" action="/addQuestion">
+				<form method="POST" enctype="multipart/form-data" action="/addQuestion">
 				{{csrf_field()}}
 					
 					<div id="city" class="jumbotron">
@@ -39,16 +39,22 @@
 						</div>
 				    	<input name="question" class="form-control" placeholder="Enter Question" type="text">
 				    	</div>
+				    	<div class="form-group input-group">
+				    	<div class="input-group-prepend">
+						    <span class="input-group-text"><i class="far fa-image"></i></span>
+						</div>
+				    	<input name="file" class="form-control" placeholder="Video File" type="file">
+				    	</div>
+				    	</div>
+				    	
 				    	<div class="form-group">
 				        	<button type="submit" class="btn btn-primary btn-block" style="width: 100px"> SUBMIT </button>
 				    	</div>	
-					</div>
-				</form>
+				    </form>
+				</div>
 			</div>
-	
 		</div>
 	</div>
-	
 </div>
 <br>
 

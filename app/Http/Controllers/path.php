@@ -149,6 +149,7 @@ class path extends Controller
     public function ViewVideo()
     {
         $video=video::get();
-        return view('video',compact('video'));  
+        $group=group_type::get();
+        return view('video',compact('video','group'));  
     }
 }

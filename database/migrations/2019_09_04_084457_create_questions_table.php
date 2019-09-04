@@ -19,6 +19,7 @@ class CreateQuestionsTable extends Migration
             $table->integer('scientist_id')->length(3);
             $table->integer('group_id')->length(3);
             $table->text('question');
+            $table->text('path')->nullable();
             $table->integer('flag')->length(1)->default(0);
             $table->timestamps();
         });
