@@ -152,4 +152,11 @@ class path extends Controller
         $group=group_type::get();
         return view('video',compact('video','group'));  
     }
+
+    public function MyVideo()
+    {
+        $id=$_COOKIE["scientistid"];
+        $video=video::where('scientist_id',$id )->get();
+        return view('MyVideo',compact('video'));  
+    }
 }

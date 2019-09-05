@@ -9,7 +9,7 @@
 			<div class="jumbotron">
 			
 				<div class="">
-					<label><h4>View Question</h4></label>
+					<label><h2>View Question</h2></label>
 				</div>
 				<div class="col-lg-12 table">
 				<table style="width: 100%">

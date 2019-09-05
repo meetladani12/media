@@ -37,6 +37,7 @@ Route::get('/user','path@user');
 Route::get('/question','path@question');
 Route::get('/upload','path@upload');
 Route::get('/ViewVideo','path@ViewVideo');
+Route::get('/myvideo','path@MyVideo');
 Route::post('/addAnswer','scientistcontroller@AddAnswer');
 Route::post('/UpdateAnswer','scientistcontroller@UpdateAnswer');
 Route::post('/UploadVideo','scientistcontroller@UploadVideo');

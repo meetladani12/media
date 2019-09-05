@@ -57,6 +57,9 @@
             <a class="nav-link" href="/upload">Upload Video</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" href="/myvideo">My Videos</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" href="/viewQuestion">Question</a>
           </li>
         @elseif(Session::get('user')=='Super')
