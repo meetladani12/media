@@ -45,7 +45,7 @@
 
 <div class="row">
 	<div class="col-lg-6 offset-lg-3 table">
-		<table>
+		<table width="100%">
 		<thead>
 			<th>Department</th>
 			<th>Edit</th>
@@ -53,19 +53,46 @@
 		</thead>
 			@foreach($department as $d)
 			<tr>
+			<form method="POST" action="/department/update">
+			{{csrf_field()}}
 				<td>
-					{{$d->name}}
+					<label id="label{{$d->id}}"">{{$d->name}}</label>
+					<input type="hidden" name="did" value="{{$d->id}}">
+					<input type="text" name="edit" id="text{{$d->id}}" style="display: none;width: 100%">
 				</td>
 				<td>
-					Edit
+					<button id="{{$d->id}}" class="btn btn-success"><i class="fas fa-edit"></i></button>
+					<button style="display: none;" id="save{{$d->id}}" class="btn btn-primary"><i class="fas fa-save"></i></button>
 				</td>
+			</form>
 				<td>
-					delete
+					<a href="/department/delete?did={{$d->id}}"><button class="btn btn-danger" id="del{{$d->id}}"><i class="fas fa-trash-alt"></i></button></a>
 				</td>
 			</tr>
 			@endforeach
 		</table>
 	</div>
 </div>
+<script>
+$(".btn-success").click(function(){
+	var data = $(this).attr("id");
+	var type = $("#label"+data).text();
+	$(this).hide();
+	$("#save"+data).show();
+	$("#label"+data).hide();
+	$("#del"+data).hide();
+	$("#text"+data).show();
+	$("#text"+data).val(type);
+    return false;
+});
+
+$(".btn-danger").click(function(){
+	if(confirm("You will lose all data such as scientist, questions, answers Confirm?")){
+    }
+    else{
+        return false;
+    }
+});
+</script>
 
 @endsection

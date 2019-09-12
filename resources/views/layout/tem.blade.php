@@ -102,11 +102,11 @@
 
       @if(Session::has('user'))
         <li class="nav-item">
-          <a class="nav-link" href="/signout">Logout</a>
+          <a class="nav-link" href="/signout"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </li> 
       @else
         <li class="nav-item">
-          <a class="nav-link" href="/signin">Login</a>
+          <a class="nav-link" href="/signin"><i class="fas fa-sign-in-alt"></i> Login</a>
         </li> 
       @endif   
     </ul>

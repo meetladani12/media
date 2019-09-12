@@ -45,26 +45,54 @@
 
 <div class="row">
 	<div class="col-lg-4 offset-lg-4 table">
-		<table>
+		<table width="100%">
 		<thead>
-			<th>Taluka</th>
+			<th>Village</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</thead>
 			@foreach($taluka as $t)
 			<tr>
+			<form method="POST" action="/taluka/update">
+			{{csrf_field()}}
 				<td>
-					{{$t->name}}
+					<label id="label{{$t->id}}"">{{$t->name}}</label>
+					<input type="hidden" name="did" value="{{$t->id}}">
+					<input type="text" name="edit" id="text{{$t->id}}" style="display: none;width: 100%">
 				</td>
 				<td>
-					Edit
+					<button id="{{$t->id}}" class="btn btn-success"><i class="fas fa-edit"></i></button>
+					<button style="display: none;" id="save{{$t->id}}" class="btn btn-primary"><i class="fas fa-save"></i></button>
 				</td>
+			</form>
 				<td>
-					delete
+					<a href="/taluka/delete?tid={{$t->id}}"><button class="btn btn-danger" id="del{{$t->id}}"><i class="fas fa-trash-alt"></i></button></a>
 				</td>
 			</tr>
 			@endforeach
 		</table>
 	</div>
 </div>
+
+<script>
+$(".btn-success").click(function(){
+	var data = $(this).attr("id");
+	var type = $("#label"+data).text();
+	$(this).hide();
+	$("#save"+data).show();
+	$("#label"+data).hide();
+	$("#del"+data).hide();
+	$("#text"+data).show();
+	$("#text"+data).val(type);
+    return false;
+});
+
+$(".btn-danger").click(function(){
+	if(confirm("You will lose all data such as farmers, talukas, villages, questions, answers Confirm?")){
+    }
+    else{
+        return false;
+    }
+});
+</script>
 @endsection

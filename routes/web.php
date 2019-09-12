@@ -45,6 +45,18 @@ Route::post('/addQuestion','farmerController@AddQuestion');
 Route::get('/viewQuestion','path@ViewQuestion');
 Route::get('/viewAnswer','path@viewAnswer');
 Route::get('/AcceptReject','adminController@AcceptReject');
+Route::post('/groupType/update','adminController@editGTP');
+Route::get('/groupType/delete','adminController@deleteGTP');
+Route::post('/group/update','adminController@editGroup');
+Route::get('/group/delete','adminController@deleteGroup');
+Route::post('/department/update','adminController@editDepartment');
+Route::get('/department/delete','adminController@deleteDepartment');
+Route::post('/district/update','adminController@editDistrict');
+Route::get('/district/delete','adminController@deleteDistrict');
+Route::post('/taluka/update','adminController@editTaluka');
+Route::get('/taluka/delete','adminController@deleteTaluka');
+Route::post('/village/update','adminController@editVillage');
+Route::get('/village/delete','adminController@deleteVillage');
 Route::resource('farmer','farmerController');
 Route::resource('scientist','scientistcontroller');
 Route::post('/login','logincotroller@login');
@@ -101,9 +113,8 @@ Route::get('/ajax-video',function(){
 	return $videos;
 });
 
-Route::get('/ajax-distedit',function(){
-	$dist_id = Input::get('did') ;
-	$dist_name = Input::get('dnm') ;
-	$update=district::where('id', $dist_id)->update(['name' => $dist_name]);
-	return $update;
+Route::get('/ajax-video',function(){
+	$keyword = Input::get('keyword') ;
+	$videos= video::where('title','LIKE','%'.$keyword.'%')->get();
+	return $videos;
 });

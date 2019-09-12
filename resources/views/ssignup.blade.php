@@ -106,18 +106,18 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-			        <input name="password" class="form-control" placeholder="Enter password" type="password" required>
+			        <input id="psd" name="password" class="form-control" placeholder="Enter password" type="password" required>
 			    </div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-			        <input class="form-control" placeholder="Re-Enter password" type="password" required>
+			        <input id="repsd" class="form-control" placeholder="Re-Enter password" type="password" required>
 			    </div>                      
 			    <div class="col-lg-6 offset-lg-3">            
 			    <div class="form-group">
-			        <button type="submit" class="btn btn-primary btn-block"> Sign UP </button>
+			        <button id="ssubmit" type="submit" class="btn btn-primary btn-block"> Sign UP </button>
 			    </div>    
 			    </div>                                                                    
 			</form>
@@ -155,6 +155,20 @@ $('#grouptype').on('change',function(e){
 		});
 
 	});
+});
+
+$("#ssubmit").click(function(){
+
+	    	var password =$("#psd").val();
+	    	var repassword =$("#repsd").val();
+	    	if (password==repassword) {
+
+	    	}
+	    	else{
+	    		alert("password and Re-Enter password not match");
+	    		return false;
+	    	}
+	    	
 });
 </script>
 </article>

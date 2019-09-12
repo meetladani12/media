@@ -33,7 +33,7 @@
 
 <div class="row">
 	<div class="col-lg-4 offset-lg-4 table">
-		<table>
+		<table width="100%">
 		<thead>
 			<th>Group Type</th>
 			<th>Edit</th>
@@ -41,24 +41,49 @@
 		</thead>
 			@foreach($grouptp as $g)
 			<tr>
+			<form method="POST" action="/groupType/update">
+				{{csrf_field()}}
 				<td>
-					{{$g->type}}
+					<label id="label{{$g->id}}"">{{$g->type}}</label>
+					<input type="hidden" name="gid" value="{{$g->id}}">
+					<input type="text" name="edit" id="text{{$g->id}}" style="display: none;">
 				</td>
 				<td>
-					Edit
+					<button id="{{$g->id}}" class="btn btn-success"><i class="fas fa-edit"></i></button>
+					<button style="display: none;" id="save{{$g->id}}" class="btn btn-primary"><i class="fas fa-save"></i></button>
 				</td>
+			</form>
 				<td>
-					delete
+					<a href="/groupType/delete?gid={{$g->id}}"><button class="btn btn-danger" id="del{{$g->id}}"><i class="fas fa-trash-alt"></i></button></a>
 				</td>
+			
 			</tr>
 			@endforeach
 		</table>
-	
 	</div>
-	
 </div>
+<script>
+$(".btn-success").click(function(){
+	var data = $(this).attr("id");
+	var type = $("#label"+data).text();
+	$(this).hide();
+	$("#save"+data).show();
+	$("#label"+data).hide();
+	$("#del"+data).hide();
+	$("#text"+data).show();
+	$("#text"+data).val(type);
+    return false;
+});
 
+$(".btn-danger").click(function(){
+	if(confirm("You will lose all data such as scientist, groups, questions, answers Confirm?")){
+    }
+    else{
+        return false;
+    }
+});
 
+</script>
 
 
 @endsection

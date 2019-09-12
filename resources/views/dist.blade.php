@@ -42,34 +42,21 @@
 		</thead>
 			@foreach($dist as $d)
 			<tr>
+			<form method="POST" action="/district/update">
+			{{csrf_field()}}
 				<td>
-					{{$d->name}}
+					<label id="label{{$d->id}}"">{{$d->name}}</label>
+					<input type="hidden" name="did" value="{{$d->id}}">
+					<input type="text" name="edit" id="text{{$d->id}}" style="display: none;width: 100%">
 				</td>
-
-				<td><a href="#" id="farmer" class="edit_modal" fdata="{{$d->id}}" data-toggle="modal" data-target="#smallModal{{$d->id}}"><i class="far fa-edit"></i></a></td>
-
-				<div class="modal fade" id="smallModal{{$d->id}}" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
-					<div class="modal-dialog modal-sm">
-						<div class="modal-content">
-							<div class="modal-header">
-								<h4 class="modal-title" id="myModalLabel">District</h4>
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-									<span aria-hidden="true">&times;</span>
-								</button>
-							</div>
-							<div class="modal-body">
-								<label id="dist">District:</label><br>
-								<input class="edittext" did="{{$d->id}}" type="text" id="abc" name="distedit" value="{{$d->name}}"><br>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<td><a href="#"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
-
+				<td>
+					<button id="{{$d->id}}" class="btn btn-success"><i class="fas fa-edit"></i></button>
+					<button style="display: none;" id="save{{$d->id}}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+				</td>
+			</form>
+				<td>
+					<a href="/district/delete?did={{$d->id}}"><button class="btn btn-danger" id="del{{$d->id}}"><i class="fas fa-trash-alt"></i></button></a>
+				</td>
 			</tr>
 			@endforeach
 		</table>
@@ -79,25 +66,25 @@
 </div>
 
 <script>
-$(".edit_modal").click(function(e){
-	var dist_id = $(this).attr("fdata");
-	console.log(e);
-	
-
-});
-$(".edittext").keypress(function(event){
-	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if(keycode == '13'){
-		var distname = $(this).val();+
-		var dist_id = $(this).attr("did");
-		$.get('/ajax-distedit?did='+dist_id+'&dnm='+distname,function(data){
-			location.reload();
-		});
-
-	}
+$(".btn-success").click(function(){
+	var data = $(this).attr("id");
+	var type = $("#label"+data).text();
+	$(this).hide();
+	$("#save"+data).show();
+	$("#label"+data).hide();
+	$("#del"+data).hide();
+	$("#text"+data).show();
+	$("#text"+data).val(type);
+    return false;
 });
 
-
+$(".btn-danger").click(function(){
+	if(confirm("You will lose all data such as farmers, talukas, villages, questions, answers Confirm?")){
+    }
+    else{
+        return false;
+    }
+});
 </script>
 
 

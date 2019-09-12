@@ -7,6 +7,7 @@ use App\scientist;
 use App\farmer;
 use App\district;
 use App\taluka;
+use App\village;
 use App\department_type;
 use App\department;
 use App\group_type;
@@ -63,7 +64,8 @@ class path extends Controller
     public function village()
     {
         $dist=district::get();
-        return view('village',compact('dist'));  
+        $village=village::get();
+        return view('village',compact('dist','village'));  
     }
 
     public function department_type()

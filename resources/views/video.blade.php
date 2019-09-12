@@ -6,6 +6,27 @@
 	<div class="col-lg-6 offset-lg-3">
 		<table>
 		<thead>
+			<th>Search Video</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td colspan="3">
+					<div class="form-group input-group">
+						<div class="input-group-prepend">
+						    <span class="input-group-text"> <i class="fa fa-search"></i> </span>
+						 </div>
+				        <input name="searchv" class="form-control" id="search" placeholder="Search Video" type="text" required>
+			    	</div>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-6 offset-lg-3">
+		<table>
+		<thead>
 			<th>Select Group Type:</th>
 			<th>Select Group:</th>
 		</thead>
@@ -85,8 +106,20 @@ $('#group').on('change',function(e){
 		$.each(data,function(index,videoObj){
 			$("#videotable").last().append("<tr><td><iframe width='100%'' height='315' src='https://www.youtube.com/embed/"+videoObj.youtube_video_id+"'></td></tr>");
 		});
-
 	});
+});
+
+$("#search").keyup(function(e){
+	var keyup=$("#search").val();
+		if ((e.which <= 90 && e.which >= 48) || e.which==8 || e.which==46)
+	    {
+	        $("#videotable").html("");
+	        $.get('/ajax-video?keyword='+keyup,function(data){
+				$.each(data,function(index,videoObj){
+					$("#videotable").last().append("<tr><td><iframe width='100%'' height='315' src='https://www.youtube.com/embed/"+videoObj.youtube_video_id+"'></td></tr>");
+				});
+			});
+	    }
 });
 </script>
 @endsection
