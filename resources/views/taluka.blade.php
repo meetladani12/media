@@ -2,6 +2,33 @@
 
 @section('body')
 <br>
+@isset($_GET['err'])
+<div class="row">
+	@if($_GET['err']==1)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Taluka updated successfully!
+	  		</div>
+		</div>
+	@elseif($_GET['err']==2)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Taluka added successfully!
+	  		</div>
+		</div>
+	@elseif($_GET['err']==3)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Taluka deleted successfully!
+	  		</div>
+		</div>
+	@endif
+</div>
+@endisset
+
 <div class="row">
 	<div class="col-lg-4 offset-lg-4">
 		<div class="card">
@@ -88,7 +115,7 @@ $(".btn-success").click(function(){
 });
 
 $(".btn-danger").click(function(){
-	if(confirm("You will lose all data such as farmers, talukas, villages, questions, answers Confirm?")){
+	if(confirm("You will lose all data such as farmers, villages, questions, answers Confirm?")){
     }
     else{
         return false;

@@ -111,7 +111,7 @@ class farmerController extends Controller
         ->take(1)
         ->get();
         if(count($scientist)<1){
-            return redirect('/question');
+            return redirect('/question?err=2');
         }
         else{
             $file=$request->file('file');
@@ -128,7 +128,7 @@ class farmerController extends Controller
             $question->save();
             echo $filename;
 
-            //return redirect('/question');
+            return redirect('/question?err=1');
         }
 
 

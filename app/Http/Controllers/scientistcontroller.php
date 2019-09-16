@@ -118,14 +118,14 @@ class scientistcontroller extends Controller
         $answer->answer = $request->answer;
         $answer->save();
         question::where('id',$request->qid)->update(['flag' => "1"]);
-        return redirect('/viewQuestion');
+        return redirect('/viewQuestion?err=1');
     }
 
     public function UpdateAnswer(Request $request)
     {
         answer::where('id',$request->aid)
         ->update(['answer' => $request->ans]);
-        return redirect('/viewQuestion');
+        return redirect('/viewQuestion?err=2');
     }
 
     public function UploadVideo(Request $request)

@@ -21,18 +21,18 @@ class adminController extends Controller
     	if(null !== Input::get('accept')){
     		$accept=Input::get('accept');
     		scientist::where('id',$accept)->update(['flag' => 1]);
-    		return redirect('/user');
+    		return redirect('/user?err==1');
     	}
     	if(null !== Input::get('reject')){
     		$reject=Input::get('reject');
     		scientist::where('id',$reject)->delete();
-    		return redirect('/user');
+    		return redirect('/user?err==2');
     	}
     }
 
     public function editGTP(Request $r){
         group_type::where('id',$r->gid)->update(['type' => $r->edit]);
-            return redirect('/groupType');
+            return redirect('/groupType?err=1');
     }
 
     public function deleteGTP(){
@@ -42,7 +42,7 @@ class adminController extends Controller
         $row=count($group);
         if($row==0){
             group_type::where('id',$gid)->delete();
-            return redirect('/groupType');
+            return redirect('/groupType?err=3');
         }
         else{
             foreach ($group as $g) {
@@ -57,7 +57,7 @@ class adminController extends Controller
                 group::where('id',$id)->delete();
             }
             group_type::where('id',$gid)->delete();
-            return redirect('/groupType');
+            return redirect('/groupType?err=3');
         }
         // echo $row;
         
@@ -65,7 +65,7 @@ class adminController extends Controller
 
     public function editGroup(Request $r){
         group::where('id',$r->gid)->update(['name' => $r->edit]);
-        return redirect('/group');
+        return redirect('/group?err=1');
     }
 
     public function deleteGroup(){
@@ -79,12 +79,12 @@ class adminController extends Controller
         question::where('group_id',$gid)->delete();
         scientist::where('group_id',$gid)->delete();
         group::where('id',$gid)->delete();
-        return redirect('/group');
+        return redirect('/group?err=3');
     }
 
     public function editDepartment(Request $r){
         department::where('id',$r->did)->update(['name' => $r->edit]);
-        return redirect('/department');
+        return redirect('/department?err=1');
     }
 
     public function deleteDepartment(){
@@ -102,12 +102,12 @@ class adminController extends Controller
         }
         scientist::where('department_id',$did)->delete();
         department::where('id',$did)->delete();
-        return redirect('/department');
+        return redirect('/department?err=3');
     }
 
     public function editDistrict(Request $r){
         district::where('id',$r->did)->update(['name' => $r->edit]);
-        return redirect('/dist');
+        return redirect('/dist?err=1');
     }
 
     public function deleteDistrict(){
@@ -135,12 +135,12 @@ class adminController extends Controller
         }
         taluka::where('district_id',$did)->delete();
         district::where('id',$did)->delete();
-        return redirect('/dist');
+        return redirect('/dist?err=3');
     }
 
     public function editTaluka(Request $r){
         taluka::where('id',$r->did)->update(['name' => $r->edit]);
-        return redirect('/taluka');
+        return redirect('/taluka?err=1');
     }
 
     public function deleteTaluka(){
@@ -163,12 +163,12 @@ class adminController extends Controller
             }
             village::where('taluka_id',$tid)->delete();
         taluka::where('id',$tid)->delete();
-        return redirect('/taluka');
+        return redirect('/taluka?err=3');
     }
 
     public function editVillage(Request $r){
         village::where('id',$r->vid)->update(['name' => $r->edit]);
-        return redirect('/village');
+        return redirect('/village?err=1');
     }
 
     public function deleteVillage(){
@@ -186,6 +186,6 @@ class adminController extends Controller
             }
             farmer::where('village_id',$vid)->delete();
         village::where('id',$vid)->delete();
-        return redirect('/village');
+        return redirect('/village?err=3');
     }
 }

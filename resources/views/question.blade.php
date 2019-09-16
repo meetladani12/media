@@ -2,6 +2,25 @@
 
 @section('body')
 <br>
+@isset($_GET['err'])
+<div class="row">
+	@if($_GET['err']==1)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Question added successfully!
+	  		</div>
+		</div>
+	@elseif($_GET['err']==2)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-info alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Scientist not available for this field.
+	  		</div>
+		</div>
+	@endif
+</div>
+@endisset
 <div class="row">
 	<div class="col-lg-6 offset-lg-3">
 		<div class="card">

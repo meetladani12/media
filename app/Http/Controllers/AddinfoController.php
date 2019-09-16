@@ -17,7 +17,7 @@ class AddinfoController extends Controller
     	$add = new district;
     	$add->name = $r->dist;
     	$add->save();
-    	return redirect('/dist');
+    	return redirect('/dist?err=2');
     }
 
     public function taluka(Request $r){
@@ -25,7 +25,7 @@ class AddinfoController extends Controller
     	$add->district_id = $r->district;
     	$add->name = $r->taluka;
     	$add->save();
-    	return redirect('/taluka');
+    	return redirect('/taluka?err=2');
     }
 
     public function village(Request $r){
@@ -33,14 +33,14 @@ class AddinfoController extends Controller
     	$add->taluka_id = $r->taluka;
     	$add->name = $r->village;
     	$add->save();	
-    	return redirect('/village');
+    	return redirect('/village?err=2');
     }
 
     public function departmenttp(Request $r){
     	$add = new department_type;
     	$add->type = $r->departmenttp;
     	$add->save();
-    	return redirect('/departmentType');
+    	return redirect('/departmentType?err=2');
     }
 
     public function department(Request $r){
@@ -48,14 +48,14 @@ class AddinfoController extends Controller
     	$add->department_type_id = $r->departmenttp;
     	$add->name = $r->department;
     	$add->save();
-    	return redirect('/department');
+    	return redirect('/department?err=2');
     }
 
     public function grouptp(Request $r){
     	$add = new group_type;
     	$add->type = $r->grouptp;
     	$add->save();
-    	return redirect('/groupType');
+    	return redirect('/groupType?err=2');
     }
 
     public function group(Request $r){
@@ -63,7 +63,7 @@ class AddinfoController extends Controller
     	$add->group_type_id = $r->grouptp;
     	$add->name = $r->group;
     	$add->save();
-    	return redirect('/group');
+    	return redirect('/group?err=2');
     }
 
     

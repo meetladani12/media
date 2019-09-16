@@ -42,7 +42,7 @@ class logincotroller extends Controller
 	    			return redirect('/');
 	    		}
 	    		else{
-	    			return view('signin');
+	    			return redirect('/signin?err=1');
 	    		}
     		}
     	}
@@ -53,8 +53,6 @@ class logincotroller extends Controller
 
     public function logout(){
     	Session::forget('user');
-    	return view('signin');
+    	return redirect('/signin?err=2');
     }
-
-    
 }

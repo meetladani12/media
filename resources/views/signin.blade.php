@@ -2,6 +2,25 @@
 
 @section('body')
 <br>
+@isset($_GET['err'])
+<div class="row">
+	@if($_GET['err']==1)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Invalid Username or Password
+	  		</div>
+		</div>
+	@elseif($_GET['err']==2)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Logout Successfully
+	  		</div>
+		</div>
+	@endif
+</div>
+@endisset
 <div class="row">
 	<div class="col-lg-4 offset-lg-4">
 		<div class="card">
