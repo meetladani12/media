@@ -11,20 +11,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
- 
+
 <script>
-   /*$(document).ready(function(){ 
-        $("#header").hover(
-          function(){
-            $("#header").css("background-image","linear-gradient(to right bottom ,#D16BA5,#86A8E7,#5FFBF1)");},
-            function(){
-            $("#header").css("background-image","linear-gradient(to right bottom ,#5FFBF1, #86A8E7,#D16BA5)");
-          });
-    });*/
 </script>   
 </head>
 <body>
-
+<div id='language'>
 <div class="jumbotron text-center" id="header" style="border-radius: 0px; margin-bottom:0;height: 120px; padding: 30px;background-image:url(image/bg2.png);background-size: Auto Auto">
   <h1 id="title" style="color: white">Media Management And Dissemination For AAU</h1>
 </div>
@@ -85,11 +77,22 @@
             <a class="dropdown-item" href="/group">Group</a>
           </div>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/act">Activity</a>
+          </li>
         @else
           <li class="nav-item">
             <a class="nav-link" href="/user">Users</a>
           </li>
         @endif
+      @endif
+    </ul>
+      <ul class="navbar-nav ml-auto">
+      @if(Session::has('user'))
+
+        <li class="nav-item">
+          <a class="nav-link" href="/signout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </li> 
       @else
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sign Up</a>
@@ -98,30 +101,20 @@
             <a class="dropdown-item" href="/regs">Scientist</a>
           </div>
         </li>
-      @endif
-
-      @if(Session::has('user'))
-        <li class="nav-item">
-          <a class="nav-link" href="/signout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        </li> 
-      @else
         <li class="nav-item">
           <a class="nav-link" href="/signin"><i class="fas fa-sign-in-alt"></i> Login</a>
         </li> 
       @endif   
-    </ul>
+      </ul>
+    
   </div>  
 </nav>
-
 
   <div class="" >
   @section('body')
     @show
-    
-   
   </div>
-
-
+  
 <div class="jumbotron text-center" style="border-radius: 0px;margin-bottom:0;height: 50px; padding: 12px;background-color: #2c2e30;color: white">
   Developed by: Meet Ladani
 </div>

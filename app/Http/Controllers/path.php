@@ -161,4 +161,9 @@ class path extends Controller
         $video=video::where('scientist_id',$id )->get();
         return view('MyVideo',compact('video'));  
     }
+
+    public function activity()
+    {
+        return view('activity');  
+    }
 }

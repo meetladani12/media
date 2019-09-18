@@ -22,14 +22,22 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
 						 </div>
-				        <input name="email" class="form-control" placeholder="Email address" type="email" required>
-				    </div> <!-- form-group// -->
+				        <input name="email" id="mail" class="form-control" placeholder="Email address" type="email" required>
+				    </div>
+				    <div class="form-group input-group"  id="ml" style="display: none;">
+				    	<label><font color="red">EmailID already exist</font></label>
+				    </div>
+
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="mobile" class="form-control" placeholder="Mobile number" type="text" required>
-				    </div> <!-- form-group// -->
+				    	<input name="mobile" id="MobileNo" class="form-control" placeholder="Mobile number" type="text" required>
+				    </div>
+				    <div class="form-group input-group"  id="mob" style="display: none;">
+				    	<label><font color="red">MobileNo. already exist</font></label>
+				    </div>
+
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
@@ -70,17 +78,17 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 						</div>
-				        <input class="form-control" name="password" placeholder="Enter password" type="password" required>
+				        <input class="form-control" id="psd" name="password" placeholder="Enter password" type="password" required>
 				    </div> <!-- form-group// -->
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 						</div>
-				        <input class="form-control" name="re-enter" placeholder="Re-Enter password" type="password" required>
+				        <input class="form-control" id="repsd" name="re-enter" placeholder="Re-Enter password" type="password" required>
 				    </div> <!-- form-group// --> 
 				    <div class="col-lg-6 offset-lg-3">                                     
 				    <div class="form-group">
-				        <button type="submit" class="btn btn-primary btn-block"> Sign UP </button>
+				        <button type="submit" id="frmsubmint" class="btn btn-primary btn-block"> Sign UP </button>
 				    </div> 
 				    </div>                                                                
 				</form>
@@ -120,6 +128,49 @@ $('#taluka').on('change',function(e){
 
 	});
 });
+$("#mail").focusout(function(){
+	var email=$('#mail').val();
+	$.get('/ajax-email?mail='+email,function(data){
+		if(data==0){
+			$("#ml").hide();
+		}
+		else{
+			$("#ml").show();
+		}
+	});
+});
+
+$("#MobileNo").focusout(function(){
+	var mono=$('#MobileNo').val();
+	$.get('/ajax-mobile?mobile='+mono,function(data){
+		
+		if(data==0){
+			$("#mob").hide();
+		}
+		else{
+			$("#mob").show();
+		}
+	});
+});
+
+$("#frmsubmint").click(function(){
+	var password =$("#psd").val();
+	var repassword =$("#repsd").val();
+	if (password==repassword) {
+
+	}
+	else{
+	    alert("password and Re-Enter password not match");
+	    return false;
+	}
+	if (($('#mob').is(':visible')) || ($('#ml').is(':visible'))) {
+		return false;
+	}
+	else{
+		
+	}
+});
+
 </script>
 </article>
 @endsection

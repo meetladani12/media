@@ -17,6 +17,9 @@ use App\village;
 use App\department;
 use App\group;
 use App\video;
+use App\farmer;
+use App\scientist;
+use App\admin;
 
 Route::get('/', function () {
     return view('welcome');
@@ -44,6 +47,7 @@ Route::post('/UploadVideo','scientistcontroller@UploadVideo');
 Route::post('/addQuestion','farmerController@AddQuestion');
 Route::get('/viewQuestion','path@ViewQuestion');
 Route::get('/viewAnswer','path@viewAnswer');
+Route::get('/act','path@activity');
 Route::get('/AcceptReject','adminController@AcceptReject');
 Route::post('/groupType/update','adminController@editGTP');
 Route::get('/groupType/delete','adminController@deleteGTP');
@@ -114,7 +118,25 @@ Route::get('/ajax-video',function(){
 });
 
 Route::get('/ajax-video',function(){
-	$keyword = Input::get('keyword') ;
+	$keyword = Input::get('keyword');
 	$videos= video::where('title','LIKE','%'.$keyword.'%')->get();
 	return $videos;
+});
+
+Route::get('/ajax-email',function(){
+	$email = Input::get('mail');
+	$farmer= farmer::where('email',$email)->count();
+	$scientist=scientist::where('email',$email)->count();
+	$admin =admin::where('email',$email)->count();
+	$cnt=$farmer+$scientist+$admin;
+	return $cnt;
+});
+
+Route::get('/ajax-mobile',function(){
+	$mobile = Input::get('mobile');
+	$farmer= farmer::where('mobile_no',$mobile)->count();
+	$scientist=scientist::where('mobile_no',$mobile)->count();
+	$admin =admin::where('mobile_no',$mobile)->count();
+	$cnt=$farmer+$scientist+$admin;
+	return $cnt;
 });

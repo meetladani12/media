@@ -147,12 +147,12 @@ if ($client->getAccessToken()) {
         // uploaded video data
         $videoTitle = $status['snippet']['title'];
         $videoDesc = $status['snippet']['description'];
-        $videoTags = implode(",",$status['snippet']['tags']);
+        //$videoTags = implode(",",$status['snippet']['tags']);
         $videoId = $status['id'];
         video::where('id',$vid)->update(['youtube_video_id'=>$videoId]);
 
-        return redirect('/upload');
-       }
+        return redirect('/upload?err=1');
+    }
     
     
     
@@ -168,6 +168,7 @@ if ($client->getAccessToken()) {
       
 } else {
   // If the user hasn't authorized the app, initiate the OAuth flow
+
       $state = mt_rand();
       $client->setState($state);
       $_SESSION['state'] = $state;
@@ -179,6 +180,7 @@ if ($client->getAccessToken()) {
 END;
     echo $htmlBody;
   
+
     }    
         
     }
