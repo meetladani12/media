@@ -160,15 +160,9 @@ $("#frmsubmint").click(function(){
 
 	}
 	else{
-	    alert("password and Re-Enter password not match");
-	    return false;
-	}
-	if (($('#mob').is(':visible')) || ($('#ml').is(':visible'))) {
+		alert("password and Re-Enter password not match");
 		return false;
-	}
-	else{
-		
-	}
+	}	
 });
 
 </script>

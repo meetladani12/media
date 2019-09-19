@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Session;
 use App\farmer;
 use App\scientist;
 use App\admin;
+Use \Carbon\Carbon;
 
 class logincotroller extends Controller
 {
@@ -39,6 +40,7 @@ class logincotroller extends Controller
 	    				$type=$a->type;
 	    			}
 	    			Session::put('user',$type);
+                    Session::put('admin',$type);
 	    			return redirect('/');
 	    		}
 	    		else{
@@ -52,7 +54,12 @@ class logincotroller extends Controller
     }
 
     public function logout(){
+
     	Session::forget('user');
+        Session::forget('admin');
+        setcookie('farmerid','',0);
+        setcookie('scientistid','',0);
+        setcookie('groupid','',0);
     	return redirect('/signin?err=2');
     }
 }

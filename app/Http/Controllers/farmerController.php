@@ -7,9 +7,14 @@ use App\farmer;
 use App\scientist;
 use App\question;
 use Illuminate\Support\Facades\DB;
+use App\group_type;
+use App\video;
 
 class farmerController extends Controller
 {
+    public function __construct(){
+        $this->middleware('RouteAccess');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -130,7 +135,31 @@ class farmerController extends Controller
 
             return redirect('/question?err=1');
         }
+    }
 
+    public function question()
+    {
+        $grouptp=group_type::get();
+        return view('question',compact('grouptp'));  
+    }
 
+    public function ViewVideo()
+    {
+        $video=video::get();
+        $group=group_type::get();
+        return view('video',compact('video','group'));  
+    }
+
+    public function viewAnswer()
+    {
+        $id=$_COOKIE['farmerid'];
+        $question=question::where(['farmer_id'=>$id])->get();
+        $answer=DB::table('answers')
+                ->join('questions','questions.id','=','answers.question_id')
+                ->where(['questions.flag'=>'1','farmer_id'=>$id])
+                ->select('answers.question_id AS qid','answer','answers.id AS aid','questions.question')
+                ->get();
+        $cnt=count($answer);
+        return view('viewAnswer',compact('question','cnt','answer'));
     }
 }

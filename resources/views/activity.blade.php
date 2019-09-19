@@ -20,7 +20,7 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		includeZero: false
 	},
 	data: [{        
-		type: "line",       
+		type: "pie",       
 		dataPoints: [
 			{ y: 450 },
 			{ y: 414},

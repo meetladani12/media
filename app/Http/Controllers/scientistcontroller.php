@@ -7,9 +7,13 @@ use App\scientist;
 use App\answer;
 use App\question;
 use App\video;
+use Illuminate\Support\Facades\DB;
 
 class scientistcontroller extends Controller
 {
+    public function __construct(){
+        $this->middleware('RouteAccessScientist');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -152,5 +156,30 @@ class scientistcontroller extends Controller
         $videoup->save();
         return redirect('/youtube');
 
+    }
+
+    public function upload()
+    {
+        return view('upload');  
+    }
+
+    public function MyVideo()
+    {
+        $id=$_COOKIE["scientistid"];
+        $video=video::where('scientist_id',$id )->get();
+        return view('MyVideo',compact('video'));  
+    }
+
+    public function ViewQuestion()
+    {
+        $id=$_COOKIE['scientistid'];
+        $question=question::where('scientist_id',$id)->get();
+        $answer=DB::table('answers')
+                ->join('questions','questions.id','=','answers.question_id')
+                ->where(['questions.scientist_id'=>$id,'questions.flag'=>'1'])
+                ->select('answers.question_id AS qid','answer','answers.id AS aid')
+                ->get();
+        $cnt=count($answer);
+        return view('viewQuestion',compact('question','cnt','answer'));
     }
 }
