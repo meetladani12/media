@@ -22,8 +22,8 @@ class RouteAccessAdminSuper
             }
         }
         else {
-            throw new \Exception("You can't Access This route");
-            //return redirect('/');
+            //throw new \Exception("You can't Access This route");
+            return redirect('/');
             
         }
         return $next($request);
