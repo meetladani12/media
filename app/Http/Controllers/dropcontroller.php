@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Session;
 
 class dropcontroller extends Controller
 {
-    public function index(){
-    	$district=district::get();
-    	return view('signup',compact('district'));
-    } 
 
+    public function __construct(){
+        $this->middleware('RouteAccessScientist');
+    }
 
     public function youtube(){
 

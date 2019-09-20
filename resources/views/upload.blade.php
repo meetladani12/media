@@ -14,7 +14,7 @@
 		    	</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
-					    <span class="input-group-text"><i class="fa fa-play" aria-hidden="true"></i></span>
+					    <span class="input-group-text"><i class="fab fa-youtube"></i></span>
 					</div>
 				    <input name="title" class="form-control" placeholder="Video title" type="text">
 				</div> 
@@ -40,9 +40,9 @@
 				    <input name="file" class="form-control" placeholder="Video File" type="file">
 				</div> 
 
-				<div class="col-lg-6 offset-lg-3">            
+				<div class="col-lg-4 offset-lg-4">            
 			    <div class="form-group">
-			        <button type="submit" class="btn btn-primary btn-block">Upload</button>
+			        <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-upload"></i>Upload</button>
 			    </div>    
 			    </div> 
 				</form>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\scientist;
 use App\answer;
 use App\question;
@@ -170,6 +171,13 @@ class scientistcontroller extends Controller
         return view('MyVideo',compact('video'));  
     }
 
+    public function MyVideoDelete()
+    {
+        $id=Input::get('id') ;
+        $video=video::where('id',$id )->delete();
+        return redirect('/myvideo');
+    }
+
     public function ViewQuestion()
     {
         $id=$_COOKIE['scientistid'];
@@ -181,5 +189,12 @@ class scientistcontroller extends Controller
                 ->get();
         $cnt=count($answer);
         return view('viewQuestion',compact('question','cnt','answer'));
+    }
+
+    public function profile()
+    {
+        $id = Input::get('id') ;
+        $scientist=scientist::where('id','=',$id)->get();
+        return $scientist;
     }
 }

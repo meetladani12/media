@@ -8,9 +8,6 @@ body {margin:2rem;}
       max-width: 800px;
       margin: 30px auto;
   }
-
-
-
 .modal-body {
   position:relative;
   padding:0px;
@@ -93,7 +90,7 @@ body {margin:2rem;}
 						</td>
 						<td>
 							<button type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/{{$v->youtube_video_id}}" data-target="#myModal">
-							Play
+							<i class="fa fa-play"></i>
 							</button>
 						</td>
 					</tr>

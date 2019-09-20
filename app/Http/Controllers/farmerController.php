@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\farmer;
 use App\scientist;
 use App\question;
@@ -161,5 +162,12 @@ class farmerController extends Controller
                 ->get();
         $cnt=count($answer);
         return view('viewAnswer',compact('question','cnt','answer'));
+    }
+
+    public function profile()
+    {
+        $id = Input::get('id') ;
+        $farmer=farmer::where('id','=',$id)->get();
+        return $farmer;
     }
 }

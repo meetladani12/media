@@ -24,11 +24,9 @@ use App\admin;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/regf','path@signup');
-Route::get('/regs','path@ssignup');
-Route::get('/signin','path@signin');
-Route::get('/contact','path@contact');
-Route::get('/about','path@about');
+
+
+
 Route::get('/dist','AddinfoController@district');
 Route::get('/taluka','AddinfoController@talukaView');
 Route::get('/village','AddinfoController@villageView');
@@ -37,18 +35,7 @@ Route::get('/department','AddinfoController@departmentView');
 Route::get('/groupType','AddinfoController@group_typeView');
 Route::get('/group','AddinfoController@groupView');
 Route::get('/act','AddinfoController@activity');
-Route::get('/user','adminController@user');
-Route::get('/question','farmerController@question');
-Route::get('/upload','scientistcontroller@upload');
-Route::get('/ViewVideo','farmerController@ViewVideo');
-Route::get('/myvideo','scientistcontroller@MyVideo');
-Route::post('/addAnswer','scientistcontroller@AddAnswer');
-Route::post('/UpdateAnswer','scientistcontroller@UpdateAnswer');
-Route::post('/UploadVideo','scientistcontroller@UploadVideo');
-Route::post('/addQuestion','farmerController@AddQuestion');
-Route::get('/viewQuestion','scientistcontroller@ViewQuestion');
-Route::get('/viewAnswer','farmerController@viewAnswer');
-Route::get('/AcceptReject','adminController@AcceptReject');
+Route::get('/Aprofile','AddinfoController@profile');
 Route::post('/groupType/update','AddinfoController@editGTP');
 Route::get('/groupType/delete','AddinfoController@deleteGTP');
 Route::post('/group/update','AddinfoController@editGroup');
@@ -61,10 +48,6 @@ Route::post('/taluka/update','AddinfoController@editTaluka');
 Route::get('/taluka/delete','AddinfoController@deleteTaluka');
 Route::post('/village/update','AddinfoController@editVillage');
 Route::get('/village/delete','AddinfoController@deleteVillage');
-Route::resource('farmer','farmerController');
-Route::resource('scientist','scientistcontroller');
-Route::post('/login','logincotroller@login');
-Route::get('/signout','logincotroller@logout');
 Route::post('/addDist','AddinfoController@dist');
 Route::post('/addTaluka','AddinfoController@taluka');
 Route::post('/addVillage','AddinfoController@village');
@@ -73,7 +56,49 @@ Route::post('/addDepartment','AddinfoController@department');
 Route::post('/addGrouptp','AddinfoController@grouptp');
 Route::post('/addGroup','AddinfoController@group');
 
+
+
+
+
+Route::get('/AcceptReject','adminController@AcceptReject');
+Route::get('/user','adminController@user');
+Route::get('/SAprofile','adminController@profile');
+
+
+
+Route::get('/question','farmerController@question');
+Route::get('/ViewVideo','farmerController@ViewVideo');
+Route::post('/addQuestion','farmerController@AddQuestion');
+Route::get('/Fprofile','farmerController@profile');
+Route::get('/viewAnswer','farmerController@viewAnswer');
+Route::resource('farmer','farmerController');
+
+
+
+Route::get('/upload','scientistcontroller@upload');
+Route::get('/myvideo','scientistcontroller@MyVideo');
+Route::get('/Sprofile','scientistcontroller@profile');
+Route::get('/myvideo/delete','scientistcontroller@MyVideoDelete');
+Route::post('/addAnswer','scientistcontroller@AddAnswer');
+Route::post('/UpdateAnswer','scientistcontroller@UpdateAnswer');
+Route::post('/UploadVideo','scientistcontroller@UploadVideo');
+Route::get('/viewQuestion','scientistcontroller@ViewQuestion');
+Route::resource('scientist','scientistcontroller');
+
+
+
+Route::post('/login','logincotroller@login');
+Route::get('/signout','logincotroller@logout');
+Route::get('/regf','logincotroller@signup');
+Route::get('/regs','logincotroller@ssignup');
+Route::get('/signin','logincotroller@signin');
+Route::get('/contact','logincotroller@contact');
+Route::get('/about','logincotroller@about');
+
+
 Route::get('/youtube','dropcontroller@youtube');
+
+
 
 Route::get('/ajax-taluka',function(){
 	$dist_id = Input::get('dist') ;

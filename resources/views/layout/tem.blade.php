@@ -90,7 +90,23 @@
     </ul>
       <ul class="navbar-nav ml-auto">
       @if(Session::has('user'))
-
+        @if(Session::get('user')=='farmer')
+          <li class="nav-item">
+            <a class="nav-link" href="/Fprofile?id={{$_COOKIE['farmerid']}}"><i class="fas fa-user"></i>{{$_COOKIE['nm']}}</a>
+          </li> 
+        @elseif(Session::get('user')=='scientist')
+          <li class="nav-item">
+            <a class="nav-link" href="/Sprofile?id={{$_COOKIE['scientistid']}}"><i class="fas fa-user"></i>{{$_COOKIE['nm']}}</a>
+          </li>
+        @elseif(Session::get('user')=='Super')
+          <li class="nav-item">
+            <a class="nav-link" href="/SAprofile?id={{$_COOKIE['admin']}}"><i class="fas fa-user"></i>{{$_COOKIE['nm']}}</a>
+          </li>
+        @else
+          <li class="nav-item">
+            <a class="nav-link" href="/Aprofile?id={{$_COOKIE['admin']}}"><i class="fas fa-user"></i>{{$_COOKIE['nm']}}</a>
+          </li>
+        @endif
         <li class="nav-item">
           <a class="nav-link" href="/signout"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </li> 
@@ -116,7 +132,7 @@
     @show
   </div>
   
-<div class="jumbotron text-center" style="border-radius: 0px;margin-bottom:0;height: 50px; padding: 12px;background-color: #2c2e30;color: white">
+<div class="jumbotron text-center" id="footer" style="border-radius: 0px;margin-bottom:0;height: 50px; padding: 12px;background-color: #2c2e30;color: white">
   Developed by: Meet Ladani
 </div>
 </div>

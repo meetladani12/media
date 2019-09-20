@@ -7,10 +7,43 @@ use Illuminate\Support\Facades\Session;
 use App\farmer;
 use App\scientist;
 use App\admin;
+use App\district;
+use App\department_type;
+use App\group_type;
 Use \Carbon\Carbon;
 
 class logincotroller extends Controller
 {
+
+    public function signup()
+    { 
+        $dist=district::get();
+        return view('signup',compact('dist')); 
+    }
+    
+    public function ssignup()
+    { 
+        $dept=department_type::get();
+        $group=group_type::get();
+        return view('ssignup',compact('dept','group')); 
+    }
+
+    public function signin()
+    {
+        return view('signin');  
+    }
+
+    public function contact()
+    {
+        return view('contact');  
+    }
+
+    public function about()
+    {
+        return view('about');  
+    }
+
+
     public function login(Request $req){
     	$email=$req->email;
     	$password=$req->password;
@@ -20,8 +53,10 @@ class logincotroller extends Controller
     		Session::put('user','farmer');
             foreach ($farmer  as $f) {
             $id=$f->id;
+            $nm=$f->name;
             }
             setcookie('farmerid',$id);
+            setcookie('nm',$nm);
             return redirect('/');
     	}
     	else{
@@ -29,6 +64,7 @@ class logincotroller extends Controller
     		if(count($scientist)>0){
     			Session::put('user','scientist');
                 setcookie('scientistid',$scientist[0]->id);
+                setcookie('nm',$scientist[0]->name);
                 setcookie('groupid',$scientist[0]->group_id);
     			return redirect('/');
     		}
@@ -41,6 +77,8 @@ class logincotroller extends Controller
 	    			}
 	    			Session::put('user',$type);
                     Session::put('admin',$type);
+                    setcookie('admin',$admin[0]->id);
+                    setcookie('nm',$admin[0]->name);
 	    			return redirect('/');
 	    		}
 	    		else{
@@ -60,6 +98,8 @@ class logincotroller extends Controller
         setcookie('farmerid','',0);
         setcookie('scientistid','',0);
         setcookie('groupid','',0);
+        setcookie('admin','',0);
+        setcookie('nm','',0);
     	return redirect('/signin?err=2');
     }
 }

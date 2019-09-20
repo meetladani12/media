@@ -20,6 +20,11 @@
 							<iframe width="100%" height="315" src="https://www.youtube.com/embed/{{$v->youtube_video_id}}">
 							</iframe>
 						</td>
+						<td>
+							<td style="vertical-align : middle;">
+								<a href="/myvideo/delete?id={{$v->id}}"><button class="btn btn-danger" id=""><i class="fas fa-trash-alt"></i></button></a>
+							</td>
+						</td>
 					</tr>
 				@endforeach
 				</tbody>

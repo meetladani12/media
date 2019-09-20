@@ -15,6 +15,7 @@ use App\group;
 use App\question;
 use App\answer;
 use App\farmer;
+use App\admin;
 
 class AddinfoController extends Controller
 {
@@ -285,5 +286,12 @@ class AddinfoController extends Controller
             farmer::where('village_id',$vid)->delete();
         village::where('id',$vid)->delete();
         return redirect('/village?err=3');
+    }
+
+    public function profile()
+    {
+        $id = Input::get('id') ;
+        $admin=admin::where('id','=',$id)->get();
+        return $admin;
     }
 }

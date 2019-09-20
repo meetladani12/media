@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use App\scientist;
+use App\admin;
 
 class adminController extends Controller
 {
@@ -44,4 +45,11 @@ class adminController extends Controller
     		return redirect('/user?err==2');
     	}
     } 
+
+    public function profile()
+    {
+        $id = Input::get('id') ;
+        $admin=admin::where('id','=',$id)->get();
+        return $admin;
+    }
 }
