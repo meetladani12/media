@@ -10,6 +10,9 @@ use App\question;
 use Illuminate\Support\Facades\DB;
 use App\group_type;
 use App\video;
+use App\district;
+use App\taluka;
+use App\village;
 
 class farmerController extends Controller
 {
@@ -95,7 +98,15 @@ class farmerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $farmer=farmer::find($id);
+        $farmer->name = $request->fullname;
+        $farmer->email = $request->email;
+        $farmer->mobile_no = $request->mobile;
+        $farmer->village_id= $request->village;
+        $farmer->address = $request->address;
+        $farmer->password = $request->password;
+        $farmer->save();
+        return redirect('/Fprofile?err=1&&id='.$id.'');
     }
 
     /**
@@ -168,6 +179,11 @@ class farmerController extends Controller
     {
         $id = Input::get('id') ;
         $farmer=farmer::where('id','=',$id)->get();
-        return $farmer;
-    }
+        $talukaid=village::where('id','=',$farmer[0]->village_id)->get();
+        $districtid=taluka::where('id','=',$talukaid[0]->taluka_id)->get();
+        $dist=district::get();
+        $talu=taluka::where('district_id','=',$districtid[0]->district_id)->get();
+        $villa=village::where('taluka_id','=',$talukaid[0]->taluka_id)->get();
+        return view('FarmerProfile',compact('farmer','dist','talukaid','districtid','talu','villa'));
+    } 
 }

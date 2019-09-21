@@ -50,6 +50,17 @@ class adminController extends Controller
     {
         $id = Input::get('id') ;
         $admin=admin::where('id','=',$id)->get();
-        return $admin;
+        return view('AdminProfile',compact('admin'));
+    }
+
+    public function UpdateProfile(Request $request,$id)
+    {
+        $admin=admin::find($id);
+        $admin->name = $request->fullname;
+        $admin->email = $request->email;
+        $admin->mobile_no = $request->mobile;
+        $admin->password = $request->password;
+        $admin->save();
+        return redirect('/Aprofile?id='.$id.'&&err=1');
     }
 }

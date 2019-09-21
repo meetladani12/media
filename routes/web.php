@@ -55,6 +55,8 @@ Route::post('/addDepartmenttp','AddinfoController@departmenttp');
 Route::post('/addDepartment','AddinfoController@department');
 Route::post('/addGrouptp','AddinfoController@grouptp');
 Route::post('/addGroup','AddinfoController@group');
+Route::get('/SAprofile','AddinfoController@profile');
+Route::post('/SAprofile/{SAprofile}','AddinfoController@UpdateProfile');
 
 
 
@@ -62,17 +64,16 @@ Route::post('/addGroup','AddinfoController@group');
 
 Route::get('/AcceptReject','adminController@AcceptReject');
 Route::get('/user','adminController@user');
-Route::get('/SAprofile','adminController@profile');
-
+Route::get('/Aprofile','adminController@profile');
+Route::post('/Aprofile/{Aprofile}','adminController@UpdateProfile');
 
 
 Route::get('/question','farmerController@question');
 Route::get('/ViewVideo','farmerController@ViewVideo');
 Route::post('/addQuestion','farmerController@AddQuestion');
-Route::get('/Fprofile','farmerController@profile');
+Route::get('/Sprofile','farmerController@profile');
 Route::get('/viewAnswer','farmerController@viewAnswer');
 Route::resource('farmer','farmerController');
-
 
 
 Route::get('/upload','scientistcontroller@upload');
@@ -83,8 +84,8 @@ Route::post('/addAnswer','scientistcontroller@AddAnswer');
 Route::post('/UpdateAnswer','scientistcontroller@UpdateAnswer');
 Route::post('/UploadVideo','scientistcontroller@UploadVideo');
 Route::get('/viewQuestion','scientistcontroller@ViewQuestion');
+Route::get('/Fprofile','farmerController@profile');
 Route::resource('scientist','scientistcontroller');
-
 
 
 Route::post('/login','logincotroller@login');
@@ -94,6 +95,9 @@ Route::get('/regs','logincotroller@ssignup');
 Route::get('/signin','logincotroller@signin');
 Route::get('/contact','logincotroller@contact');
 Route::get('/about','logincotroller@about');
+Route::get('/about','logincotroller@about');
+Route::get('/ForgotPassword','logincotroller@ForgotPassword');
+Route::post('/ForgotPassword/SendMail','logincotroller@SendMail');
 
 
 Route::get('/youtube','dropcontroller@youtube');

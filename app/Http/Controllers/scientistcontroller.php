@@ -8,6 +8,10 @@ use App\scientist;
 use App\answer;
 use App\question;
 use App\video;
+use App\group;
+use App\group_type;
+use App\department;
+use App\department_type;
 use Illuminate\Support\Facades\DB;
 
 class scientistcontroller extends Controller
@@ -102,7 +106,20 @@ class scientistcontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $scientist=scientist::find($id);
+        $scientist->name = $request->fullname;
+        $scientist->email = $request->email;
+        $scientist->phone_no = $request->phone;
+        $scientist->mobile_no = $request->mobile;
+        $scientist->designation= $request->designation;
+        $scientist->department_id= $request->department;
+        $scientist->date_of_join = $request->date;
+        $scientist->group_id = $request->group;
+        $scientist->address = $request->address;
+        $scientist->password = $request->password;
+        $scientist->save();
+        return redirect('/Sprofile?err=1&&id='.$id.'');
+
     }
 
     /**
@@ -195,6 +212,13 @@ class scientistcontroller extends Controller
     {
         $id = Input::get('id') ;
         $scientist=scientist::where('id','=',$id)->get();
-        return $scientist;
+        $dept=department_type::get();
+        $grouptp=group_type::get();
+        $groupid=group::where('id','=',$scientist[0]->group_id)->get();
+        $group=group::where('group_type_id','=',$groupid[0]->group_type_id)->get();
+        $departid=department::where('id','=',$scientist[0]->department_id)->get();
+        $department=department::where('department_type_id','=',$departid[0]->department_type_id)->get();
+        
+        return view('ScientistProfile',compact('scientist','dept','grouptp','group','department','groupid','departid'));
     }
 }

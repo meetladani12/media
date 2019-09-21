@@ -11,6 +11,8 @@ use App\district;
 use App\department_type;
 use App\group_type;
 Use \Carbon\Carbon;
+use Mail;
+use App\mail\sendMail;
 
 class logincotroller extends Controller
 {
@@ -89,6 +91,42 @@ class logincotroller extends Controller
     	
     	//Session::forget('user');
     	//Session::get('user');
+    }
+    
+    public function ForgotPassword(){
+        return view('ForgotPassword');
+    }
+
+    public function SendMail(Request $req){
+        $mail=$req->email;
+        $farmer=farmer::where(['email'=>$mail])->get();
+        $row = $farmer->count();
+        if($row==1)
+        {
+            Mail::send(new sendMail());
+            return redirect('/ForgotPassword?err=1');
+        }
+        else{
+            $scientist=scientist::where(['email'=>$mail])->get();
+            $row = $scientist->count();
+            if ($row==1) {
+                Mail::send(new sendMail());
+                return redirect('/ForgotPassword?err=1');
+            }
+            else{
+                $admin=admin::where(['email'=>$mail])->get();
+                $row = $admin->count();
+                if ($row==1) {
+                    Mail::send(new sendMail());
+                    return redirect('/ForgotPassword?err=1');
+                }
+                else{
+                    return redirect('/ForgotPassword?err=2');
+                }
+            }
+        }
+        
+        
     }
 
     public function logout(){
