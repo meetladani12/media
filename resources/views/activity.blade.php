@@ -4,12 +4,16 @@
 <div class="row">
 	<div class="col-lg-4 offset-lg-4 table">
 		<div id="chartContainer" style="height: 300px; width: 100%;"></div>
-		<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+	</div>
+</div>
+<div class="row">
+	<div class="col-lg-4 offset-lg-4 table">
+		<button type="submit" id="clk" class="btn btn-primary btn-block">chart</button>
 	</div>
 </div>
 <script>
-window.onload = function () {
 
+$("#clk").click(function(){
 var chart = new CanvasJS.Chart("chartContainer", {
 	animationEnabled: true,
 	theme: "light2",
@@ -17,10 +21,10 @@ var chart = new CanvasJS.Chart("chartContainer", {
 		text: "Simple Line Chart"
 	},
 	axisY:{
-		includeZero: false
+		includeZero: true
 	},
 	data: [{        
-		type: "pie",       
+		type: "line",       
 		dataPoints: [
 			{ y: 450 },
 			{ y: 414},
@@ -38,7 +42,10 @@ var chart = new CanvasJS.Chart("chartContainer", {
 	}]
 });
 chart.render();
+});
 
-}
+
+
+
 </script>
 @endsection

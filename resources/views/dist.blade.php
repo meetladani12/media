@@ -43,11 +43,11 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-building"></i></span>
 						</div>
-				    	<input name="dist" class="form-control" placeholder="Enter District" type="text">
+				    	<input name="dist" id='addDist' class="form-control" placeholder="Enter District" type="text" required>
 				    	</div>
 				    	<div class="col-lg-4 offset-lg-4">
 				    	<div class="form-group">
-				        	<button type="submit" class="btn btn-primary btn-block" style="width: 100px"> ADD </button>
+				        	<button type="submit" id='add' class="btn btn-primary btn-block" style="width: 100px"> ADD </button>
 				    	</div>	
 				    	</div>
 					</div>
@@ -78,7 +78,7 @@
 				</td>
 				<td>
 					<button id="{{$d->id}}" class="btn btn-success"><i class="fas fa-edit"></i></button>
-					<button style="display: none;" id="save{{$d->id}}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+					<button style="display: none;" id="save{{$d->id}}" data='{{$d->id}}' class="btn btn-primary edit"><i class="fas fa-save"></i></button>
 				</td>
 			</form>
 				<td>
@@ -103,6 +103,32 @@ $(".btn-success").click(function(){
 	$("#text"+data).show();
 	$("#text"+data).val(type);
     return false;
+});
+$('#add').on("click",function(e){
+	var d=$("#addDist").val();
+	var cnt=0;
+    $.get('/ajax-add-dist?dist='+d,function(data){
+    	cnt = data;
+    	alert(cnt);
+	});
+});
+
+$('.edit').on("click",function(e){
+	var data = $(this).attr("data");
+	var d=$("#text"+data).val();
+	var cnt=0;
+    $.get('/ajax-dist?dist='+d+'&&did='+data,function(data){
+    	cnt = data;
+    	alert(cnt);
+	});
+	// if(cnt==0){
+
+	// }
+	// else{
+	// 	alert('District Already Exist');
+	// 	return false;
+	// }
+
 });
 
 $(".btn-danger").click(function(){

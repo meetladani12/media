@@ -169,3 +169,16 @@ Route::get('/ajax-mobile',function(){
 	$cnt=$farmer+$scientist+$admin;
 	return $cnt;
 });
+
+Route::get('/ajax-dist',function(){
+	$dist = Input::get('dist');
+	$did = Input::get('did');
+	$di=district::where('id','!=',$did)->where('name','=',$dist)->count();
+	return $di;
+});
+
+Route::get('/ajax-add-dist',function(){
+	$dist = Input::get('dist');
+	$di=district::where('name','=',$dist)->count();
+	return $di;
+});
