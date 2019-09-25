@@ -56,15 +56,6 @@ class farmerController extends Controller
         //     'password' => 'required',
 
         // ]);
-        $farmer = new farmer;
-        $farmer->name = $request->fullname;
-        $farmer->email = $request->email;
-        $farmer->mobile_no = $request->mobile;
-        $farmer->village_id= $request->village;
-        $farmer->address = $request->address;
-        $farmer->password = $request->password;
-        $farmer->save();
-        return redirect('/');
     }
 
     /**

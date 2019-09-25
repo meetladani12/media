@@ -140,4 +140,56 @@ class logincotroller extends Controller
         setcookie('nm','',0);
     	return redirect('/signin?err=2');
     }
+
+    public function FarmerSignup(Request $request)
+    {
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'email' => 'required|unique:farmers',
+        //     'mobile_no' => 'required|unique:farmers',
+        //     'village_id' => 'required',
+        //     'address' => 'required',
+        //     'password' => 'required',
+
+        // ]);
+        $farmer = new farmer;
+        $farmer->name = $request->fullname;
+        $farmer->email = $request->email;
+        $farmer->mobile_no = $request->mobile;
+        $farmer->village_id= $request->village;
+        $farmer->address = $request->address;
+        $farmer->password = $request->password;
+        $farmer->save();
+        return redirect('/regf?err=1');
+    }
+
+    public function ScientistSignup(Request $request)
+    {
+        // $this->validate($request, [
+        //     'name' => 'required',
+        //     'email' => 'required|unique:scientists',
+        //     'phone_no' => 'required|unique:scientists',
+        //     'mobile_no' => 'required|unique:scientists',
+        //     'designation' => 'required',
+        //     'department_id' => 'required',
+        //     'date_of_join' => 'required',
+        //     'group_id' => 'required',
+        //     'address' => 'required',
+        //     'password' => 'required',
+
+        // ]);
+        $scientist = new scientist;   
+        $scientist->name = $request->fullname;
+        $scientist->email = $request->email;
+        $scientist->phone_no = $request->phone;
+        $scientist->mobile_no = $request->mobile;
+        $scientist->designation= $request->designation;
+        $scientist->department_id= $request->department;
+        $scientist->date_of_join = $request->date;
+        $scientist->group_id = $request->group;
+        $scientist->address = $request->address;
+        $scientist->password = $request->password;
+        $scientist->save();
+        return redirect('/regs?err=1');
+    }
 }

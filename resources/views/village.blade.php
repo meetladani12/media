@@ -25,6 +25,13 @@
 	    		Village deleted successfully!
 	  		</div>
 		</div>
+	@elseif($_GET['err']==4)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Village already exist
+	  		</div>
+		</div>
 	@endif
 </div>
 @endisset
@@ -65,7 +72,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-building"></i></span>
 						</div>
-				    	<input name="village" class="form-control" placeholder="Enter Village" type="text">
+				    	<input name="village" class="form-control" placeholder="Enter Village" type="text" required>
 				    	</div>
 				    	<div class="form-group">
 				        	<button type="submit" class="btn btn-primary btn-block" style="width: 100px"> ADD </button>
@@ -91,6 +98,7 @@
 			<form method="POST" action="/village/update">
 			{{csrf_field()}}
 				<td>
+					<input type="hidden" name="taluka{{$v->id}}" value="{{$v->taluka_id}}">
 					<label id="label{{$v->id}}"">{{$v->name}}</label>
 					<input type="hidden" name="vid" value="{{$v->id}}">
 					<input type="text" name="edit" id="text{{$v->id}}" style="display: none;width: 100%">

@@ -25,6 +25,13 @@
 	    		Taluka deleted successfully!
 	  		</div>
 		</div>
+	@elseif($_GET['err']==4)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Taluka already exists
+	   		</div>
+		</div>
 	@endif
 </div>
 @endisset
@@ -83,6 +90,7 @@
 			<form method="POST" action="/taluka/update">
 			{{csrf_field()}}
 				<td>
+					<input type="hidden" name="did{{$t->id}}" value="{{$t->district_id}}">
 					<label id="label{{$t->id}}"">{{$t->name}}</label>
 					<input type="hidden" name="did" value="{{$t->id}}">
 					<input type="text" name="edit" id="text{{$t->id}}" style="display: none;width: 100%">

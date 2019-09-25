@@ -25,6 +25,13 @@
 	    		District deleted successfully!
 	  		</div>
 		</div>
+	@elseif($_GET['err']==4)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		District already exist
+	  		</div>
+		</div>
 	@endif
 </div>
 @endisset
@@ -104,32 +111,7 @@ $(".btn-success").click(function(){
 	$("#text"+data).val(type);
     return false;
 });
-$('#add').on("click",function(e){
-	var d=$("#addDist").val();
-	var cnt=0;
-    $.get('/ajax-add-dist?dist='+d,function(data){
-    	cnt = data;
-    	alert(cnt);
-	});
-});
 
-$('.edit').on("click",function(e){
-	var data = $(this).attr("data");
-	var d=$("#text"+data).val();
-	var cnt=0;
-    $.get('/ajax-dist?dist='+d+'&&did='+data,function(data){
-    	cnt = data;
-    	alert(cnt);
-	});
-	// if(cnt==0){
-
-	// }
-	// else{
-	// 	alert('District Already Exist');
-	// 	return false;
-	// }
-
-});
 
 $(".btn-danger").click(function(){
 	if(confirm("You will lose all data such as farmers, talukas, villages, questions, answers Confirm?")){

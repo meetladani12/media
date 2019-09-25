@@ -89,6 +89,8 @@ Route::resource('scientist','scientistcontroller');
 
 
 Route::post('/login','logincotroller@login');
+Route::post('/Farmer/signup','logincotroller@FarmerSignup');
+Route::post('/Scientist/signup','logincotroller@ScientistSignup');
 Route::get('/signout','logincotroller@logout');
 Route::get('/regf','logincotroller@signup');
 Route::get('/regs','logincotroller@ssignup');
@@ -168,17 +170,4 @@ Route::get('/ajax-mobile',function(){
 	$admin =admin::where('mobile_no',$mobile)->count();
 	$cnt=$farmer+$scientist+$admin;
 	return $cnt;
-});
-
-Route::get('/ajax-dist',function(){
-	$dist = Input::get('dist');
-	$did = Input::get('did');
-	$di=district::where('id','!=',$did)->where('name','=',$dist)->count();
-	return $di;
-});
-
-Route::get('/ajax-add-dist',function(){
-	$dist = Input::get('dist');
-	$di=district::where('name','=',$dist)->count();
-	return $di;
 });

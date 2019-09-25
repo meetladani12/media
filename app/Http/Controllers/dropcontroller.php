@@ -150,7 +150,7 @@ if ($client->getAccessToken()) {
         $videoId = $status['id'];
         video::where('id',$vid)->update(['youtube_video_id'=>$videoId]);
 
-        return redirect('/upload?err=1');
+        return view('upload');
     }
     
     

@@ -25,6 +25,13 @@
 	    		Group Type deleted successfully!
 	  		</div>
 		</div>
+	@elseif($_GET['err']==4)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		GroupType already exist
+	  		</div>
+		</div>
 	@endif
 </div>
 @endisset
@@ -42,7 +49,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-building" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="grouptp" class="form-control" placeholder="Enter Group Type" type="text">
+				    	<input name="grouptp" class="form-control" placeholder="Enter Group Type" type="text" required>
 				    	</div>
 				    	<div class="form-group">
 				        	<button type="submit" class="btn btn-primary btn-block" style="width: 100px"> ADD </button>
@@ -72,7 +79,7 @@
 				<td>
 					<label id="label{{$g->id}}"">{{$g->type}}</label>
 					<input type="hidden" name="gid" value="{{$g->id}}">
-					<input type="text" name="edit" id="text{{$g->id}}" style="display: none;">
+					<input type="text" name="edit" id="text{{$g->id}}" style="display: none;" required>
 				</td>
 				<td>
 					<button id="{{$g->id}}" class="btn btn-success"><i class="fas fa-edit"></i></button>

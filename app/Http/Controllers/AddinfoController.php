@@ -26,10 +26,16 @@ class AddinfoController extends Controller
     }
     
     public function dist(Request $r){
-    	$add = new district;
-    	$add->name = $r->dist;
-    	$add->save();
-    	return redirect('/dist?err=2');
+        $di=district::where('name','=',$r->dist)->count();
+        if($di==0){
+            $add = new district;
+            $add->name = $r->dist;
+            $add->save();
+            return redirect('/dist?err=2');
+        }else{
+            return redirect('/dist?err=4');
+        }
+    	
     }
 
     public function district()
@@ -39,11 +45,17 @@ class AddinfoController extends Controller
     }
 
     public function taluka(Request $r){
-    	$add = new taluka;
-    	$add->district_id = $r->district;
-    	$add->name = $r->taluka;
-    	$add->save();
-    	return redirect('/taluka?err=2');
+        $di=taluka::where('district_id','=',$r->district)->where('name','=',$r->taluka)->count();
+        if($di==0){
+            $add = new taluka;
+            $add->district_id = $r->district;
+            $add->name = $r->taluka;
+            $add->save();
+            return redirect('/taluka?err=2');
+        }else{
+            return redirect('/taluka?err=4');
+        }
+    	
     }
 
     public function talukaView()
@@ -54,11 +66,17 @@ class AddinfoController extends Controller
     }
 
     public function village(Request $r){
-    	$add = new village;
-    	$add->taluka_id = $r->taluka;
-    	$add->name = $r->village;
-    	$add->save();	
-    	return redirect('/village?err=2');
+        $di=village::where('taluka_id','=',$r->taluka)->where('name','=',$r->village)->count();
+        if($di==0){
+            $add = new village;
+            $add->taluka_id = $r->taluka;
+            $add->name = $r->village;
+            $add->save();   
+            return redirect('/village?err=2');
+        }else{
+            return redirect('/village?err=4');
+        }
+    	
     }
 
     public function villageView()
@@ -82,11 +100,17 @@ class AddinfoController extends Controller
     }
 
     public function department(Request $r){
-    	$add = new department;
-    	$add->department_type_id = $r->departmenttp;
-    	$add->name = $r->department;
-    	$add->save();
-    	return redirect('/department?err=2');
+        $di=department::where('name','=',$r->department)->count();
+        if($di==0){
+            $add = new department;
+            $add->department_type_id = $r->departmenttp;
+            $add->name = $r->department;
+            $add->save();
+            return redirect('/department?err=2');
+        }else{
+            return redirect('/department?err=4');
+        }
+    	
     }
 
     public function departmentView()
@@ -97,10 +121,16 @@ class AddinfoController extends Controller
     }
 
     public function grouptp(Request $r){
-    	$add = new group_type;
-    	$add->type = $r->grouptp;
-    	$add->save();
-    	return redirect('/groupType?err=2');
+        $di=group_type::where('type','=',$r->grouptp)->count();
+        if($di==0){
+            $add = new group_type;
+            $add->type = $r->grouptp;
+            $add->save();
+            return redirect('/groupType?err=2');
+        }else{
+            return redirect('/groupType?err=4');
+        }
+    	
     }
 
     public function group_typeView()
@@ -110,11 +140,17 @@ class AddinfoController extends Controller
     }
 
     public function group(Request $r){
-    	$add = new group;
-    	$add->group_type_id = $r->grouptp;
-    	$add->name = $r->group;
-    	$add->save();
-    	return redirect('/group?err=2');
+        $di=group::where('name','=',$r->group)->count();
+        if($di==0){
+            $add = new group;
+            $add->group_type_id = $r->grouptp;
+            $add->name = $r->group;
+            $add->save();
+            return redirect('/group?err=2');
+        }else{
+            return redirect('/group?err=4');
+        }
+    	
     }
 
     public function groupView()
@@ -130,8 +166,14 @@ class AddinfoController extends Controller
     }
     
     public function editGTP(Request $r){
-        group_type::where('id',$r->gid)->update(['type' => $r->edit]);
+        $di=group_type::where('id','!=',$r->gid)->where('type','=',$r->edit)->count();
+        if($di==0){
+            group_type::where('id',$r->gid)->update(['type' => $r->edit]);
             return redirect('/groupType?err=1');
+        }else{
+            return redirect('/groupType?err=4');
+        }
+        
     }
 
     public function deleteGTP(){
@@ -163,8 +205,13 @@ class AddinfoController extends Controller
     }
 
     public function editGroup(Request $r){
-        group::where('id',$r->gid)->update(['name' => $r->edit]);
-        return redirect('/group?err=1');
+        $di=group::where('id','!=',$r->gid)->where('name','=',$r->edit)->count();
+        if($di==0){
+            group::where('id',$r->gid)->update(['name' => $r->edit]);
+            return redirect('/group?err=1');
+        }else{
+            return redirect('/group?err=4');
+        }
     }
 
     public function deleteGroup(){
@@ -182,8 +229,14 @@ class AddinfoController extends Controller
     }
 
     public function editDepartment(Request $r){
-        department::where('id',$r->did)->update(['name' => $r->edit]);
-        return redirect('/department?err=1');
+        $di=department::where('id','!=',$r->did)->where('name','=',$r->edit)->count();
+        if($di==0){
+            department::where('id',$r->did)->update(['name' => $r->edit]);
+            return redirect('/department?err=1');
+        }else{
+            return redirect('/department?err=4');
+        }
+        
     }
 
     public function deleteDepartment(){
@@ -205,8 +258,13 @@ class AddinfoController extends Controller
     }
 
     public function editDistrict(Request $r){
-        district::where('id',$r->did)->update(['name' => $r->edit]);
-        return redirect('/dist?err=1');
+        $di=district::where('id','!=',$r->did)->where('name','=',$r->edit)->count();
+        if($di==0){
+            district::where('id',$r->did)->update(['name' => $r->edit]);
+            return redirect('/dist?err=1');
+        }else{
+            return redirect('/dist?err=4');
+        }
     }
 
     public function deleteDistrict(){
@@ -238,8 +296,16 @@ class AddinfoController extends Controller
     }
 
     public function editTaluka(Request $r){
-        taluka::where('id',$r->did)->update(['name' => $r->edit]);
-        return redirect('/taluka?err=1');
+
+        $did2='did'.$r->did;
+        $di=taluka::where('id','!=',$r->did)->where('district_id','=',$r->$did2)->where('name','=',$r->edit)->count();
+        if($di==0){
+            taluka::where('id',$r->did)->update(['name' => $r->edit]);
+            return redirect('/taluka?err=1');
+        }else{
+            return redirect('/taluka?err=4');
+        }
+        
     }
 
     public function deleteTaluka(){
@@ -266,8 +332,15 @@ class AddinfoController extends Controller
     }
 
     public function editVillage(Request $r){
-        village::where('id',$r->vid)->update(['name' => $r->edit]);
-        return redirect('/village?err=1');
+        $did2='taluka'.$r->vid;
+        $di=village::where('id','!=',$r->vid)->where('taluka_id','=',$r->$did2)->where('name','=',$r->edit)->count();
+        if($di==0){
+            village::where('id',$r->vid)->update(['name' => $r->edit]);
+            return redirect('/village?err=1');
+        }else{
+            return redirect('/village?err=4');
+        }
+        
     }
 
     public function deleteVillage(){

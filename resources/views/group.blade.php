@@ -25,6 +25,13 @@
 	    		Group deleted successfully!
 	  		</div>
 		</div>
+	@elseif($_GET['err']==4)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-danger alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Group already exist
+	  		</div>
+		</div>
 	@endif
 </div>
 @endisset
@@ -54,7 +61,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-building"></i></span>
 						</div>
-				    	<input name="group" class="form-control" placeholder="Enter Department" type="text">
+				    	<input name="group" class="form-control" placeholder="Enter Department" type="text" required>
 				    	</div>
 				    	<div class="form-group">
 				        	<button type="submit" class="btn btn-primary btn-block" style="width: 100px"> ADD </button>

@@ -60,19 +60,6 @@ class scientistcontroller extends Controller
         //     'password' => 'required',
 
         // ]);
-        $scientist = new scientist;   
-        $scientist->name = $request->fullname;
-        $scientist->email = $request->email;
-        $scientist->phone_no = $request->phone;
-        $scientist->mobile_no = $request->mobile;
-        $scientist->designation= $request->designation;
-        $scientist->department_id= $request->department;
-        $scientist->date_of_join = $request->date;
-        $scientist->group_id = $request->group;
-        $scientist->address = $request->address;
-        $scientist->password = $request->password;
-        $scientist->save();
-        return redirect('/');
     }
 
     /**
