@@ -66,7 +66,7 @@
 
 <div class="row">
 	<div class="col-lg-4 offset-lg-4 table">
-		<table width="100%">
+		<table id='grouptptbl' class="table table-striped table-bordered" style="width:100%"	>
 		<thead>
 			<th>Group Type</th>
 			<th>Edit</th>
@@ -95,6 +95,13 @@
 		</table>
 	</div>
 </div>
+
+<script>
+$(document).ready(function() {
+    $('#grouptptbl').DataTable();
+});
+</script>
+
 <script>
 $(".btn-success").click(function(){
 	var data = $(this).attr("id");

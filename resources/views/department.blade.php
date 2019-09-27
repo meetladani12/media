@@ -77,8 +77,8 @@
 <br>
 
 <div class="row">
-	<div class="col-lg-6 offset-lg-3 table">
-		<table width="100%">
+	<div class="col-lg-6 offset-lg-3">
+		<table id='example' class="table table-striped table-bordered" style="width:100%">
 		<thead>
 			<th>Department</th>
 			<th>Edit</th>
@@ -89,7 +89,7 @@
 			<form method="POST" action="/department/update">
 			{{csrf_field()}}
 				<td>
-					<label id="label{{$d->id}}"">{{$d->name}}</label>
+					<label id="label{{$d->id}}">{{$d->name}}</label>
 					<input type="hidden" name="did" value="{{$d->id}}">
 					<input type="text" name="edit" id="text{{$d->id}}" style="display: none;width: 100%" required>
 				</td>
@@ -106,6 +106,11 @@
 		</table>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#example').DataTable();
+});
+</script>
 <script>
 $(".btn-success").click(function(){
 	var data = $(this).attr("id");

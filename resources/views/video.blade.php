@@ -143,7 +143,7 @@ $('#grouptype').on('change',function(e){
 		$("#videotable").html("");
 		$.get('/ajax-video',function(data){
 			$.each(data,function(index,videoObj){
-				$("#videotable").last().append("<tr><td><iframe width='100%'' height='315' src='https://www.youtube.com/embed/"+videoObj.youtube_video_id+"'></td></tr>");
+				$("#taluka").last().append("<tr><td><iframe width='100%'' height='315' src='https://www.youtube.com/embed/"+videoObj.youtube_video_id+"'></td></tr>");
 			});
 		});
 	}

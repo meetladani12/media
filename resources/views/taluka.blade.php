@@ -11,7 +11,7 @@
 	    		Taluka updated successfully!
 	  		</div>
 		</div>
-	@elseif($_GET['err']==2)
+	@elseif($_GET['err']==2) 
 		<div class='col-md-4 offset-lg-4'>
 			<div class="alert alert-success alert-dismissible">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
@@ -51,7 +51,7 @@
 						   	<div class="input-group-prepend">
 								<span class="input-group-text"> <i class="fa fa-building"></i> </span>
 							</div>
-							<select name="district" id="district" class="form-control">
+							<select name="district" id="district1" class="form-control">
 							<option selected=""> Select District</option>
 							@foreach($dist as $d)
 								<option value="{{$d->id}}">{{$d->name}}</option>
@@ -77,9 +77,32 @@
 </div>
 <br>
 
+<!-- <div class="row">
+	<div class="col-lg-4 offset-lg-4">
+		<table>
+		<thead>
+			<th>Select District</th>
+		</thead>
+		<tbody>
+			<tr>
+				<td>
+					<select class="form-control" name="dist" id="district">
+						<option selected=""> Select District</option>
+						<option value="all">All</option>
+						@foreach($dist as $d)
+							<option value="{{$d->id}}">{{$d->name}}</option>
+						@endforeach
+					</select>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+</div> -->
+
 <div class="row">
-	<div class="col-lg-4 offset-lg-4 table">
-		<table width="100%">
+	<div id='frm' class="col-lg-4 offset-lg-4">
+		<table id='taluka' class="table table-striped table-bordered" style="width:100%"	>
 		<thead>
 			<th>Village</th>
 			<th>Edit</th>
@@ -91,7 +114,7 @@
 			{{csrf_field()}}
 				<td>
 					<input type="hidden" name="did{{$t->id}}" value="{{$t->district_id}}">
-					<label id="label{{$t->id}}"">{{$t->name}}</label>
+					<label id="label{{$t->id}}">{{$t->name}}</label>
 					<input type="hidden" name="did" value="{{$t->id}}">
 					<input type="text" name="edit" id="text{{$t->id}}" style="display: none;width: 100%">
 				</td>
@@ -108,9 +131,60 @@
 		</table>
 	</div>
 </div>
+<script>
+$(document).ready(function() {
+    $('#taluka').DataTable();
+});
+</script>
 
 <script>
-$(".btn-success").click(function(){
+
+// $('#district').on('change',function(e){
+// 	console.log(e);
+// 	var dist_id = e.target.value;
+// 	$("#taluka").html("");
+// 	$("#taluka").last().append("<thead><th>Village</th><th>Edit</th><th>Delete</th></thead>");
+// 	$.get('/ajax-taluka?dist='+dist_id,function(data){
+// 		$.each(data,function(index,talukaObj){
+// 			var form=$("<form method='POST' id='"+talukaObj.id+"' action='/taluka/update'></form>");
+// 			form.append('{{csrf_field()}}');
+// 			form.append($("#taluka").last().append("<tr><td><input type='hidden' name='did"+talukaObj.id+"' value='"+talukaObj.district_id+"'><label id='label"+talukaObj.id+"'>"+talukaObj.name+"</label><input type='hidden' name='did' value='"+talukaObj.id+"'><input type='text' name='edit' id='text"+talukaObj.id+"' style='display: none;width: 100%'></td><td><button id='"+talukaObj.id+"' class='btn btn-success'><i class='fas fa-edit'></i></button><button style='display: none;' data="+talukaObj.id+" id='save"+talukaObj.id+"' class='btn btn-primary'><i class='fas fa-save'></i></button></td><td><a href='/taluka/delete?tid="+talukaObj.id+"'><button class='btn btn-danger' id='del"+talukaObj.id+"'><i class='fas fa-trash-alt'></i></button></a></td></tr>"));
+// 			$("#frm").append(form);
+// 		});
+// 		$(".btn-success").click(function(e){
+// 			console.log(e);
+// 			var data = $(this).attr("id");
+// 			var type = $("#label"+data).text();
+// 			$(this).hide();
+// 			$("#save"+data).show();
+// 			$("#label"+data).hide();
+// 			$("#del"+data).hide();
+// 			$("#text"+data).show();
+// 			$("#text"+data).val(type);
+// 			return false;
+// 		});
+
+// 		$(".btn-primary").click(function(){
+// 			var a=$(this).attr('data');
+// 			alert($("#text"+a).val());
+// 			alert(a);
+// 			return false;
+// 		});
+
+// 		$(".btn-danger").click(function(){
+// 			if(confirm("You will lose all data such as farmers, villages, questions, answers Confirm?")){
+// 			}
+// 			else{
+// 				return false;
+// 			}
+// 		});
+// 	});
+	
+// });
+
+
+$(".btn-success").click(function(e){
+	console.log(e);
 	var data = $(this).attr("id");
 	var type = $("#label"+data).text();
 	$(this).hide();
@@ -121,6 +195,8 @@ $(".btn-success").click(function(){
 	$("#text"+data).val(type);
     return false;
 });
+
+
 
 $(".btn-danger").click(function(){
 	if(confirm("You will lose all data such as farmers, villages, questions, answers Confirm?")){

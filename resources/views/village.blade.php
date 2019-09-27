@@ -86,8 +86,8 @@
 </div>
 
 <div class="row">
-	<div class="col-lg-4 offset-lg-4 table">
-		<table style="width: 100%">
+	<div class="col-lg-4 offset-lg-4">
+		<table id='villagetbl' class="table table-striped table-bordered" style="width:100%">
 		<thead>
 			<th>District</th>
 			<th>Edit</th>
@@ -118,7 +118,11 @@
 	</div>
 	
 </div>
-
+<script>
+$(document).ready(function() {
+    $('#villagetbl').DataTable();
+});
+</script>
 
 
 <script>
