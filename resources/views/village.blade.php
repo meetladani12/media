@@ -72,7 +72,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-building"></i></span>
 						</div>
-				    	<input name="village" class="form-control" placeholder="Enter Village" type="text" required>
+				    	<input name="village" class="form-control" placeholder="Enter Village" type="text" required pattern="[a-zA-Z][a-zA-Z ]+" title="start with alphabets and include alphabets, space.">
 				    	</div>
 				    	<div class="form-group">
 				        	<button type="submit" class="btn btn-primary btn-block" style="width: 100px"> ADD </button>

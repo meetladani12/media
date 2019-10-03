@@ -41,7 +41,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="mobile" id="MobileNo" class="form-control" placeholder="Mobile number" value="{{$admin[0]->mobile_no}}" type="text" required>
+				    	<input name="mobile" id="MobileNo" class="form-control" placeholder="Mobile number" maxlength="10" value="{{$admin[0]->mobile_no}}" type="text" required>
 				    </div>
 
 				    <div class="form-group input-group">

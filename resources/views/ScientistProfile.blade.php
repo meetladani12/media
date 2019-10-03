@@ -48,7 +48,7 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="mobile" value="{{$scientist[0]->mobile_no}}" id="MobileNo" class="form-control" placeholder="Mobile number" type="text" required>
+			    	<input name="mobile" value="{{$scientist[0]->mobile_no}}" id="MobileNo" class="form-control" maxlength="10" placeholder="Mobile number" type="text" required>
 			    </div>
 
 			    <div class="form-group input-group">
@@ -148,6 +148,8 @@
 		</div>
 	</div>
 </div>
+
+
 <script>
 $('#dept').on('change',function(e){
 	console.log(e);

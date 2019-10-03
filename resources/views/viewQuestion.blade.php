@@ -91,7 +91,7 @@
 						<input type="hidden" name="qid" value="{{$q->id}}">
 							<td colspan="3">
 							<div class="form-group input-group" id="answer{{$q->id}}" style="display: none;">
-							<input id="answer" name="answer" class="form-control" placeholder="Give Answer" type="text">
+							<input id="answer" name="answer" class="form-control" placeholder="Give Answer" type="text" required>
 							<div class="input-group-prepend">
 								<button id="1" type="submit"><span class="input-group-text"><i class="fa fa-paper-plane" aria-hidden="true"></i></span></button>
 							</div>

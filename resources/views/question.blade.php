@@ -36,7 +36,7 @@
 					    	<div class="input-group-prepend">
 							    <span class="input-group-text"><i class="fa fa-briefcase" aria-hidden="true"></i></span>
 							</div>
-							<select class="form-control" name="grouptype" id="grouptype">
+							<select class="form-control" name="grouptype" id="grouptype" required>
 								<option selected=""> Select Group</option>
 								@foreach($grouptp as $g)
 									<option value="{{$g->id}}">{{$g->type}}</option>
@@ -48,7 +48,7 @@
 					    	<div class="input-group-prepend">
 							    <span class="input-group-text"><i class="fa fa-briefcase" aria-hidden="true"></i></span>
 							</div>
-							<select name="group" id="group" class="form-control">
+							<select name="group" id="group" class="form-control" required>
 								<option selected=""> Select sub group</option>
 							</select>
 						</div>
@@ -56,14 +56,14 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-question-circle" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="question" class="form-control" placeholder="Enter Question" type="text">
+				    	<input name="question" class="form-control" placeholder="Enter Question" type="text" required pattern="[a-zA-Z][a-zA-Z.? ]+" title="Question start with alphabets and include alphabets, space, dot and qurstion mark.">
 				    	</div>
 				    	<div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="far fa-image"></i></span>
 						</div>
-				    	<input name="file" class="form-control" placeholder="Video File" type="file">
-				    	</div>
+				    	<input name="file" class="form-control" placeholder="Video File" type="file" required>
+				    	</div>	
 				    	</div>
 				    	
 				    	<div class="form-group">

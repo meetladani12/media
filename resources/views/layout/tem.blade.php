@@ -10,7 +10,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
@@ -35,10 +35,10 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="/contact">Contact Us</a>
+        <a class="nav-link" href="#">Contact Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/about">About</a>
+        <a class="nav-link" href="#">About</a>
       </li>
       @if(Session::has('user'))
         @if(Session::get('user')=='farmer')
@@ -138,7 +138,7 @@
     @show
   </div>
   
-<div class="jumbotron text-center" id="footer" style="border-radius: 0px;margin-bottom:0;height: 50px; padding: 12px;background-color: #2c2e30;color: white">
+<div class="jumbotron text-center" id="footer" style="border-radius: 0px;margin-bottom:0;height: 50px; padding: 12px;background-color: #343a40;color: white">
   Developed by: Meet Ladani
 </div>
 </div>

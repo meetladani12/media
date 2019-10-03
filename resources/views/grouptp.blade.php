@@ -49,7 +49,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-building" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="grouptp" class="form-control" placeholder="Enter Group Type" type="text" required>
+				    	<input name="grouptp" class="form-control" placeholder="Enter Group Type" type="text" required pattern="[a-zA-Z][a-zA-Z ]+" title="start with alphabets and include alphabets, space.">
 				    	</div>
 				    	<div class="form-group">
 				        	<button type="submit" class="btn btn-primary btn-block" style="width: 100px"> ADD </button>

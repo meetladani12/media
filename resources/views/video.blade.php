@@ -83,15 +83,8 @@ body {margin:2rem;}
 				@foreach($video as $v)
 					<tr>
 						<td>
-							<label>{{$v->title}}</label>
-						</td>
-						<td>
-							<label>{{$v->description}}</label>
-						</td>
-						<td>
-							<button type="button" class="btn btn-primary video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/{{$v->youtube_video_id}}" data-target="#myModal">
-							<i class="fa fa-play"></i>
-							</button>
+							<iframe width="100%" height="315" src="https://www.youtube.com/embed/{{$v->youtube_video_id}}">
+							</iframe>
 						</td>
 					</tr>
 				@endforeach
@@ -102,38 +95,7 @@ body {margin:2rem;}
 		</div>
 	</div>
 </div>
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-body">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>        
-				<!-- 16:9 aspect ratio -->
-				<div class="embed-responsive embed-responsive-16by9">
-					<iframe class="embed-responsive-item" src="" id="video"  allowscriptaccess="always" allow="autoplay"></iframe>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
-<br>
-<script>
-$(document).ready(function() {
-var $videoSrc;  
-$('.video-btn').click(function() {
-    $videoSrc = $(this).data( "src" );
-});
-console.log($videoSrc);
-$('#myModal').on('shown.bs.modal', function (e) {
-$("#video").attr('src',$videoSrc + "?autoplay=1&amp;modestbranding=1&amp;showinfo=0" ); 
-})
-$('#myModal').on('hide.bs.modal', function (e) {
-    $("#video").attr('src',$videoSrc); 
-}) 
-});
-</script>
 
 <script>
 $('#grouptype').on('change',function(e){
@@ -143,7 +105,7 @@ $('#grouptype').on('change',function(e){
 		$("#videotable").html("");
 		$.get('/ajax-video',function(data){
 			$.each(data,function(index,videoObj){
-				$("#taluka").last().append("<tr><td><iframe width='100%'' height='315' src='https://www.youtube.com/embed/"+videoObj.youtube_video_id+"'></td></tr>");
+				$("#videotable").last().append("<tr><td><iframe width='100%'' height='315' src='https://www.youtube.com/embed/"+videoObj.youtube_video_id+"'></td></tr>");
 			});
 		});
 	}

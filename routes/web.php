@@ -20,6 +20,9 @@ use App\video;
 use App\farmer;
 use App\scientist;
 use App\admin;
+use App\question;
+use App\answer;
+use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
     return view('welcome');
@@ -170,4 +173,31 @@ Route::get('/ajax-mobile',function(){
 	$admin =admin::where('mobile_no',$mobile)->count();
 	$cnt=$farmer+$scientist+$admin;
 	return $cnt;
+});
+
+Route::get('/ajax-reportq',function(){
+	$start = Input::get('start');
+	$end = Input::get('end');
+	// $question= question::where('created_at','>', $start)->where('created_at','<', $end)->get();
+	$question=DB::table('questions')
+                ->join('groups','groups.id','=','questions.group_id')
+                ->join('scientists','scientists.id','=','questions.scientist_id')
+                ->join('farmers','farmers.id','=','questions.farmer_id')
+                ->where('questions.created_at','>', $start)->where('questions.created_at','<', $end)
+                ->select('scientists.name AS snm','farmers.name AS fnm','groups.name AS gnm','question','questions.created_at AS dt','questions.id AS qid')
+                ->get();
+	return $question;
+});
+
+Route::get('/ajax-ans',function(){
+	$qid = Input::get('qid');
+	$ans= answer::where('question_id',$qid)->get();
+	$cnt = count($ans);
+	if($cnt==0){
+		$answer=0;
+	}
+	else{
+		$answer=$ans[0]->answer;
+	}
+	return $answer;
 });

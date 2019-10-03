@@ -28,13 +28,13 @@
 						<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 						 </div>
-				        <input name="fullname" class="form-control" placeholder="Full name" type="text" required>
+				        <input name="fullname" class="form-control" placeholder="Full name" type="text" required pattern="[a-zA-Z][a-zA-Z ]+" title="Name start with alphabet and include alphabets and space only">
 				    </div> <!-- form-group// -->
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
 						 </div>
-				        <input name="email" id="mail" class="form-control" placeholder="Email address" type="email" required>
+				        <input name="email" id="mail" class="form-control" placeholder="Email address" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
 				    </div>
 				    <div class="form-group input-group"  id="ml" style="display: none;">
 				    	<label><font color="red">EmailID already exist</font></label>
@@ -44,7 +44,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="mobile" id="MobileNo" class="form-control" placeholder="Mobile number" type="text" required>
+				    	<input name="mobile" id="MobileNo" maxlength="10" class="form-control" placeholder="Mobile number" type="text" required pattern="[6789][0-9]{9}" title="Mobile number start with 6-9 and remaing 9 digit with 0-9">
 				    </div>
 				    <div class="form-group input-group"  id="mob" style="display: none;">
 				    	<label><font color="red">MobileNo. already exist</font></label>
@@ -84,7 +84,7 @@
 						<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-address-card"></i></span>
 						 </div>
-				        <textarea name="address" class="form-control" placeholder="Address" required></textarea>
+				        <textarea name="address" minlength="10" class="form-control" placeholder="Address" required></textarea>
 				    </div>
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
@@ -148,6 +148,7 @@ $("#mail").focusout(function(){
 		}
 		else{
 			$("#ml").show();
+			return false;
 		}
 	});
 });
@@ -161,6 +162,7 @@ $("#MobileNo").focusout(function(){
 		}
 		else{
 			$("#mob").show();
+			return false;
 		}
 	});
 });
@@ -169,7 +171,12 @@ $("#frmsubmint").click(function(){
 	var password =$("#psd").val();
 	var repassword =$("#repsd").val();
 	if (password==repassword) {
-
+		if ( ( $("#mob").css('display') == 'none' || $("#mob").css("visibility") == "hidden")&&( $("#ml").css('display') == 'none' || $("#ml").css("visibility") == "hidden")){
+			
+		}
+		else{
+			return false;
+		}
 	}
 	else{
 		alert("password and Re-Enter password not match");

@@ -1,7 +1,12 @@
 @extends('layout.tem')
 
 @section('body')
-
+ <style>
+  /* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+  }
+  </style>
 <div class="col-lg-10 offset-lg-1"  style="padding-top: 10px;padding-bottom: 10px; align-content: center;">
 	<div id="demo" class="carousel slide" data-ride="carousel">
 		<ul class="carousel-indicators">
@@ -11,25 +16,13 @@
 		</ul>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-			<img src="image/fcb.jpg" alt="Los Angeles" width="1100" height="500">
-				<div class="carousel-caption">
-					<h3>Més que un club</h3>
-					<p>Great team in world</p>
-				</div>   
+			<img src="image/farmer.jpg" alt="Los Angeles" width="1100" height="500">
 			</div>
 			<div class="carousel-item">
-				<img src="image/unicorn.jpg" alt="Chicago" width="1100" height="500">
-				<div class="carousel-caption">
-					<h3>Chicago</h3>
-					<p>Thank you, Chicago!</p>
-				</div>   
+				<img src="image/farmlp1.jpg" alt="Chicago" width="1100" height="500">
 			</div>
 			<div class="carousel-item">
-				<img src="image/cam3.jpg" alt="New York" width="1100" height="500">
-				<div class="carousel-caption">
-					<h3>New York</h3>
-					<p>We love the Big Apple!</p>
-				</div>   
+				<img src="image/farmcam.png" alt="New York" width="1100" height="500">
 			</div>
 		</div>
 		<a class="carousel-control-prev" href="#demo" data-slide="prev">
