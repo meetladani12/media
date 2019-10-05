@@ -37,7 +37,7 @@
 					<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fas fa-file-video"></i></span>
 					</div>
-				    <input name="file" class="form-control" placeholder="Video File" type="file" required> 
+				    <input name="file" accept="video/*"  class="form-control" placeholder="Video File" type="file" required> 
 				</div> 
 
 				<div class="col-lg-4 offset-lg-4">            

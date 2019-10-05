@@ -67,6 +67,7 @@ Route::get('/video/delete','AddinfoController@MyVideoDelete');
 Route::get('/q-a/delete','AddinfoController@q_aDelete');
 Route::get('/Advisory','AddinfoController@Advisory');
 Route::get('/Advisory/send','AddinfoController@SendWMessage');
+Route::get('/ajax-sort','AddinfoController@SortFarmer');
 
 
 

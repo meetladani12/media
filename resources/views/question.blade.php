@@ -62,7 +62,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="far fa-image"></i></span>
 						</div>
-				    	<input name="file" class="form-control" placeholder="Video File" type="file" required>
+				    	<input name="file" accept="image/*" class="form-control" placeholder="Video File" type="file" required>
 				    	</div>	
 				    	</div>
 				    	

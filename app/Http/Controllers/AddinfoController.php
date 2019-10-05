@@ -440,7 +440,16 @@ class AddinfoController extends Controller
     
     public function Advisory()
     {
-        return view('Advisory');
+        $farmer= farmer::get();
+        $dist= district::get();
+        return view('Advisory',compact('farmer','dist'));
+    }
+    
+    public function SortFarmer()
+    {
+        $vid=Input::get('village') ;
+        $farmer= farmer::where('village_id',$vid)->get();
+        return $farmer;
     }
 
     public function SendWMessage()
@@ -448,7 +457,7 @@ class AddinfoController extends Controller
         
         $data = [
         'phone' => '919737246983', // Receivers phone
-        'body' => 'Hello, gopal!', // Message
+        'body' => 'Hello!', // Message
         ];
         $json = json_encode($data); // Encode data to JSON
         // URL for request POST /message
