@@ -177,4 +177,24 @@ class farmerController extends Controller
         $villa=village::where('taluka_id','=',$talukaid[0]->taluka_id)->get();
         return view('FarmerProfile',compact('farmer','dist','talukaid','districtid','talu','villa'));
     } 
+
+    public function video2()
+    {
+        $videos= video::get();
+        return $videos;
+    }
+
+    public function Vsearch()
+    {
+        $keyword = Input::get('keyword');
+        $videos= video::where('title','LIKE','%'.$keyword.'%')->get();
+        return $videos;
+    }
+
+    public function groupVideo()
+    {
+        $group_id = Input::get('group') ;
+        $videos= video::where('group_id','=',$group_id)->get();
+        return $videos;
+    }
 }

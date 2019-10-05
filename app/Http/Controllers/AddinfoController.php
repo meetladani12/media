@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 use App\district;
 use App\taluka;
 use App\village;
@@ -16,6 +17,7 @@ use App\question;
 use App\answer;
 use App\farmer;
 use App\admin;
+use App\video;
 
 class AddinfoController extends Controller
 {
@@ -378,4 +380,89 @@ class AddinfoController extends Controller
         $admin->save();
         return redirect('/SAprofile?id='.$id.'&&err=1');
     }
+
+    public function reportq(){
+        $start = Input::get('start');
+        $end = Input::get('end');
+        // $question= question::where('created_at','>', $start)->where('created_at','<', $end)->get();
+        $question=DB::table('questions')
+                    ->join('groups','groups.id','=','questions.group_id')
+                    ->join('scientists','scientists.id','=','questions.scientist_id')
+                    ->join('farmers','farmers.id','=','questions.farmer_id')
+                    ->where('questions.created_at','>', $start)->where('questions.created_at','<', $end)
+                    ->select('scientists.name AS snm','farmers.name AS fnm','groups.name AS gnm','question','questions.created_at AS dt','questions.id AS qid')
+                    ->get();
+        return $question;
+    }
+
+    public function ans(){
+        $qid = Input::get('qid');
+        $ans= answer::where('question_id',$qid)->get();
+        $cnt = count($ans);
+        if($cnt==0){
+            $answer=0;
+        }
+        else{
+            $answer=$ans[0]->answer;
+        }
+        return $answer;
+    }
+
+    public function reportv(){
+        $start = Input::get('start');
+        $end = Input::get('end');
+        $video=DB::table('videos')
+                    ->join('groups','groups.id','=','videos.group_id')
+                    ->join('scientists','scientists.id','=','videos.scientist_id')
+                    ->where('videos.created_at','>', $start)->where('videos.created_at','<', $end)
+                    ->select('scientists.name AS snm','title','description','tags','groups.name AS gnm','videos.created_at AS dt','youtube_video_id','videos.id AS vid')
+                    ->orderBy('videos.created_at','asc')
+                    ->get();
+        return $video;
+    }
+
+    public function MyVideoDelete()
+    {
+        $id=Input::get('id') ;
+        $video=video::where('id',$id )->delete();
+        return redirect('/act?err=1');
+    }
+
+    public function q_aDelete()
+    {
+        $id=Input::get('id') ;
+        $video=question::where('id',$id )->get();
+        answer::where('question_id',$video[0]->id )->delete();
+        question::where('id',$id )->delete();
+
+        return redirect('/act?err=2');
+    }
+    
+    public function Advisory()
+    {
+        return view('Advisory');
+    }
+
+    public function SendWMessage()
+    {
+        
+        $data = [
+        'phone' => '919737246983', // Receivers phone
+        'body' => 'Hello, gopal!', // Message
+        ];
+        $json = json_encode($data); // Encode data to JSON
+        // URL for request POST /message
+        $url = 'https://eu50.chat-api.com/instance51372/message?token=5ij4hq7268f23il3';
+        // Make a POST request
+        $options = stream_context_create(['http' => [
+            'method'  => 'POST',
+            'header'  => 'Content-type: application/json',
+            'content' => $json
+        ]
+        ]);
+        $result = file_get_contents($url, false, $options);
+
+        return redirect('/Advisory?err=2');
+    }
+
 }

@@ -1,28 +1,7 @@
 @extends('layout.tem')
 
 @section('body')
-<style type="text/css">
-body {margin:2rem;}
 
-.modal-dialog {
-      max-width: 800px;
-      margin: 30px auto;
-  }
-.modal-body {
-  position:relative;
-  padding:0px;
-}
-.close {
-  position:absolute;
-  right:-30px;
-  top:0;
-  z-index:999;
-  font-size:2rem;
-  font-weight: normal;
-  color:#fff;
-  opacity:1;
-}
-</style>
 <br>
 <div class="row">
 	<div class="col-lg-6 offset-lg-3">
@@ -103,7 +82,7 @@ $('#grouptype').on('change',function(e){
 	var grouptp_id= e.target.value;
 	if (grouptp_id=="all") {
 		$("#videotable").html("");
-		$.get('/ajax-video',function(data){
+		$.get('/ajax-video2',function(data){
 			$.each(data,function(index,videoObj){
 				$("#videotable").last().append("<tr><td><iframe width='100%'' height='315' src='https://www.youtube.com/embed/"+videoObj.youtube_video_id+"'></td></tr>");
 			});

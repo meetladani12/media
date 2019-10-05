@@ -60,6 +60,13 @@ Route::post('/addGrouptp','AddinfoController@grouptp');
 Route::post('/addGroup','AddinfoController@group');
 Route::get('/SAprofile','AddinfoController@profile');
 Route::post('/SAprofile/{SAprofile}','AddinfoController@UpdateProfile');
+Route::get('/ajax-reportq','AddinfoController@reportq');
+Route::get('/ajax-ans','AddinfoController@ans');
+Route::get('/ajax-reportv','AddinfoController@reportv');
+Route::get('/video/delete','AddinfoController@MyVideoDelete');
+Route::get('/q-a/delete','AddinfoController@q_aDelete');
+Route::get('/Advisory','AddinfoController@Advisory');
+Route::get('/Advisory/send','AddinfoController@SendWMessage');
 
 
 
@@ -77,6 +84,10 @@ Route::post('/addQuestion','farmerController@AddQuestion');
 Route::get('/Sprofile','farmerController@profile');
 Route::get('/viewAnswer','farmerController@viewAnswer');
 Route::resource('farmer','farmerController');
+Route::get('/ajax-video2','farmerController@video2');
+Route::get('/ajax-video','farmerController@Vsearch');
+Route::get('/ajax-group','farmerController@groupVideo');
+
 
 
 Route::get('/upload','scientistcontroller@upload');
@@ -99,7 +110,6 @@ Route::get('/regf','logincotroller@signup');
 Route::get('/regs','logincotroller@ssignup');
 Route::get('/signin','logincotroller@signin');
 Route::get('/contact','logincotroller@contact');
-Route::get('/about','logincotroller@about');
 Route::get('/about','logincotroller@about');
 Route::get('/ForgotPassword','logincotroller@ForgotPassword');
 Route::post('/ForgotPassword/SendMail','logincotroller@SendMail');
@@ -141,21 +151,6 @@ Route::get('/ajax-farmer',function(){
 	return $farmer;
 });
 
-Route::get('/ajax-group',function(){
-	$group_id = Input::get('group') ;
-	$videos= video::where('group_id','=',$group_id)->get();
-	return $videos;
-});
-Route::get('/ajax-video',function(){
-	$videos= video::get();
-	return $videos;
-});
-
-Route::get('/ajax-video',function(){
-	$keyword = Input::get('keyword');
-	$videos= video::where('title','LIKE','%'.$keyword.'%')->get();
-	return $videos;
-});
 
 Route::get('/ajax-email',function(){
 	$email = Input::get('mail');
@@ -175,29 +170,6 @@ Route::get('/ajax-mobile',function(){
 	return $cnt;
 });
 
-Route::get('/ajax-reportq',function(){
-	$start = Input::get('start');
-	$end = Input::get('end');
-	// $question= question::where('created_at','>', $start)->where('created_at','<', $end)->get();
-	$question=DB::table('questions')
-                ->join('groups','groups.id','=','questions.group_id')
-                ->join('scientists','scientists.id','=','questions.scientist_id')
-                ->join('farmers','farmers.id','=','questions.farmer_id')
-                ->where('questions.created_at','>', $start)->where('questions.created_at','<', $end)
-                ->select('scientists.name AS snm','farmers.name AS fnm','groups.name AS gnm','question','questions.created_at AS dt','questions.id AS qid')
-                ->get();
-	return $question;
-});
 
-Route::get('/ajax-ans',function(){
-	$qid = Input::get('qid');
-	$ans= answer::where('question_id',$qid)->get();
-	$cnt = count($ans);
-	if($cnt==0){
-		$answer=0;
-	}
-	else{
-		$answer=$ans[0]->answer;
-	}
-	return $answer;
-});
+
+

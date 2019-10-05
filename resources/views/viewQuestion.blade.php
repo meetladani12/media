@@ -109,7 +109,7 @@
 						@for($i=0;$i<$cnt;$i++)
 							@if($answer[$i]->qid==$q->id)
 							<input type="hidden" name="aid" value="{{$answer[$i]->aid}}">
-							<input id="ans{{$answer[$i]->aid}}" name="ans" class="form-control" value="{{$answer[$i]->answer}}" disabled="true" placeholder="Give Answer" type="text">
+							<input id="ans{{$answer[$i]->aid}}" name="ans" class="form-control" value="{{$answer[$i]->answer}}" disabled="true" placeholder="Give Answer" type="text" required>
 							<div class="input-group-prepend">
 								<button class="editButton" data2="{{$answer[$i]->aid}}" id="edit{{$answer[$i]->aid}}"><span class="input-group-text"><i class="fa fa-edit" aria-hidden="true"></i></span></button>
 

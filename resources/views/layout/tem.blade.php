@@ -35,10 +35,10 @@
   <div class="collapse navbar-collapse" id="collapsibleNavbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link" href="#">Contact Us</a>
+        <a class="nav-link" href="/contact">Contact Us</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">About</a>
+        <a class="nav-link" href="/about">About</a>
       </li>
       @if(Session::has('user'))
         @if(Session::get('user')=='farmer')
@@ -86,6 +86,9 @@
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/act">Activity</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/Advisory">Advisory</a>
           </li>
         @else
           <li class="nav-item">
