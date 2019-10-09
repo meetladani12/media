@@ -13,7 +13,7 @@
 					Anand Agricultural University,<br>
 					Anand: 388110,<br>
 					Gujarat (INDIA).<br>
-					Email : meetladani12@student.aau.in<br>
+					Email: meetladani12@student.aau.in<br>
 				</div>
 			</div>
 		</div>

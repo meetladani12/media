@@ -1,19 +1,35 @@
 @extends('layout.tem')
 
 @section('body')
+<br>
+@isset($_GET['err'])
+<div class="row">
+	@if($_GET['err']==1)
+		<div class='col-md-4 offset-lg-4'>
+			<div class="alert alert-success alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    		Message send successfully!
+	  		</div>
+		</div>
+	@endif
+</div>
+@endisset
+
+
 <div class="row">
 	<div class="col-lg-6 offset-lg-3">
 		<div class="card">
 			<div class="card-body" >
 				<div class="jumbotron">
-					<table>
-					<thead>
+					<h3>Send WhatsApp Message</h3>
+					<table width="100%">
+					<!-- <thead>
 						<th>Select District</th>
 						<th>Select Taluka</th>
 						<th>Select Village</th>
-					</thead>
+					</thead> -->
 					<tbody>
-						<tr>
+						<!-- <tr>
 							<td>
 								<div class="form-group input-group">
 							    	<div class="input-group-prepend">
@@ -49,6 +65,52 @@
 									</select>
 						    	</div>
 							</td>
+						</tr> -->
+						<br>
+						<tr>
+							<td colspan="3" align="center">
+								<b>Select message Type:</b>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<div class="custom-control custom-radio">
+									<input type="radio" class="custom-control-input radio" id="defaultUnchecked" name="defaultExampleRadios" value="video">
+									<label class="custom-control-label" for="defaultUnchecked">Video</label>
+								</div>
+							</td>
+							<td></td>
+							<td align="center">
+								<div class="custom-control custom-radio">
+									<input type="radio" class="custom-control-input radio" id="defaultchecked" name="defaultExampleRadios" value="message">
+									<label class="custom-control-label" for="defaultchecked">Message</label>
+								</div>
+							</td>
+						</tr>
+						<tr id="video" style="display: none;">
+							<td colspan="3">
+								<div class="form-group input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fa fa-building"></i></i></span>
+									</div>
+									<select name="taluka" id="wvideo" class="form-control" required>
+										<option selected=""> Select Video</option>
+										@foreach($video as $v)
+											<option value="youtube.com/watch?v={{$v->youtube_video_id}}">{{$v->title}}</option>
+										@endforeach
+									</select>
+								</div>
+							</td>
+						</tr>
+						<tr id="message" style="display: none;">
+							<td colspan="3">
+								<div class="form-group input-group">
+									<div class="input-group-prepend">
+										<span class="input-group-text"><i class="fas fa-envelope"></i></span>
+									</div>
+									<textarea id='wmessage' minlength="10" class="form-control" placeholder="Message Body" required></textarea>
+								</div>
+							</td>
 						</tr>
 					</tbody>
 					</table>
@@ -72,11 +134,14 @@
 									Select All
 								</td>
 							</tr>
+						<form method="POST" action="/Advisory/send">
+						{{csrf_field()}}
+							<input type="hidden" name="msg" id="wmsg" value="">
 							@foreach($farmer as $f)
-							<tr id='{{$f->village_id}}'>
+							<tr class="rw">
 								<td>
 									<div class="custom-control custom-checkbox">
-										<input type="checkbox" class="custom-control-input al" id="{{$f->id}}">
+										<input type="checkbox" name="farmer{{$f->id}}" class="custom-control-input al" value="{{$f->mobile_no}}" id="{{$f->id}}">
 										<label class="custom-control-label al" for="{{$f->id}}"></label>
 									</div>
 								</td>
@@ -88,6 +153,12 @@
 								</td>
 							</tr>
 							@endforeach
+							<tr>
+								<td colspan="3" align="center">
+									<button type="submit" class="btn btn-primary">Send</button>
+								</td>
+							</tr>
+						</form>
 						</table>
 					</div>
 				</div>
@@ -113,6 +184,8 @@ $('#district').on('change',function(e){
 
 	});
 });
+
+
 $('#taluka').on('change',function(e){
 	console.log(e);
 	var taluka_id = e.target.value;
@@ -127,25 +200,51 @@ $('#taluka').on('change',function(e){
 	});
 });
 
+$('.radio').on('change',function(e){
+	console.log(e);
+	var radio=$(this).val();
+	if(radio=='video'){
+		$("#message").hide();
+		$("#video").show();
+	}
+	else if(radio=='message'){
+		$("#video").hide();
+		$("#message").show();
+	}
+	
+});
+
+$('#wvideo').on('change',function(e){
+	console.log(e);
+	var videoid=$("#wvideo").val();
+	$("#wmsg").val(videoid);
+});
+
+$("#wmessage").focusout(function(){
+	var msg=$('#wmessage').val();
+	$("#wmsg").val(msg);
+});
+
 $('#village').on('change',function(e){
 	var village=$('#village').val();
-	$("#sort").html("");
+	$(".rw").html("");
 	$.get('/ajax-sort?village='+village,function(data){
-		$("#sort").last().append("<thead><th>Select</th><th>Name</th><th>Mobile No</th></thead>");
-		$("#sort").last().append("<tr><td><div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='All'><label class='custom-control-label' for='All'></label></div></td><td colspan='2'>Select All</td></tr>");
+		// $("#sort").last().append("<thead><th>Select</th><th>Name</th><th>Mobile No</th></thead>");
+		// $("#sort").last().append("<tr><td><div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='All'><label class='custom-control-label' for='All'></label></div></td><td colspan='2'>Select All</td></tr>");
 		$.each(data,function(index,farmerObj){
 			$("#sort").last().append("<tr><td><div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input al' id='"+farmerObj.id+"'><label class='custom-control-label al' for='"+farmerObj.id+"'></label></div></td><td>"+farmerObj.name+"</td><td>"+farmerObj.mobile_no+"</td></tr>");
 		});
 	});
 });
-
-$('#All').on('change',function(e){
-	if ($('#All').prop('checked')==true){ 
-		$('.al').prop('checked', true);
-    }
-    else{
-		$('.al').prop('checked', false);
-	}
+$(document).ready(function() {
+	$(document).on('change','#All',function(e){
+		if ($('#All').prop('checked')==true){ 
+			$('.al').prop('checked', true);
+	    }
+	    else{
+			$('.al').prop('checked', false);
+		}
+	});
 });
 </script>
 @endsection

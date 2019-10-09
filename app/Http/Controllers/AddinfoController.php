@@ -18,6 +18,7 @@ use App\answer;
 use App\farmer;
 use App\admin;
 use App\video;
+use App\advisory;
 
 class AddinfoController extends Controller
 {
@@ -442,7 +443,8 @@ class AddinfoController extends Controller
     {
         $farmer= farmer::get();
         $dist= district::get();
-        return view('Advisory',compact('farmer','dist'));
+        $video= video::get();
+        return view('Advisory',compact('farmer','dist','video'));
     }
     
     public function SortFarmer()
@@ -452,26 +454,41 @@ class AddinfoController extends Controller
         return $farmer;
     }
 
-    public function SendWMessage()
+    public function VideoData()
     {
-        
-        $data = [
-        'phone' => '919737246983', // Receivers phone
-        'body' => 'Hello!', // Message
-        ];
-        $json = json_encode($data); // Encode data to JSON
-        // URL for request POST /message
-        $url = 'https://eu50.chat-api.com/instance51372/message?token=5ij4hq7268f23il3';
-        // Make a POST request
-        $options = stream_context_create(['http' => [
-            'method'  => 'POST',
-            'header'  => 'Content-type: application/json',
-            'content' => $json
-        ]
-        ]);
-        $result = file_get_contents($url, false, $options);
+        $video= video::get();
+        return $video;
+    }
 
-        return redirect('/Advisory?err=2');
+    public function SendWMessage(Request $request)
+    {
+        foreach($_POST as $key => $value) {
+            if(substr($key,0,6)=="farmer")
+            {
+                $fid=substr($key,6);
+                $mobile=$value;
+                $data = [
+                    'phone' => '91'.$mobile, // Receivers phone
+                    'body' =>  $request->msg, // Message
+                ];
+                $json = json_encode($data); // Encode data to JSON
+                // URL for request POST /message
+                $url = 'https://eu7.chat-api.com/instance71565/message?token=a3qt0owq8vlwa83i';
+                // Make a POST request
+                $options = stream_context_create(['http' => [
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/json',
+                    'content' => $json
+                ]
+                ]);
+                $result = file_get_contents($url, false, $options);
+                $advisory=new advisory;
+                $advisory->farmer_id =$fid;
+                $advisory->message = $request->msg;
+                $advisory->save();
+            }
+        }
+        return redirect('/Advisory?err=1');
     }
 
 }

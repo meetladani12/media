@@ -44,8 +44,11 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="phone" class="form-control" placeholder="Phone number" type="tel" required>
+			    	<input name="phone" id="PhoneNo" class="form-control" placeholder="Phone number" maxlength="10" type="tel" required>
 			    </div>
+			    <div class="form-group input-group"  id="phn" style="display: none;">
+				    <label><font color="red">PhoneNo. already exist</font></label>
+				</div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
@@ -219,6 +222,20 @@ $("#MobileNo").focusout(function(){
 		}
 		else{
 			$("#mob").show();
+		}
+	});
+});
+
+$("#PhoneNo").focusout(function(){
+	
+	var mono=$('#PhoneNo').val();
+	alert(mono);
+	$.get('/ajax-phone?mobile='+mono,function(data){
+		if(data==0){
+			$("#phn").hide();
+		}
+		else{
+			$("#phn").show();
 		}
 	});
 });

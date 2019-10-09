@@ -66,7 +66,8 @@ Route::get('/ajax-reportv','AddinfoController@reportv');
 Route::get('/video/delete','AddinfoController@MyVideoDelete');
 Route::get('/q-a/delete','AddinfoController@q_aDelete');
 Route::get('/Advisory','AddinfoController@Advisory');
-Route::get('/Advisory/send','AddinfoController@SendWMessage');
+Route::post('/Advisory/send','AddinfoController@SendWMessage');
+Route::get('/ajax-video','AddinfoController@VideoData');
 Route::get('/ajax-sort','AddinfoController@SortFarmer');
 
 
@@ -168,6 +169,13 @@ Route::get('/ajax-mobile',function(){
 	$scientist=scientist::where('mobile_no',$mobile)->count();
 	$admin =admin::where('mobile_no',$mobile)->count();
 	$cnt=$farmer+$scientist+$admin;
+	return $cnt;
+});
+
+Route::get('/ajax-phone',function(){
+	$phone = Input::get('mobile');
+	$scientist=scientist::where('phone_no',$phone)->count();
+	$cnt=$scientist;
 	return $cnt;
 });
 
