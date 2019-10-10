@@ -7,6 +7,7 @@ use App\district;
 use App\taluka;
 use App\video;
 use Illuminate\Support\Facades\Session;
+use Redirect;
 
 class dropcontroller extends Controller
 {
@@ -173,11 +174,12 @@ if ($client->getAccessToken()) {
       $_SESSION['state'] = $state;
 
       $authUrl = $client->createAuthUrl();
-      $htmlBody = <<<END
-  <h3>Authorization Required</h3>
-  <p>You need to <a href="$authUrl">authorize access</a> before proceeding.<p>
-END;
-    echo $htmlBody;
+      return Redirect::to($authUrl);
+    //   $htmlBody = <<<END
+    // <h3>Authorization Required</h3>
+    // <p>You need to <a href="$authUrl">authorize access</a> before proceeding.<p>
+    // END;
+    // echo $htmlBody;
   
 
     }    

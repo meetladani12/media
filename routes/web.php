@@ -115,6 +115,8 @@ Route::get('/contact','logincotroller@contact');
 Route::get('/about','logincotroller@about');
 Route::get('/ForgotPassword','logincotroller@ForgotPassword');
 Route::post('/ForgotPassword/SendMail','logincotroller@SendMail');
+Route::get('/refreshcaptcha', 'logincotroller@refreshCaptcha');
+
 
 
 Route::get('/youtube','dropcontroller@youtube');

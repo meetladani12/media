@@ -2,6 +2,14 @@
 
 @section('body')
 <br>
+@if ($errors->any())
+	<div class='col-md-4 offset-lg-4'>
+		<div class="alert alert-danger alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+	    	Invalid Captcha
+	  	</div>
+	</div>
+@endif
 @isset($_GET['err'])
 <div class="row">
 	@if($_GET['err']==1)
@@ -43,6 +51,15 @@
 				 </div>
 		        <input name="password" class="form-control" placeholder="Enter password" type="password" required>
 		    </div>
+
+		    <div class="form-group input-group">
+		        <input name="captcha" class="form-control" placeholder="Enter captcha" type="text" required>
+			    <div class="form-group captcha">
+			        <span>{!! captcha_img() !!}</span>
+	               <i class="fas fa-sync" id="refresh"></i>
+			    </div>
+		    </div>
+		    
 		    <div class="col-lg-6 offset-lg-3">
 		    <div class="form-group">
 		        <button type="submit" class="btn btn-primary btn-block"> Login </button>
@@ -59,4 +76,12 @@
 	</div>
 </div>
 <br>
+<script type="text/javascript">
+$('#refresh').click(function(){
+	var a=$(this).val();
+	$.get('/refreshcaptcha',function(data){
+        $(".captcha span").html(data.captcha);
+    });
+});
+</script>
 @endsection

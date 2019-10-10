@@ -45,8 +45,16 @@ class logincotroller extends Controller
         return view('about');  
     }
 
-
+    public function refreshCaptcha()
+    {
+        return response()->json(['captcha'=> captcha_img()]);
+    }
+    
     public function login(Request $req){
+        $req->validate([
+            'captcha' => 'required|captcha',
+        ]);
+
     	$email=$req->email;
     	$password=$req->password;
     	$s=0;
@@ -143,6 +151,9 @@ class logincotroller extends Controller
 
     public function FarmerSignup(Request $request)
     {
+        $request->validate([
+            'captcha' => 'required|captcha',
+        ]);
         // $this->validate($request, [
         //     'name' => 'required',
         //     'email' => 'required|unique:farmers',
@@ -165,6 +176,9 @@ class logincotroller extends Controller
 
     public function ScientistSignup(Request $request)
     {
+        $request->validate([
+            'captcha' => 'required|captcha',
+        ]);
         // $this->validate($request, [
         //     'name' => 'required',
         //     'email' => 'required|unique:scientists',
