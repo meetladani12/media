@@ -122,12 +122,29 @@ class scientistcontroller extends Controller
 
     public function AddAnswer(Request $request)
     {
-        $answer= new answer;
-        $answer->question_id= $request->qid;
-        $answer->answer = $request->answer;
-        $answer->save();
-        question::where('id',$request->qid)->update(['flag' => "1"]);
-        return redirect('/viewQuestion?err=1');
+        $file=$request->file('file');
+        if($file==NULL){
+            $answer= new answer;
+            $answer->question_id= $request->qid;
+            $answer->answer = $request->answer;
+            $answer->path ="-";
+            $answer->save();
+            question::where('id',$request->qid)->update(['flag' => "1"]);
+            return redirect('/viewQuestion?err=1');
+        }
+        else{
+            $filename = $file->getClientOriginalName();
+            $path = public_path().'/answer/';
+            $file->move($path, $filename);  
+            $answer= new answer;
+            $answer->question_id= $request->qid;
+            $answer->answer = $request->answer;
+            $answer->path = $filename;
+            $answer->save();
+            question::where('id',$request->qid)->update(['flag' => "1"]);
+            return redirect('/viewQuestion?err=1');
+        }
+        
     }
 
     public function UpdateAnswer(Request $request)

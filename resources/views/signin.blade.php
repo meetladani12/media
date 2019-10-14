@@ -1,6 +1,43 @@
 @extends('layout.tem')
 
 @section('body')
+<style type="text/css">
+.btn-circle {
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.btn-circle i {
+  position: relative;
+  top: -1px;
+}
+
+.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 0.9rem;
+}
+
+.btn-circle-lg {
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 1.1rem;
+}
+
+.btn-circle-xl {
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 1.3rem;
+}
+</style>
+
 <br>
 @if ($errors->any())
 	<div class='col-md-4 offset-lg-4'>
@@ -56,7 +93,7 @@
 		        <input name="captcha" class="form-control" placeholder="Enter captcha" type="text" required>
 			    <div class="form-group captcha">
 			        <span>{!! captcha_img() !!}</span>
-	               <i class="fas fa-sync" id="refresh"></i>
+	               <button type="button" id="refresh" class="btn btn-success btn-circle btn-circle-sm m-1"><i class="fas fa-sync"></i></button>
 			    </div>
 		    </div>
 		    

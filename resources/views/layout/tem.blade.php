@@ -25,7 +25,8 @@
 <body>
 <div id='language'>
 <div class="jumbotron text-center" id="header" style="border-radius: 0px; margin-bottom:0;height: 120px; padding: 30px;background-image:url(image/bg2.png);background-size: Auto Auto">
-  <h1 id="title" style="color: white">Media Management And Dissemination For AAU</h1>
+  <h1 id="title" style="color: white">Media Management & Information Dissemination for Farmer</h1>
+  <h5 style="color: white">Anand Agricultural University, Anand</h5>
 </div>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
   <a class="navbar-brand" href="/"><img src="image/cam.png" style="width: 45px;height: 30px"></a>

@@ -2,6 +2,43 @@
 
 @section('body')
 
+<style type="text/css">
+.btn-circle {
+  width: 45px;
+  height: 45px;
+  line-height: 45px;
+  text-align: center;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.btn-circle i {
+  position: relative;
+  top: -1px;
+}
+
+.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 0.9rem;
+}
+
+.btn-circle-lg {
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  font-size: 1.1rem;
+}
+
+.btn-circle-xl {
+  width: 70px;
+  height: 70px;
+  line-height: 70px;
+  font-size: 1.3rem;
+}
+</style>
+
 <br>
 @isset($_GET['err'])
 <div class="row">
@@ -85,20 +122,33 @@
 						</td>	
 					</tr>
 					@if($q->flag=='0')
-						<tr>
-						<form method="POST" action="/addAnswer">
+					<tr>
+						<form method="POST" action="/addAnswer" enctype="multipart/form-data">
 						{{csrf_field()}}
 						<input type="hidden" name="qid" value="{{$q->id}}">
-							<td colspan="3">
-							<div class="form-group input-group" id="answer{{$q->id}}" style="display: none;">
-							<input id="answer" name="answer" class="form-control" placeholder="Give Answer" type="text" required>
-							<div class="input-group-prepend">
-								<button id="1" type="submit"><span class="input-group-text"><i class="fa fa-paper-plane" aria-hidden="true"></i></span></button>
-							</div>
-							</div>
-							</td>
+						
+						<td colspan="3">
+							<div class="row" id="answer{{$q->id}}" style="display: none;">
+								<div class="col-lg-10">
+									<div class="form-group input-group">
+										<input id="answer" name="answer" class="form-control" placeholder="Give Answer" type="text" required>
+									</div>
+									<div class="form-group input-group">
+										<div class="input-group-prepend">
+									    	<span class="input-group-text"><i class="far fa-image"></i></span>
+										</div>
+							    			<input id="answerImage" name="file" accept="image/*" class="form-control" placeholder="Add image File" type="file" >
+							    	</div>
+						    	</div>
+						    	<div class="col-lg-2 justify-content-center align-self-center">
+							    	<div class="form-group input-group">
+										<button class="btn btn-success btn-circle btn-circle-sm m-1" id="1" type="submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+									</div>
+								</div>
+					    	</div>
+						</td>
 						</form>	
-						</tr>
+					</tr>
 					@else
 						<tr>
 						<form method="POST" id="myform" action="/UpdateAnswer">	
