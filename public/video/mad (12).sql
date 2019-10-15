@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 04, 2019 at 05:43 AM
+-- Generation Time: Oct 14, 2019 at 05:20 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -52,6 +52,36 @@ INSERT INTO `admins` (`id`, `name`, `email`, `mobile_no`, `password`, `type`, `c
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `advisories`
+--
+
+CREATE TABLE `advisories` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `farmer_id` int(11) NOT NULL,
+  `message` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `advisories`
+--
+
+INSERT INTO `advisories` (`id`, `farmer_id`, `message`, `created_at`, `updated_at`) VALUES
+(1, 9, 'hello', '2019-10-09 05:03:14', '2019-10-09 05:03:14'),
+(2, 10, 'hello', '2019-10-09 05:03:16', '2019-10-09 05:03:16'),
+(3, 20, 'hello', '2019-10-09 05:03:18', '2019-10-09 05:03:18'),
+(4, 29, 'hello', '2019-10-09 05:03:20', '2019-10-09 05:03:20'),
+(5, 30, 'hello', '2019-10-09 05:03:22', '2019-10-09 05:03:22'),
+(6, 31, 'hello', '2019-10-09 05:03:25', '2019-10-09 05:03:25'),
+(7, 32, 'hello', '2019-10-09 05:03:27', '2019-10-09 05:03:27'),
+(8, 33, 'hello', '2019-10-09 05:03:29', '2019-10-09 05:03:29'),
+(9, 20, 'youtube.com/watch?v=9nVkKbbe3wc', '2019-10-09 05:05:15', '2019-10-09 05:05:15'),
+(10, 34, 'youtube.com/watch?v=7r7mDlaYqRw', '2019-10-09 07:36:02', '2019-10-09 07:36:02');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `answers`
 --
 
@@ -59,6 +89,7 @@ CREATE TABLE `answers` (
   `id` int(10) UNSIGNED NOT NULL,
   `question_id` int(11) NOT NULL,
   `answer` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `path` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -67,12 +98,12 @@ CREATE TABLE `answers` (
 -- Dumping data for table `answers`
 --
 
-INSERT INTO `answers` (`id`, `question_id`, `answer`, `created_at`, `updated_at`) VALUES
-(26, 9, 'use pesticide', '2019-09-16 00:14:25', '2019-10-03 04:14:42'),
-(27, 10, 'use pesticide', '2019-09-19 03:48:30', '2019-09-19 03:48:30'),
-(28, 17, 'use pesticide', '2019-09-25 04:17:12', '2019-09-25 04:17:19'),
-(29, 19, 'abcd', '2019-10-03 05:05:11', '2019-10-03 06:16:12'),
-(30, 21, 'imigro imprex ig-395', '2019-10-03 06:08:51', '2019-10-03 06:09:06');
+INSERT INTO `answers` (`id`, `question_id`, `answer`, `path`, `created_at`, `updated_at`) VALUES
+(1, 9, 'use pesticide jdjddjfddgfffgfghfh', 'IMG_20191010_101252.jpg', '2019-10-11 09:26:17', '2019-10-11 10:04:30'),
+(2, 10, 'use pesticide', '-', '2019-10-11 09:28:59', '2019-10-11 09:28:59'),
+(3, 22, 'use pesticide', 'IMG_20191010_101252.jpg', '2019-10-11 09:41:28', '2019-10-11 09:41:28'),
+(4, 17, 'use pesticide', '-', '2019-10-11 09:43:44', '2019-10-11 09:43:44'),
+(5, 23, 'abchg', 'color-wing-transparent-set_1284-8933.jpg', '2019-10-11 10:02:30', '2019-10-11 10:02:30');
 
 -- --------------------------------------------------------
 
@@ -203,11 +234,10 @@ CREATE TABLE `districts` (
 --
 
 INSERT INTO `districts` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(3, 'Rajkot', '2019-07-31 05:50:13', '2019-09-24 22:47:13'),
+(3, 'Rajkot', '2019-07-31 05:50:13', '2019-10-04 08:47:40'),
 (8, 'Porbandar', '2019-09-11 05:24:39', '2019-09-24 22:45:22'),
 (9, 'Anand', '2019-09-11 22:28:55', '2019-09-24 03:30:40'),
 (10, 'Jamnagar', '2019-09-15 23:47:46', '2019-09-15 23:47:46'),
-(11, 'aravalli', '2019-09-16 04:45:42', '2019-09-16 04:45:42'),
 (14, 'Surat', '2019-09-24 22:50:40', '2019-09-24 22:50:40');
 
 -- --------------------------------------------------------
@@ -235,9 +265,14 @@ CREATE TABLE `farmers` (
 
 INSERT INTO `farmers` (`id`, `name`, `email`, `mobile_no`, `village_id`, `address`, `password`, `flag`, `created_at`, `updated_at`) VALUES
 (9, 'Meet Ladani', 'meetladani12@student.aau.in', '9624021922', 12, 'Valotra', '1234', 1, '2019-09-15 21:47:31', '2019-09-20 22:12:46'),
-(10, 'Bhavyakumar', 'bhavychaudhary5@gmail.com', '9099111122', 7, 'Kolki', '123', 1, '2019-09-15 21:53:48', '2019-09-15 21:53:48'),
-(20, 'Meet Ladani', 'meet@gmail.com10', '9624021922', 7, 'kl;', '123', 1, '2019-09-18 05:36:38', '2019-09-18 05:36:38'),
-(29, 'Meet Ladani', 'virat1998@student.aau.in', '7877676576', 7, 'aaa fhjgjghjghjm', '123', 1, '2019-10-03 06:03:59', '2019-10-03 06:03:59');
+(10, 'Bhavyakumar', 'bhavychaudhary5@gmail.com', '9099672610', 7, 'Kolki', '123', 1, '2019-09-15 21:53:48', '2019-09-15 21:53:48'),
+(20, 'Meet Ladani', 'meet@gmail.com10', '8128659080', 7, 'kl;', '123', 1, '2019-09-18 05:36:38', '2019-09-18 05:36:38'),
+(29, 'Virat Chaudhary', 'virat1998@student.aau.in', '9428723124', 7, 'aaa fhjgjghjghjm', '123', 1, '2019-10-03 06:03:59', '2019-10-03 06:03:59'),
+(30, 'Pankaj Makadiya', 'pankajmakadiya1998@student.aau.in', '9737246983', 10, '203, AAU, Anand', '123', 1, '2019-10-04 11:36:36', '2019-10-04 11:36:36'),
+(31, 'Nigam Kavar', 'patelnigam12@gmail.com', '9099721922', 10, 'Zanzmer nr. ram temple', '123', 1, '2019-10-05 09:14:03', '2019-10-05 09:14:03'),
+(32, 'Nilay Bhat', 'nilayb56@gmail.com', '7203928175', 8, 'Bhimora nr. high school', '123', 1, '2019-10-05 09:15:15', '2019-10-05 09:15:15'),
+(33, 'Sandip Rathva', 'sandip@student.aau.in', '7575046524', 9, 'Supedi nr.school', '123', 1, '2019-10-05 09:16:10', '2019-10-05 09:16:10'),
+(34, 'Dr kathiriya', 'dit@aau.in', '9998001111', 8, 'AAU campus, Anand', '1234', 1, '2019-10-09 07:25:57', '2019-10-09 07:25:57');
 
 -- --------------------------------------------------------
 
@@ -326,7 +361,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (16, '2019_08_03_054708_create_answers_table', 10),
 (17, '2019_08_05_055740_create_questions_table', 11),
 (18, '2019_08_13_091749_create_videos_table', 12),
-(19, '2019_09_04_084457_create_questions_table', 13);
+(19, '2019_09_04_084457_create_questions_table', 13),
+(20, '2019_10_09_102749_create_advisories_table', 14),
+(21, '2019_10_11_141808_create_answers_table', 15);
 
 -- --------------------------------------------------------
 
@@ -351,12 +388,13 @@ CREATE TABLE `questions` (
 --
 
 INSERT INTO `questions` (`id`, `farmer_id`, `scientist_id`, `group_id`, `question`, `path`, `flag`, `created_at`, `updated_at`) VALUES
-(9, 9, 16, 8, 'pink boll worm', '—Pngtree—vector cancel icon_3762800.png', 1, '2019-09-14 23:35:34', '2019-09-16 00:14:25'),
-(10, 9, 16, 8, 'pink boll worm', '—Pngtree—dustbin line black icon_3767633.png', 1, '2019-09-14 04:49:28', '2019-09-19 03:48:30'),
-(17, 9, 16, 8, 'hello', 'putin.png', 1, '2019-09-25 04:16:08', '2019-09-25 04:17:12'),
-(19, 9, 17, 12, 'How are you?', 'drops_glare_glass_surface_119949_3840x2400.jpg', 1, '2019-09-30 03:51:35', '2019-10-03 05:05:11'),
-(20, 10, 17, 12, 'dfv df', 'minion.jpg', 0, '2019-09-30 03:55:37', '2019-09-30 03:55:37'),
-(21, 29, 23, 14, 'downy mildliyu', 'land.mp4', 1, '2019-10-03 06:06:04', '2019-10-03 06:08:51');
+(9, 9, 16, 8, 'pink boll worm', '—Pngtree—vector cancel icon_3762800.png', 1, '2019-09-14 23:35:34', '2019-10-11 09:26:17'),
+(10, 9, 16, 8, 'pink boll worm', '—Pngtree—dustbin line black icon_3767633.png', 1, '2019-09-14 04:49:28', '2019-10-11 09:28:59'),
+(17, 9, 16, 8, 'hello', 'putin.png', 1, '2019-09-25 04:16:08', '2019-10-11 09:43:44'),
+(19, 9, 17, 12, 'How are you?', 'drops_glare_glass_surface_119949_3840x2400.jpg', 0, '2019-09-30 03:51:35', '2019-10-03 05:05:11'),
+(21, 29, 23, 14, 'downy mildliyu', 'termite.jpg', 0, '2019-10-03 06:06:04', '2019-10-03 06:08:51'),
+(22, 30, 16, 8, 'issue of pink bollworm in cotton', 'Anubhav Seeds_0.jpg', 1, '2019-10-04 11:37:34', '2019-10-11 09:41:28'),
+(23, 34, 16, 8, 'pink boll worm', '—Pngtree—dustbin line black icon_3767633.png', 1, '2019-10-09 07:30:23', '2019-10-11 10:02:30');
 
 -- --------------------------------------------------------
 
@@ -417,7 +455,20 @@ INSERT INTO `talukas` (`id`, `district_id`, `name`, `created_at`, `updated_at`) 
 (6, 3, 'Upleta', '2019-09-11 22:29:45', '2019-09-11 22:29:45'),
 (7, 3, 'Dhoraji', '2019-09-11 22:29:55', '2019-09-27 03:41:36'),
 (13, 8, 'Kutiyana', '2019-09-27 00:41:39', '2019-09-27 03:40:44'),
-(14, 3, 'Jetpur', '2019-09-27 03:42:52', '2019-09-27 03:42:58');
+(14, 3, 'Jetpur', '2019-09-27 03:42:52', '2019-09-27 03:42:58'),
+(15, 9, 'Anklav', '2019-10-05 09:17:11', '2019-10-05 09:17:11'),
+(16, 9, 'Borsad', '2019-10-05 09:17:24', '2019-10-05 09:17:24'),
+(17, 9, 'Khambhat', '2019-10-05 09:17:35', '2019-10-05 09:17:35'),
+(18, 9, 'Petlad', '2019-10-05 09:17:48', '2019-10-05 09:17:48'),
+(19, 9, 'Sojitra', '2019-10-05 09:17:58', '2019-10-05 09:17:58'),
+(20, 9, 'Tarapur', '2019-10-05 09:18:08', '2019-10-05 09:18:08'),
+(21, 9, 'Umreth', '2019-10-05 09:18:15', '2019-10-05 09:18:15'),
+(22, 10, 'Kalavad', '2019-10-05 09:24:01', '2019-10-05 09:24:01'),
+(23, 10, 'Kalyanpur', '2019-10-05 09:24:09', '2019-10-05 09:24:09'),
+(24, 10, 'Lalpur', '2019-10-05 09:24:19', '2019-10-05 09:24:19'),
+(25, 14, 'Bardoli', '2019-10-05 09:25:21', '2019-10-05 09:25:21'),
+(26, 14, 'Kamrej', '2019-10-05 09:25:31', '2019-10-05 09:25:31'),
+(27, 14, 'Olpad', '2019-10-05 09:25:46', '2019-10-05 09:25:46');
 
 -- --------------------------------------------------------
 
@@ -443,10 +494,8 @@ CREATE TABLE `videos` (
 --
 
 INSERT INTO `videos` (`id`, `title`, `description`, `tags`, `file_name`, `youtube_video_id`, `scientist_id`, `group_id`, `created_at`, `updated_at`) VALUES
-(18, 'df', 'df', 'df', 'demo_soil.mp4', 'vX1ph_dbq2c', 16, 8, '2019-08-20 03:39:07', '2019-08-20 03:39:24'),
 (22, 'df', 'df', 'dsf', 'Geometry Part 11 - Orthocenter By Abhinay Sharma (Abhinay Maths).mp4', 'buYepF8jJhg', 17, 10, '2019-08-20 22:52:59', '2019-08-20 22:53:32'),
 (23, 'demog', 'gfh', 'gfh', '4149a6ad-4530-4b8b-b5bb-347674457a64.mp4', 'zvmPQy7WdFY', 16, 6, '2019-08-20 22:57:58', '2019-08-20 22:59:03'),
-(25, 'cvg', 'gf', 'gf', 'intro.mp4', 'TO_AAbkVHyo', 18, 10, '2019-08-21 22:26:25', '2019-08-21 22:27:14'),
 (26, 'cgf', 'c', 'gf', 'weeding.mp4', '9nVkKbbe3wc', 17, 8, '2019-08-21 22:38:19', '2019-08-21 22:38:50'),
 (27, 'dfgh', 'g', 'h', 'yield.mp4', 's4A5q4_boC0', 16, 6, '2019-08-21 22:52:39', '2019-08-21 22:52:39'),
 (28, '9-[', '][', 'ab,cd', 'hal.mp4', 'A4EaejAr-QM', 16, 12, '2019-08-21 22:58:43', '2019-08-21 22:59:02'),
@@ -460,7 +509,10 @@ INSERT INTO `videos` (`id`, `title`, `description`, `tags`, `file_name`, `youtub
 (39, 'dfg dfg df', 'sd', '1,2', 'september.mp4', 'Qjx1LeHyqrk', 16, 8, '2019-09-16 05:05:10', '2019-09-16 05:05:29'),
 (40, 'Videoad', 'sfddddddddddd', 'sssss', 'december.mp4', 'auOxx3A1RSA', 16, 8, '2019-09-16 05:07:49', '2019-09-16 05:08:21'),
 (42, 'cotton', 'vdf', 'ctn', 'planting_jivato_1.mp4', 'iSC6rZ4xi7I', 17, 12, '2019-09-24 05:04:51', '2019-09-24 05:05:19'),
-(46, 'cotton tillage', 'tillage', 'fg', 'land.mp4', 's0I1tyeJ2r8', 17, 12, '2019-10-03 05:50:58', '2019-10-03 05:51:23');
+(46, 'cotton tillage', 'tillage', 'fg', 'land.mp4', 's0I1tyeJ2r8', 17, 12, '2019-10-03 05:50:58', '2019-10-03 05:51:23'),
+(49, 'cotton seedling', 'seedling of cotton', 'agriculture', 'An animation for the BT maize Most entertaining and learn.mp4', 'rs1Mn3hUGe8', 24, 6, '2019-10-05 10:28:02', '2019-10-05 10:28:23'),
+(52, 'Cotton harvest', 'Cottn harvesting', 'agriculture', 'Shockwave_13.mov', 'oidMWthnX2M', 18, 10, '2019-10-10 04:27:21', '2019-10-10 04:27:40'),
+(53, 'Brinjal sowing', 'Brinjal sowing', 'agriculture', 'Shockwave_14.mov', 'tO0-YofZ1Uw', 18, 10, '2019-10-10 04:41:17', '2019-10-10 04:42:51');
 
 -- --------------------------------------------------------
 
@@ -486,7 +538,49 @@ INSERT INTO `villages` (`id`, `taluka_id`, `name`, `created_at`, `updated_at`) V
 (9, 7, 'Supedi', '2019-09-11 22:31:15', '2019-09-27 03:45:23'),
 (10, 7, 'Zanzmer', '2019-09-11 22:31:28', '2019-09-11 22:31:28'),
 (12, 5, 'Valotra', '2019-09-11 22:31:44', '2019-09-18 23:03:47'),
-(13, 5, 'Rana Kandorana', '2019-09-11 22:32:00', '2019-09-12 22:46:24');
+(13, 5, 'Rana Kandorana', '2019-09-11 22:32:00', '2019-09-12 22:46:24'),
+(19, 15, 'Ambali', '2019-10-05 09:18:41', '2019-10-05 09:18:41'),
+(20, 15, 'Ambav', '2019-10-05 09:18:56', '2019-10-05 09:18:56'),
+(21, 15, 'Amrol', '2019-10-05 09:19:06', '2019-10-05 09:19:06'),
+(22, 15, 'Anklav', '2019-10-05 09:19:32', '2019-10-05 09:19:32'),
+(23, 16, 'Alarsa', '2019-10-05 09:19:56', '2019-10-05 09:19:56'),
+(24, 16, 'Amiyad', '2019-10-05 09:20:06', '2019-10-05 09:20:06'),
+(25, 16, 'Badalpur', '2019-10-05 09:20:21', '2019-10-05 09:20:21'),
+(26, 17, 'Akhol', '2019-10-05 09:20:42', '2019-10-05 09:20:42'),
+(27, 17, 'Bhat Talavadi', '2019-10-05 09:20:53', '2019-10-05 09:20:53'),
+(28, 17, 'Jhalapur', '2019-10-05 09:21:06', '2019-10-05 09:21:06'),
+(29, 18, 'Amod', '2019-10-05 09:21:25', '2019-10-05 09:21:25'),
+(30, 18, 'Agas', '2019-10-05 09:21:36', '2019-10-05 09:21:36'),
+(31, 18, 'Boriya', '2019-10-05 09:21:48', '2019-10-05 09:21:48'),
+(32, 19, 'Bhadkad', '2019-10-05 09:22:03', '2019-10-05 09:22:03'),
+(33, 19, 'Devataj', '2019-10-05 09:22:14', '2019-10-05 09:22:14'),
+(34, 20, 'Changada', '2019-10-05 09:22:29', '2019-10-05 09:22:29'),
+(35, 20, 'Isanpur', '2019-10-05 09:22:59', '2019-10-05 09:22:59'),
+(36, 21, 'Fatepura', '2019-10-05 09:23:14', '2019-10-05 09:23:14'),
+(37, 25, 'Ancheli', '2019-10-05 09:26:09', '2019-10-05 09:26:09'),
+(38, 25, 'Balda', '2019-10-05 09:26:20', '2019-10-05 09:26:20'),
+(39, 25, 'Kadod', '2019-10-05 09:26:34', '2019-10-05 09:26:34'),
+(40, 25, 'Kuvadiya', '2019-10-05 09:26:44', '2019-10-05 09:26:44'),
+(41, 26, 'Abrama', '2019-10-05 09:27:04', '2019-10-05 09:27:04'),
+(42, 26, 'Digas', '2019-10-05 09:27:15', '2019-10-05 09:27:15'),
+(43, 26, 'Ghaludi', '2019-10-05 09:27:30', '2019-10-05 09:27:30'),
+(44, 27, 'Achharan', '2019-10-05 09:27:47', '2019-10-05 09:27:47'),
+(45, 27, 'Delasa', '2019-10-05 09:27:58', '2019-10-05 09:27:58'),
+(46, 27, 'Kanad', '2019-10-05 09:28:07', '2019-10-05 09:28:07'),
+(47, 27, 'Kathodra', '2019-10-05 09:28:16', '2019-10-05 09:28:16'),
+(48, 22, 'Anandpar', '2019-10-05 09:28:49', '2019-10-05 09:28:49'),
+(49, 22, 'Chela Bedi', '2019-10-05 09:29:01', '2019-10-05 09:29:01'),
+(50, 22, 'Machhalivad', '2019-10-05 09:29:24', '2019-10-05 09:29:24'),
+(51, 23, 'Bamanasa', '2019-10-05 09:30:04', '2019-10-05 09:30:04'),
+(52, 23, 'Chandravada', '2019-10-05 09:30:14', '2019-10-05 09:30:14'),
+(53, 23, 'Hadmatiya', '2019-10-05 09:30:26', '2019-10-05 09:30:26'),
+(54, 24, 'Badhla', '2019-10-05 09:30:42', '2019-10-05 09:30:42'),
+(55, 24, 'Godavari', '2019-10-05 09:30:54', '2019-10-05 09:30:54'),
+(56, 24, 'Khengarpar', '2019-10-05 09:31:04', '2019-10-05 09:31:04'),
+(57, 14, 'Amrapar', '2019-10-05 09:32:23', '2019-10-05 09:32:23'),
+(58, 14, 'Kagvad', '2019-10-05 09:32:36', '2019-10-05 09:32:36'),
+(59, 13, 'Chauta', '2019-10-05 09:32:55', '2019-10-05 09:32:55'),
+(60, 13, 'Gokaran', '2019-10-05 09:33:07', '2019-10-05 09:33:07');
 
 --
 -- Indexes for dumped tables
@@ -496,6 +590,12 @@ INSERT INTO `villages` (`id`, `taluka_id`, `name`, `created_at`, `updated_at`) V
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `advisories`
+--
+ALTER TABLE `advisories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -587,10 +687,16 @@ ALTER TABLE `admins`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `advisories`
+--
+ALTER TABLE `advisories`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `answers`
 --
 ALTER TABLE `answers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `departments`
@@ -614,7 +720,7 @@ ALTER TABLE `districts`
 -- AUTO_INCREMENT for table `farmers`
 --
 ALTER TABLE `farmers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `groups`
@@ -632,13 +738,13 @@ ALTER TABLE `group_types`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `scientists`
@@ -650,19 +756,19 @@ ALTER TABLE `scientists`
 -- AUTO_INCREMENT for table `talukas`
 --
 ALTER TABLE `talukas`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `videos`
 --
 ALTER TABLE `videos`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `villages`
 --
 ALTER TABLE `villages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -133,8 +133,6 @@ class logincotroller extends Controller
                 }
             }
         }
-        
-        
     }
 
     public function logout(){

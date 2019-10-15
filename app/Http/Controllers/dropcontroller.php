@@ -8,6 +8,7 @@ use App\taluka;
 use App\video;
 use Illuminate\Support\Facades\Session;
 use Redirect;
+use Illuminate\Support\Facades\File;
 
 class dropcontroller extends Controller
 {
@@ -39,7 +40,7 @@ class dropcontroller extends Controller
         define('BASE_URL',$baseURL);
 
         require_once '/vendor/autoload.php'; 
-            
+            //CURLOPT_TIMEOUT
 
         $client = new \Google_Client();
         $client->setClientId(OAUTH_CLIENT_ID);
@@ -150,7 +151,8 @@ if ($client->getAccessToken()) {
         //$videoTags = implode(",",$status['snippet']['tags']);
         $videoId = $status['id'];
         video::where('id',$vid)->update(['youtube_video_id'=>$videoId]);
-
+        $a=File::delete(public_path().'/video/'.$filename);
+        
         return view('upload');
     }
     

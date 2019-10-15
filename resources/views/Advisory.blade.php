@@ -23,13 +23,13 @@
 				<div class="jumbotron">
 					<h3>Send WhatsApp Message</h3>
 					<table width="100%">
-					<!-- <thead>
+					<thead>
 						<th>Select District</th>
 						<th>Select Taluka</th>
 						<th>Select Village</th>
-					</thead> -->
+					</thead>
 					<tbody>
-						<!-- <tr>
+						<tr>
 							<td>
 								<div class="form-group input-group">
 							    	<div class="input-group-prepend">
@@ -65,7 +65,7 @@
 									</select>
 						    	</div>
 							</td>
-						</tr> -->
+						</tr>
 						<br>
 						<tr>
 							<td colspan="3" align="center">
@@ -116,7 +116,7 @@
 					</table>
 				</div>
 				<div class="row">
-					<div class="col-lg-8 offset-lg-2">
+					<div class="col-lg-10 offset-lg-1">
 						<table id='sort' class="table table-striped table-bordered" style="width:100%">
 							<thead>
 								<th>Select</th>
@@ -136,7 +136,7 @@
 							</tr>
 						<form method="POST" action="/Advisory/send">
 						{{csrf_field()}}
-							<input type="hidden" name="msg" id="wmsg" value="">
+							<input type="hidden" name="msg" id="wmsg">
 							@foreach($farmer as $f)
 							<tr class="rw">
 								<td>
@@ -153,9 +153,9 @@
 								</td>
 							</tr>
 							@endforeach
-							<tr>
+							<tr class="rb">
 								<td colspan="3" align="center">
-									<button type="submit" class="btn btn-primary">Send</button>
+									<button id="abc" type="submit" class="btn btn-primary">Send</button>
 								</td>
 							</tr>
 						</form>
@@ -217,10 +217,11 @@ $('.radio').on('change',function(e){
 $('#wvideo').on('change',function(e){
 	console.log(e);
 	var videoid=$("#wvideo").val();
-	$("#wmsg").val(videoid);
+	$("#wmsg").val('');
+	$("#wmsg").val(videoid);	
 });
 
-$("#wmessage").focusout(function(){
+$("#wmessage").keyup(function(){
 	var msg=$('#wmessage').val();
 	$("#wmsg").val(msg);
 });
@@ -228,12 +229,25 @@ $("#wmessage").focusout(function(){
 $('#village').on('change',function(e){
 	var village=$('#village').val();
 	$(".rw").html("");
+	$(".rb").html("");
 	$.get('/ajax-sort?village='+village,function(data){
-		// $("#sort").last().append("<thead><th>Select</th><th>Name</th><th>Mobile No</th></thead>");
-		// $("#sort").last().append("<tr><td><div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input' id='All'><label class='custom-control-label' for='All'></label></div></td><td colspan='2'>Select All</td></tr>");
 		$.each(data,function(index,farmerObj){
-			$("#sort").last().append("<tr><td><div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input al' id='"+farmerObj.id+"'><label class='custom-control-label al' for='"+farmerObj.id+"'></label></div></td><td>"+farmerObj.name+"</td><td>"+farmerObj.mobile_no+"</td></tr>");
+			$("#sort").last().append("<tr class='rw'><td><div class='custom-control custom-checkbox'><input type='checkbox' class='custom-control-input al' id='"+farmerObj.id+"'><label class='custom-control-label al' for='"+farmerObj.id+"'></label></div></td><td>"+farmerObj.name+"</td><td>"+farmerObj.mobile_no+"</td></tr>");
 		});
+		$("#sort").last().append("<tr class='rb'><td colspan='3' align='center'><button id='abc' type='submit' class='btn btn-primary'>Send</button></td></tr>");
+	});
+});
+$(document).ready(function() {
+	$(document).on('click','#abc',function(e){
+		var msg=$("#wmsg").val();
+		if(msg==''){
+			alert("select Messge or Message can not null");
+			return false;
+		}
+		else{
+			alert(msg);
+		}
+		
 	});
 });
 $(document).ready(function() {

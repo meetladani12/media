@@ -160,7 +160,7 @@ class farmerController extends Controller
         $answer=DB::table('answers')
                 ->join('questions','questions.id','=','answers.question_id')
                 ->where(['questions.flag'=>'1','farmer_id'=>$id])
-                ->select('answers.question_id AS qid','answer','answers.id AS aid','questions.question')
+                ->select('answers.question_id AS qid','answer','answers.id AS aid','answers.path AS path','questions.question')
                 ->get();
         $cnt=count($answer);
         return view('viewAnswer',compact('question','cnt','answer'));

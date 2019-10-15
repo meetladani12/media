@@ -14,15 +14,30 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
   <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-
-
-<script>
-</script>   
-
+  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>  
+<!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script type="text/javascript">
+    $(window).load(function() {
+      $(".loader").fadeOut("slow");
+    });
+  </script> -->
 </head>
 <body>
+  
+<!-- <style>
+  .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('image/LOAD.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+}
+</style>
+
+  <div class="loader"></div> -->
 <div id='language'>
 <div class="jumbotron text-center" id="header" style="border-radius: 0px; margin-bottom:0;height: 120px; padding: 30px;background-image:url(image/bg2.png);background-size: Auto Auto">
   <h1 id="title" style="color: white">Media Management & Information Dissemination for Farmer</h1>
