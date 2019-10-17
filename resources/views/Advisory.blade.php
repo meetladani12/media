@@ -79,7 +79,12 @@
 									<label class="custom-control-label" for="defaultUnchecked">Video</label>
 								</div>
 							</td>
-							<td></td>
+							<td>
+								<div class="custom-control custom-radio">
+									<input type="radio" class="custom-control-input radio" id="mv" name="defaultExampleRadios" value="message&video">
+									<label class="custom-control-label" for="mv">Message&Video</label>
+								</div>
+							</td>
 							<td align="center">
 								<div class="custom-control custom-radio">
 									<input type="radio" class="custom-control-input radio" id="defaultchecked" name="defaultExampleRadios" value="message">
@@ -136,7 +141,8 @@
 							</tr>
 						<form method="POST" action="/Advisory/send">
 						{{csrf_field()}}
-							<input type="hidden" name="msg" id="wmsg">
+							<input type="hidden" name="msg" id="wmsg" value="">
+							<input type="hidden" name="msg" id="wvideo" value="">
 							@foreach($farmer as $f)
 							<tr class="rw">
 								<td>
@@ -211,17 +217,22 @@ $('.radio').on('change',function(e){
 		$("#video").hide();
 		$("#message").show();
 	}
+	else if(radio=='message&video'){
+		$("#video").show();
+		$("#message").show();
+	}
 	
 });
 
 $('#wvideo').on('change',function(e){
 	console.log(e);
 	var videoid=$("#wvideo").val();
-	$("#wmsg").val('');
-	$("#wmsg").val(videoid);	
+	$("#wvideo").val('');
+	$("#wvideo").val(videoid);	
 });
 
-$("#wmessage").keyup(function(){
+$("#wmessage").keyup(function(e){
+	console.log(e);
 	var msg=$('#wmessage').val();
 	$("#wmsg").val(msg);
 });

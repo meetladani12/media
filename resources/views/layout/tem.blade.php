@@ -5,16 +5,16 @@
   <link rel = "icon" href ="image/logo.png" type = "image/x-icon"> 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="Bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="Bootstrap/w3.css">
+  <script src="Bootstrap/jquery.min.js"></script>
+  <script src="Bootstrap/popper.min.js"></script>
+  <script src="Bootstrap/bootstrap.min.js"></script>
   <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>  
+  <script src="Bootstrap/jquery-3.3.1.js"></script>
+  <script src="Bootstrap/jquery.dataTables.min.js"></script>
+  <script src="Bootstrap/dataTables.bootstrap4.min.js"></script>  
 <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script type="text/javascript">
     $(window).load(function() {
