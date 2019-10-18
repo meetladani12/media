@@ -1,6 +1,22 @@
 @extends('layout.tem')
 
 @section('body')
+
+<style>
+  .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('image/LOAD.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+    display: block;
+    visibility: hidden;
+}
+</style>
+
 <br>
 @if ($errors->any())
 	<div class='col-md-4 offset-lg-4'>
@@ -22,12 +38,13 @@
 	@endif
 </div>
 @endisset
+<div class="loader" id="gif"></div>
 <div class="row">
-	<div class="col-lg-6 offset-lg-3">
+	<div class="col-lg-8 offset-lg-2">
 		<div class="card">
 			<div class="card-body" >
 			<div  class="jumbotron">
-				<form method="POST" action="/Farmer/signup">
+				<form method="POST" id="farmer_form" action="/Farmer/signup">
 				{{csrf_field()}}
 				<div class="form-group input-group">
 				<h2>Farmer Registration</h2>
@@ -101,7 +118,7 @@
 				        <input class="form-control" id="repsd" name="re-enter" placeholder="Re-Enter password" type="password" required>
 
 				    </div> 
-				    <div class="col-lg-8 offset-lg-2"> 
+				    <div class="col-lg-6 offset-lg-3">
 				    <div class="form-group input-group">
 				    	<input name="captcha" class="form-control" placeholder="Enter captcha" type="text" required>
 				    	<div class="form-group captcha">
@@ -123,6 +140,13 @@
 	</div>
 </div>
 <br>
+
+<script type="text/javascript">
+    $('#farmer_form').submit(function() {
+    	$('#gif').css('visibility', 'visible');
+	});
+</script>
+
 <script type="text/javascript">
 $('#refresh').click(function(){
 	var a=$(this).val();

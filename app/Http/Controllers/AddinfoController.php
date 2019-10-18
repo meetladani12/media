@@ -467,28 +467,30 @@ class AddinfoController extends Controller
             {
                 $fid=substr($key,6);
                 $mobile=$value;
-                $data = [
-                    'phone' => '91'.$mobile, // Receivers phone
-                    'body' =>  $request->msg, // Message
-                ];
-                $json = json_encode($data); // Encode data to JSON
-                // URL for request POST /message
-                $url = 'https://eu7.chat-api.com/instance71565/message?token=a3qt0owq8vlwa83i';
-                // Make a POST request
-                $options = stream_context_create(['http' => [
-                    'method'  => 'POST',
-                    'header'  => 'Content-type: application/json',
-                    'content' => $json
-                ]
-                ]);
-                $result = file_get_contents($url, false, $options);
-                $advisory=new advisory;
-                $advisory->farmer_id =$fid;
-                $advisory->message = $request->msg;
-                $advisory->save();
+                $message=$request->msgw."  ".$request->msgv;
+                // $data = [
+                //     'phone' => '91'.$mobile, // Receivers phone
+                //     'body' =>  $message, // Message
+                // ];
+                // $json = json_encode($data); // Encode data to JSON
+                // // URL for request POST /message
+                // $url = 'https://eu7.chat-api.com/instance71565/message?token=a3qt0owq8vlwa83i';
+                // // Make a POST request
+                // $options = stream_context_create(['http' => [
+                //     'method'  => 'POST',
+                //     'header'  => 'Content-type: application/json',
+                //     'content' => $json
+                // ]
+                // ]);
+                // $result = file_get_contents($url, false, $options);
+                // $advisory=new advisory;
+                // $advisory->farmer_id =$fid;
+                // $advisory->message = $message;
+                // $advisory->save();
             }
         }
-        return redirect('/Advisory?err=1');
+        echo $message;
+        //return redirect('/Advisory?err=1');
     }
 
 }

@@ -1,6 +1,22 @@
 @extends('layout.tem')
 
 @section('body')
+<style>
+  .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('image/LOAD.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+    display: block;
+    visibility: hidden;
+}
+</style>
+<div class="loader" id="gif"></div>
+
 <br>
 @isset($_GET['err'])
 <div class="row">
@@ -75,8 +91,8 @@
 						<tr>
 							<td align="center">
 								<div class="custom-control custom-radio">
-									<input type="radio" class="custom-control-input radio" id="defaultUnchecked" name="defaultExampleRadios" value="video">
-									<label class="custom-control-label" for="defaultUnchecked">Video</label>
+									<input type="radio" class="custom-control-input radio" id="v" name="defaultExampleRadios" value="video">
+									<label class="custom-control-label" for="v">Video</label>
 								</div>
 							</td>
 							<td>
@@ -87,8 +103,8 @@
 							</td>
 							<td align="center">
 								<div class="custom-control custom-radio">
-									<input type="radio" class="custom-control-input radio" id="defaultchecked" name="defaultExampleRadios" value="message">
-									<label class="custom-control-label" for="defaultchecked">Message</label>
+									<input type="radio" class="custom-control-input radio" id="m" name="defaultExampleRadios" value="message">
+									<label class="custom-control-label" for="m">Message</label>
 								</div>
 							</td>
 						</tr>
@@ -98,8 +114,8 @@
 									<div class="input-group-prepend">
 										<span class="input-group-text"><i class="fa fa-building"></i></i></span>
 									</div>
-									<select name="taluka" id="wvideo" class="form-control" required>
-										<option selected=""> Select Video</option>
+									<select name="vid" id="wvideo" class="form-control" required>
+										<option selected="" value="0"> Select Video</option>
 										@foreach($video as $v)
 											<option value="youtube.com/watch?v={{$v->youtube_video_id}}">{{$v->title}}</option>
 										@endforeach
@@ -139,10 +155,10 @@
 									Select All
 								</td>
 							</tr>
-						<form method="POST" action="/Advisory/send">
+						<form method="POST" id="message_form" action="/Advisory/send">
 						{{csrf_field()}}
-							<input type="hidden" name="msg" id="wmsg" value="">
-							<input type="hidden" name="msg" id="wvideo" value="">
+							<input type="hidden" name="msgw" id="wmsg">
+							<input type="hidden" name="msgv" id="wmsvideo">
 							@foreach($farmer as $f)
 							<tr class="rw">
 								<td>
@@ -172,7 +188,11 @@
 		</div>
 	</div>
 </div>
-
+<script type="text/javascript">
+    $('#message_form').submit(function() {
+    	$('#gif').css('visibility', 'visible');
+	});
+</script>
 <script>
 $('#district').on('change',function(e){
 	console.log(e);
@@ -210,14 +230,26 @@ $('.radio').on('change',function(e){
 	console.log(e);
 	var radio=$(this).val();
 	if(radio=='video'){
+		$('#wvideo').val('0').attr("selected", "selected");
+		$('#wmessage').val('');
+		$('#wmsg').val('');
+		$('#wmsvideo').val('');
 		$("#message").hide();
 		$("#video").show();
 	}
 	else if(radio=='message'){
+		$('#wvideo').val('0').attr("selected", "selected");
+		$('#wmessage').val('');
+		$('#wmsg').val('');
+		$('#wmsvideo').val('');
 		$("#video").hide();
 		$("#message").show();
 	}
 	else if(radio=='message&video'){
+		$('#wvideo').val('0').attr("selected", "selected");
+		$('#wmessage').val('');
+		$('#wmsg').val('');
+		$('#wmsvideo').val('');
 		$("#video").show();
 		$("#message").show();
 	}
@@ -227,8 +259,8 @@ $('.radio').on('change',function(e){
 $('#wvideo').on('change',function(e){
 	console.log(e);
 	var videoid=$("#wvideo").val();
-	$("#wvideo").val('');
-	$("#wvideo").val(videoid);	
+	$("#wmsvideo").val('');
+	$("#wmsvideo").val(videoid);	
 });
 
 $("#wmessage").keyup(function(e){
@@ -250,7 +282,7 @@ $('#village').on('change',function(e){
 });
 $(document).ready(function() {
 	$(document).on('click','#abc',function(e){
-		var msg=$("#wmsg").val();
+		var msg=$("#wmsvideo").val();
 		if(msg==''){
 			alert("select Messge or Message can not null");
 			return false;

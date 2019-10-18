@@ -67,7 +67,7 @@
 </div>
 @endisset
 <div class="row">
-	<div class="col-lg-4 offset-lg-4">
+	<div class="col-lg-6 offset-lg-3">
 		<div class="card">
 			<div class="card-body" >
 			<div  class="jumbotron">
@@ -89,6 +89,7 @@
 		        <input name="password" class="form-control" placeholder="Enter password" type="password" required>
 		    </div>
 
+		    <div class="col-lg-8 offset-lg-2">
 		    <div class="form-group input-group">
 		        <input name="captcha" class="form-control" placeholder="Enter captcha" type="text" required>
 			    <div class="form-group captcha">
@@ -96,7 +97,8 @@
 	               <button type="button" id="refresh" class="btn btn-success btn-circle btn-circle-sm m-1"><i class="fas fa-sync"></i></button>
 			    </div>
 		    </div>
-		    
+		    </div>
+
 		    <div class="col-lg-6 offset-lg-3">
 		    <div class="form-group">
 		        <button type="submit" class="btn btn-primary btn-block"> Login </button>

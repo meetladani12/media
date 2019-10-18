@@ -1,14 +1,31 @@
 @extends('layout.tem')
 
 @section('body')
+
+<style>
+  .loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('image/LOAD2.gif') 50% 50% no-repeat rgb(249,249,249);
+    opacity: .8;
+    display: block;
+    visibility: hidden;
+}
+</style>
+
 <br>
 <div class="row">
 	<div class="col-lg-6 offset-lg-3">
 		<div class="card">
 			<div class="card-body" >
 			<div  class="jumbotron">
-				<form method="POST" enctype="multipart/form-data" action="/UploadVideo">
+				<form method="POST" enctype="multipart/form-data" id="upload_form" action="/UploadVideo">
 				{{csrf_field()}}
+				<div class="loader" id="gif"></div>
 				<div class="form-group input-group">
 				<h2>Video Details</h2>
 		    	</div>
@@ -42,7 +59,7 @@
 
 				<div class="col-lg-4 offset-lg-4">            
 			    <div class="form-group">
-			        <button type="submit" class="btn btn-primary btn-block"><i class="fas fa-upload"></i>Upload</button>
+			        <button type="submit" class="btn btn-primary btn-block load"><i class="fas fa-upload"></i>Upload</button>
 			    </div>    
 			    </div> 
 				</form>
@@ -52,4 +69,9 @@
 	</div>
 </div>
 <br>
+<script type="text/javascript">
+    $('#upload_form').submit(function() {
+    	$('#gif').css('visibility', 'visible');
+	});
+</script>
 @endsection
