@@ -51,43 +51,41 @@
 					<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 					 </div>
-			        <input name="fullname" class="form-control" placeholder="Full name" type="text" required pattern="[a-zA-Z][a-zA-Z ]+" title="Name start with alphabet and include alphabets and space only">&nbsp
+			        <input name="fullname" id="name" class="form-control" placeholder="Full name" type="text">&nbsp
 
 			        <div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 					 </div>
-			        <input name="email" id="mail" class="form-control" placeholder="Email address" type="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+			        <input name="email" id="mail" class="form-control" placeholder="Email address" type="email">
 			    </div>
-
-			    <div class="form-group input-group"  id="ml" style="display: none;">
-				    <label><font color="red">EmailID already exist</font></label>
-				</div>
+			    <span id="fnm" style="display: none;"><font color="red">Name start with alphabet and include alphabets and space only and atleast 4 character required</font></span>
+			    <span id="ml" style="display: none;"><font color="red">EmailID already exist</font></span>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="phone" id="PhoneNo" class="form-control" placeholder="Phone number" maxlength="10" type="tel" required>&nbsp
+			    	<input name="phone" id="PhoneNo" class="form-control" placeholder="Phone number" maxlength="10" type="tel">&nbsp
 
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 					</div>
 			    	<input name="mobile" id="MobileNo" class="form-control" placeholder="Mobile number" type="text" required pattern="[6789][0-9]{9}" maxlength="10" title="Mobile number start with 6-9 and remaing 9 digit with 0-9">
 			    </div>
-			    <div class="form-group input-group"  id="phn" style="display: none;">
-				    <label><font color="red">PhoneNo. already exist</font></label>
-				</div>
+			    <span id="phn" style="display: none;"><font color="red">PhoneNo. already exist</font></span>
+			    <span id="mob" style="display: none;"><font color="red">MobileNo. already exist</font></span>
 
-			    <div class="form-group input-group"  id="mob" style="display: none;">
-				    <label><font color="red">MobileNo. already exist</font></label>
-				</div>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="designation" class="form-control" placeholder="Designation" type="text" required>&nbsp
-
+			    	<select name="designation" class="form-control" required>
+						<option selected=""> Select Designation</option>
+						<option value="assistant prof.">assistant prof.</option>
+						<option value="associate prof.">associate prof.</option>
+						<option value="prof.">prof.</option>
+					</select>&nbsp
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
 					</div>
@@ -136,8 +134,9 @@
 					<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-address-card"></i></span>
 					 </div>
-			        <textarea name="address" minlength="10" class="form-control" placeholder="Address" required></textarea>
+			        <textarea name="address" id="addres" class="form-control" placeholder="Address" ></textarea>
 			    </div>
+			    <span id="add" style="display: none;"><font color="red">Atleast 10 character required</font></span>
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
@@ -161,7 +160,7 @@
 			    </div>
 			    </div> 
 
-			    <div class="col-lg-4 offset-lg-4">            
+			    <div class="col-lg-2 offset-lg-5">            
 			    <div class="form-group">
 			        <button id="ssubmit" type="submit" class="btn btn-primary btn-block"> Sign UP </button>
 			    </div>    
@@ -223,12 +222,100 @@ $('#grouptype').on('change',function(e){
 	});
 });
 
+$("#name").focusout(function(){
+	var fnm=$('#name').val();
+	var pattern=/^([a-zA-Z][a-zA-Z ]{3,19})$/;
+	if(!fnm.match(pattern)){
+		$("#fnm").show();
+	}
+	else{
+		$('#fnm').css('display', 'none');
+		return false;
+	}
+});
+
+$("#mail").focusout(function(){
+	var email=$('#mail').val();
+	var pattern=/^([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4})$/;
+	if(!email.match(pattern)){
+		$("#ml").html('<font color="red">Email is not in correct format</font>');
+		$("#ml").show();
+	}
+	else{
+		$.get('/ajax-email?mail='+email,function(data){
+			if(data==0){
+				$('#ml').css('display', 'none');
+			}
+			else{
+				$("#ml").html('<font color="red">EmailID already exist</font>');
+				$("#ml").show();
+				return false;
+			}
+		});
+	}
+});
+
+$("#MobileNo").focusout(function(){
+	var mono=$('#MobileNo').val();
+	var pattern=/^([6789][0-9]{9})$/;
+	if(!mono.match(pattern)){
+		$("#mob").html('<font color="red">number start with 6 to 9 and length is 10</font>');
+		$("#mob").show();
+	}
+	else{
+		$.get('/ajax-mobile?mobile='+mono,function(data){
+			
+			if(data==0){
+				$("#mob").css('display', 'none');	
+			}
+			else{
+				$("#mob").html('<font color="red">MobileNo. already exist</font>');
+				$("#mob").show();
+				return false;
+			}
+		});
+	}
+});
+
+$("#PhoneNo").focusout(function(){
+	
+	var mono=$('#PhoneNo').val();
+	var pattern=/^([6789][0-9]{9})$/;
+	if(!mono.match(pattern)){
+		$("#phn").html('<font color="red">number start with 6 to 9 and length is 10</font>');
+		$("#phn").show();
+	}
+	else{
+		$.get('/ajax-phone?mobile='+mono,function(data){
+			if(data==0){
+				$('#phn').css('display', 'none');
+			}
+			else{
+				$("#phn").html('<font color="red">PhoneNo. already exist</font>');
+				$("#phn").show();
+				return false;
+			}
+		});
+	}
+});
+
+$("#addres").focusout(function(){
+	var address=$('#addres').val();
+	if(address.length<10){
+		$("#add").show();
+	}
+	else{
+		$('#add').css('display', 'none');
+		return false;
+	}
+});
+
 $("#ssubmit").click(function(){
 
 	var password =$("#psd").val();
 	var repassword =$("#repsd").val();
 	if (password==repassword) {
-		if ( ( $("#mob").css('display') == 'none' || $("#mob").css("visibility") == "hidden")&&( $("#ml").css('display') == 'none' || $("#ml").css("visibility") == "hidden")){
+		if ( ( $("#mob").css('display') == 'none' ) && ( $("#ml").css('display') == 'none') && ( $("#phn").css('display') == 'none') && ( $("#fnm").css('display') == 'none') && ( $("#add").css('display') == 'none')){
 			
 		}
 		else{
@@ -242,43 +329,6 @@ $("#ssubmit").click(function(){
 	
 });
 
-$("#mail").focusout(function(){
-	var email=$('#mail').val();
-	$.get('/ajax-email?mail='+email,function(data){
-		if(data==0){
-			$("#ml").hide();
-		}
-		else{
-			$("#ml").show();
-		}
-	});
-});
-
-$("#MobileNo").focusout(function(){
-	var mono=$('#MobileNo').val();
-	$.get('/ajax-mobile?mobile='+mono,function(data){
-		if(data==0){
-			$("#mob").hide();
-		}
-		else{
-			$("#mob").show();
-		}
-	});
-});
-
-$("#PhoneNo").focusout(function(){
-	
-	var mono=$('#PhoneNo').val();
-	alert(mono);
-	$.get('/ajax-phone?mobile='+mono,function(data){
-		if(data==0){
-			$("#phn").hide();
-		}
-		else{
-			$("#phn").show();
-		}
-	});
-});
 
 </script>
 </article>

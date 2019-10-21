@@ -50,14 +50,17 @@
 								<div id="image{{$q->id}}" style="display: none;">
 								@for($i=0;$i<$cnt;$i++)
 									@if($answer[$i]->qid==$q->id)
-										
-										<img src="answer/{{$answer[$i]->path}}" style="width:50px;height:50px;cursor:zoom-in" onclick="document.getElementById('modal{{$q->id}}').style.display='block'">
-										<div id="modal{{$q->id}}" class="w3-modal" onclick="this.style.display='none'">
-						    				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
-						    				<div class="w3-modal-content w3-animate-zoom">
-										      <img src="answer/{{$answer[$i]->path}}" style="width:100%;height: 500px">
-										    </div>
-						  				</div>								
+										@if($answer[$i]->path=='-')
+											-
+										@else
+											<img src="answer/{{$answer[$i]->path}}" style="width:50px;height:50px;cursor:zoom-in" onclick="document.getElementById('modal{{$q->id}}').style.display='block'">
+											<div id="modal{{$q->id}}" class="w3-modal" onclick="this.style.display='none'">
+							    				<span class="w3-button w3-hover-red w3-xlarge w3-display-topright">&times;</span>
+							    				<div class="w3-modal-content w3-animate-zoom">
+											      <img src="answer/{{$answer[$i]->path}}" style="width:100%;height: 500px">
+											    </div>
+							  				</div>	
+						  				@endif						
 									@endif
 								@endfor
 								</div>
