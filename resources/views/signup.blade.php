@@ -55,7 +55,11 @@
 						 </div>
 				        <input name="fullname" class="form-control" id="name" placeholder="Full name" type="text">
 				    </div> <!-- form-group// -->
-				    <span id="fnm" style="display: none;"><font color="red">Name start with alphabet and include alphabets and space only and atleast 4 character required</font></span>
+				    <div class="row">
+				    	<div class="col-lg-12">
+				    		<span id="fnm" style="display: none;"><font color="red">Name start with alphabet and include alphabets and space only and atleast 4 character required</font></span>
+				    	</div>
+					</div>
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
@@ -67,8 +71,14 @@
 						</div>
 				    	<input name="mobile" id="MobileNo" maxlength="10" class="form-control" placeholder="Mobile number" type="text" required pattern="[6789][0-9]{9}" title="Mobile number start with 6-9 and remaing 9 digit with 0-9">
 				    </div>
-				    <span id="ml" style="display: none;"><font color="red">EmailID already exist</font></span>
-				    <span id="mob" style="display: none;"><font color="red">MobileNo. already exist</font></span>
+				    <div class="row">
+				    	<div class="col-lg-6">
+				    		<span id="ml" style="display: none;"><font color="red">EmailID already exist</font></span>
+				    	</div>
+				    	<div class="col-lg-6">
+				    		<span id="mob" style="display: none;"><font color="red">MobileNo. already exist</font></span>
+				    	</div>
+				    </div>
 
 				    <div class="form-group input-group">
 				    	<div class="input-group-prepend">
@@ -103,7 +113,11 @@
 						 </div>
 				        <textarea name="address" id="addres" class="form-control" placeholder="Address" required></textarea>
 				    </div>
-				    <span id="add" style="display: none;"><font color="red">Atleast 10 character required</font></span>
+				    <div class="row">
+				    	<div class="col-lg-12">
+				    		<span id="add" style="display: none;"><font color="red">Atleast 10 character required</font></span>
+				    	</div>
+				    </div>
 
 
 				    <div class="form-group input-group">

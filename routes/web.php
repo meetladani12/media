@@ -63,6 +63,7 @@ Route::post('/SAprofile/{SAprofile}','AddinfoController@UpdateProfile');
 Route::get('/ajax-reportq','AddinfoController@reportq');
 Route::get('/ajax-ans','AddinfoController@ans');
 Route::get('/ajax-reportv','AddinfoController@reportv');
+Route::get('/ajax-advisories','AddinfoController@advisories');
 Route::get('/video/delete','AddinfoController@MyVideoDelete');
 Route::get('/q-a/delete','AddinfoController@q_aDelete');
 Route::get('/Advisory','AddinfoController@Advisory');

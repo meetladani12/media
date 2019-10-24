@@ -40,6 +40,7 @@
 							<option value="0" selected=""> Select Report</option>
 							<option value="video">Video</option>
 							<option value="q-a">Question-Answer</option>
+							<option value="advisories">Advisories</option>
 						</select>
 					</div>
 				</td>
@@ -126,6 +127,19 @@ $("#ssubmit").click(function(e){
 					var mon=dt.substring(5, 7);
 					var yr=dt.substring(0, 4);
 					$("#acttable").last().append("<tr><td>"+videoObj.snm+"</td><td>"+videoObj.gnm+"</td><td>"+videoObj.title+"</td><td>"+videoObj.tags+"</td><td>"+videoObj.description+"</td><td><a href='https://www.youtube.com/embed/"+videoObj.youtube_video_id+"' target='_blank'><button type='button' class='btn btn-info'><i class='fas fa-play'></i></button></a></td><td>"+day+"-"+mon+"-"+yr+"</td><td><a href='/video/delete?id="+videoObj.vid+"'><button type='button' class='btn btn-danger'><i class='fas fa-trash-alt'></i></button></a></td></tr>");
+				});
+				$('#total').text('Total :'+data.length);
+			});
+		}
+		else if(report=='advisories'){
+			$.get('/ajax-advisories?start='+StartDate+'&end='+EndDate,function(data){
+				$("#acttable").last().append("<thead><th>Farmer Name</th><th>Village</th><th>messge</th><th>Date</th></thead>");
+				$.each(data,function(index,adviseObj){
+					var dt=adviseObj.dt;
+					var day=dt.substring(8, 10);
+					var mon=dt.substring(5, 7);
+					var yr=dt.substring(0, 4);
+					$("#acttable").last().append("<tr><td>"+adviseObj.fnm+"</td><td>"+adviseObj.vnm+"</td><td>"+adviseObj.message+"</td><td>"+day+"-"+mon+"-"+yr+"</td></tr>");
 				});
 				$('#total').text('Total :'+data.length);
 			});

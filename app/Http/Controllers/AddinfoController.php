@@ -460,6 +460,19 @@ class AddinfoController extends Controller
         return $video;
     }
 
+    public function advisories()
+    {
+        $start = Input::get('start');
+        $end = Input::get('end');
+        $advisory= DB::table('farmers')
+                ->join('advisories','advisories.farmer_id','=','farmers.id')
+                ->join('villages','villages.id','=','farmers.village_id')
+                ->where('advisories.created_at','>=', $start)->where('advisories.created_at','<=', $end)
+                ->select('farmers.name AS fnm','message','villages.name AS vnm','advisories.created_at AS dt')
+                ->get();
+        return $advisory;
+    }
+
     public function SendWMessage(Request $request)
     {
         foreach($_POST as $key => $value) {
@@ -468,29 +481,29 @@ class AddinfoController extends Controller
                 $fid=substr($key,6);
                 $mobile=$value;
                 $message=$request->msgw."  ".$request->msgv;
-                // $data = [
-                //     'phone' => '91'.$mobile, // Receivers phone
-                //     'body' =>  $message, // Message
-                // ];
-                // $json = json_encode($data); // Encode data to JSON
-                // // URL for request POST /message
-                // $url = 'https://eu7.chat-api.com/instance71565/message?token=a3qt0owq8vlwa83i';
-                // // Make a POST request
-                // $options = stream_context_create(['http' => [
-                //     'method'  => 'POST',
-                //     'header'  => 'Content-type: application/json',
-                //     'content' => $json
-                // ]
-                // ]);
-                // $result = file_get_contents($url, false, $options);
-                // $advisory=new advisory;
-                // $advisory->farmer_id =$fid;
-                // $advisory->message = $message;
-                // $advisory->save();
+                $data = [
+                    'phone' => '91'.$mobile, // Receivers phone
+                    'body' =>  $message, // Message
+                ];
+                $json = json_encode($data); // Encode data to JSON
+                // URL for request POST /message
+                $url = 'https://eu7.chat-api.com/instance71565/message?token=a3qt0owq8vlwa83i';
+                // Make a POST request
+                $options = stream_context_create(['http' => [
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/json',
+                    'content' => $json
+                ]
+                ]);
+                $result = file_get_contents($url, false, $options);
+                $advisory=new advisory;
+                $advisory->farmer_id =$fid;
+                $advisory->message = $message;
+                $advisory->save();
             }
+            
         }
-        echo $message;
-        //return redirect('/Advisory?err=1');
+        return redirect('/Advisory?err=1');
     }
 
 }

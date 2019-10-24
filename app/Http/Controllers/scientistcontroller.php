@@ -12,6 +12,7 @@ use App\group;
 use App\group_type;
 use App\department;
 use App\department_type;
+use App\update;
 use Illuminate\Support\Facades\DB;
 
 class scientistcontroller extends Controller
