@@ -18,7 +18,7 @@
 <br>
 @if ($errors->any())
 	<div class='col-md-4 offset-lg-4'>
-		<div class="alert alert-danger alert-dismissible">
+		<div  class="alert alert-danger alert-dismissible">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 	    	Invalid Captcha
 	  	</div>
@@ -45,7 +45,7 @@
 			<form method="POST" id="scientist_form" action="/Scientist/signup">
 			{{csrf_field()}}
 				<div class="form-group input-group">
-				<h2>Scientist Registration</h2>
+					<h2>Scientist Registration</h2>
 		    	</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
@@ -94,9 +94,21 @@
 					</div>
 			    	<select name="designation" class="form-control" required>
 						<option selected=""> Select Designation</option>
-						<option value="assistant prof.">assistant prof.</option>
-						<option value="associate prof.">associate prof.</option>
-						<option value="prof.">prof.</option>
+						<option value="Principal">Principal</option>
+						<option value="Associate Professor">Associate Professor</option>
+						<option value="Assistant Professor">Assistant Professor</option>
+						<option value="Registrar">Registrar</option>
+						<option value="Assistant Director of Research">Assistant Director of Research</option>
+						<option value="Director of Research & Dean PG Studies">Director of Research & Dean PG Studies</option>
+						<option value="Assistant Director of Extension Education">Assistant Director of Extension Education</option>
+						<option value="Associate Research Scientist">Associate Research Scientist</option>
+						<option value="Assistant Research Scientist">Assistant Research Scientist</option>
+						<option value="Research Scientist">Research Scientist</option>
+						<option value="Extension Educationist">Extension Educationist</option>
+						<option value="Associate Extension Educationist">Associate Extension Educationist</option>
+						<option value="Assistant Extension Educationist">Assistant Extension Educationist</option>
+						<option value="Scientist">Scientist</option>
+						<option value="Other">Other</option>
 					</select>&nbsp
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>

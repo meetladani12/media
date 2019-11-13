@@ -26,6 +26,9 @@
 		<div class="card">
 			<div class="card-body" >
 			<div  class="jumbotron">
+			<div class="">
+				<label><h2>Forgot Password</h2></label>
+			</div>
 			<form method="POST" action="/ForgotPassword/SendMail">
 				{{csrf_field()}}
 				<div class="form-group input-group">

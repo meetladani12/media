@@ -15,7 +15,7 @@
 </div>
 @endisset
 <div class="row">
-	<div class="col-lg-6 offset-lg-3">
+	<div class="col-lg-8 offset-lg-2">
 		<div class="card">
 			<div class="card-body" >
 			<div  class="jumbotron">
@@ -35,15 +35,14 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-envelope" aria-hidden="true"></i></span>
 						 </div>
-				        <input name="email" id="mail" class="form-control" placeholder="Email address" value="{{$farmer[0]->email}}" type="email" required>
-				    </div>
+				        <input name ="email" id="mail" class="form-control" placeholder="Email address" value="{{$farmer[0]->email}}" type="email" readonly>&nbsp
 
-				    <div class="form-group input-group">
-				    	<div class="input-group-prepend">
+				        <div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 						</div>
 				    	<input name="mobile" id="MobileNo" class="form-control" placeholder="Mobile number" maxlength="10" value="{{$farmer[0]->mobile_no}}" type="text" required>
 				    </div>
+
 
 				    <div class="form-group input-group">
 				    	<div id="Did" class="input-group-prepend">
@@ -55,11 +54,9 @@
 							@foreach($dist as $d)
 								<option value="{{$d->id}}">{{$d->name}}</option>
 							@endforeach
-						</select>
-					</div>
+						</select>&nbsp
 
-					<div class="form-group input-group">
-				    	<div class="input-group-prepend">
+						<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
 						</div>
 						<input type="hidden" id="t_id" name="t__id" value="{{$talukaid[0]->taluka_id}}">
@@ -68,11 +65,9 @@
 							@foreach($talu as $t)
 								<option value="{{$t->id}}">{{$t->name}}</option>
 							@endforeach
-						</select>
-					</div>
+						</select>&nbsp
 
-					<div class="form-group input-group">
-				    	<div class="input-group-prepend">
+						<div class="input-group-prepend">
 						    <span class="input-group-text"> <i class="fa fa-building"></i> </span>
 						</div>
 						<input type="hidden" id="v_id" name="v__id" value="{{$farmer[0]->village_id}}">
@@ -81,7 +76,11 @@
 							@foreach($villa as $v)
 								<option value="{{$v->id}}">{{$v->name}}</option>
 							@endforeach
-						</select>
+						</select>&nbsp
+					</div>
+
+					<div class="form-group input-group">
+				    	
 					</div>
 
 					<div class="form-group input-group">
@@ -94,14 +93,14 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 						</div>
-				        <input class="form-control" id="psd" name="password" placeholder="Enter password" value="{{$farmer[0]->password}}" type="password" required>
-				    </div> <!-- form-group// -->
-				    <div class="form-group input-group">
-				    	<div class="input-group-prepend">
+				        <input class="form-control" id="psd" name="password" placeholder="Enter password" value="{{$farmer[0]->password}}" type="password" required>&nbsp
+
+				        <div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
 						</div>
 				        <input class="form-control" id="repsd" name="re-enter" placeholder="Re-Enter password" type="password" required>
-				    </div> <!-- form-group// --> 
+				    </div> <!-- form-group// -->
+
 				    <div class="col-lg-4 offset-lg-4">                                     
 				    <div class="form-group">
 				        <button type="submit" id="frmsubmint" class="btn btn-primary btn-block">Update</button>

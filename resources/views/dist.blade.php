@@ -44,7 +44,7 @@
 				{{csrf_field()}}
 					<div id="city" class="jumbotron">
 						<div class="">
-							<label><h6>Add District</h6></label>
+							<label><h4>Add District</h4></label>
 						</div>
 						<div class="form-group input-group">
 				    	<div class="input-group-prepend">

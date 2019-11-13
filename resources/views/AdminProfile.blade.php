@@ -82,6 +82,7 @@ $("#frmsubmint").click(function(){
 	}	
 });
 
+	
+
 </script>
-</article>
 @endsection

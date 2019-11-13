@@ -8,6 +8,9 @@
 		<div class="card-body">
 			<div  class="jumbotron">
 				<div class="row">
+					<div class="form-group input-group">
+					<h1>Contact Us</h1>
+			    	</div>
 					Meet Ladani<br>
 					College of AIT,<br>
 					Anand Agricultural University,<br>

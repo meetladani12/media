@@ -14,7 +14,7 @@
 </div>
 @endisset
 <div class="row">
-	<div class="col-lg-6 offset-lg-3">
+	<div class="col-lg-8 offset-lg-2">
 		<div class="card">
 			<div class="card-body" >
 			<div  class="jumbotron">
@@ -22,16 +22,15 @@
 			{{csrf_field()}}
 			{{ method_field('PUT') }}
 				<div class="form-group input-group">
-				<h2>Scientist Registration</h2>
+					<h2>Scientist Profile</h2>
 		    	</div>
 				<div class="form-group input-group">
 					<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-user"></i> </span>
 					 </div>
-			        <input name="fullname" value="{{$scientist[0]->name}}" class="form-control" placeholder="Full name" type="text" required>
-			    </div>
-			    <div class="form-group input-group">
-			    	<div class="input-group-prepend">
+			        <input name="fullname" value="{{$scientist[0]->name}}" class="form-control" placeholder="Full name" type="text" required>&nbsp
+
+			        <div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
 					 </div>
 			        <input name="email" value="{{$scientist[0]->email}}" id="mail" class="form-control" placeholder="Email address" type="email" required>
@@ -41,10 +40,8 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-phone" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="phone" value="{{$scientist[0]->phone_no}}" class="form-control" placeholder="Phone number" type="text" required>
-			    </div>
+			    	<input name="phone" value="{{$scientist[0]->phone_no}}" class="form-control" placeholder="Phone number" type="text" required>&nbsp
 
-			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-mobile" aria-hidden="true"></i></span>
 					</div>
@@ -55,11 +52,33 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-graduation-cap" aria-hidden="true"></i></span>
 					</div>
-			    	<input name="designation" value="{{$scientist[0]->designation}}" class="form-control" placeholder="Designation" type="text" required>
+			    	<select name="designation" class="form-control" required>
+						<option selected=""> Select Designation</option>
+						<option value="Principal">Principal</option>
+						<option value="Associate Professor">Associate Professor</option>
+						<option value="Assistant Professor">Assistant Professor</option>
+						<option value="Registrar">Registrar</option>
+						<option value="Assistant Director of Research">Assistant Director of Research</option>
+						<option value="Director of Research & Dean PG Studies">Director of Research & Dean PG Studies</option>
+						<option value="Assistant Director of Extension Education">Assistant Director of Extension Education</option>
+						<option value="Associate Research Scientist">Associate Research Scientist</option>
+						<option value="Assistant Research Scientist">Assistant Research Scientist</option>
+						<option value="Research Scientist">Research Scientist</option>
+						<option value="Extension Educationist">Extension Educationist</option>
+						<option value="Associate Extension Educationist">Associate Extension Educationist</option>
+						<option value="Assistant Extension Educationist">Assistant Extension Educationist</option>
+						<option value="Scientist">Scientist</option>
+						<option value="Other">Other</option>
+					</select>&nbsp
+
+					<div class="input-group-prepend">
+					    <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
+					</div>
+			    	<input name="date" value="{{$scientist[0]->date_of_join}}" class="form-control" placeholder="Date of join" type="Date">
 			    </div>
 
-			    <div class="form-group input-group">
-			    	<div class="input-group-prepend">
+				<div class="form-group input-group">
+					<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i></span>
 					</div>
 					<input type="hidden" id="d_id" name="d__id" value="{{$departid[0]->department_type_id}}">
@@ -68,10 +87,8 @@
 						@foreach($dept as $d)
 							<option value="{{$d->id}}">{{$d->type}}</option>
 						@endforeach
-					</select>
-				</div>
+					</select>&nbsp
 
-				<div class="form-group input-group">
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-building" aria-hidden="true"></i></span>
 					</div>
@@ -86,13 +103,6 @@
 
 			    <div class="form-group input-group">
 			    	<div class="input-group-prepend">
-					    <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
-					</div>
-			    	<input name="date" value="{{$scientist[0]->date_of_join}}" class="form-control" placeholder="Date of join" type="Date">
-			    </div>
-
-			    <div class="form-group input-group">
-			    	<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-briefcase" aria-hidden="true"></i></span>
 					</div>
 					<input type="hidden" id="g_id" name="g__id" value="{{$groupid[0]->group_type_id}}">
@@ -101,11 +111,9 @@
 						@foreach($grouptp as $g)
 							<option value="{{$g->id}}">{{$g->type}}</option>
 						@endforeach
-					</select>
-				</div>
+					</select>&nbsp
 
-				<div class="form-group input-group">
-			    	<div class="input-group-prepend">
+					<div class="input-group-prepend">
 					    <span class="input-group-text"><i class="fa fa-briefcase" aria-hidden="true"></i></span>
 					</div>
 					<input type="hidden" id="gr_id" name="gr__id" value="{{$scientist[0]->group_id}}">
@@ -128,15 +136,14 @@
 			    	<div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
-			        <input id="psd" value="{{$scientist[0]->password}}" name="password" class="form-control" placeholder="Enter password" type="password" required>
-			    </div>
+			        <input id="psd" value="{{$scientist[0]->password}}" name="password" class="form-control" placeholder="Enter password" type="password" required>&nbsp
 
-			    <div class="form-group input-group">
-			    	<div class="input-group-prepend">
+			        <div class="input-group-prepend">
 					    <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
 					</div>
 			        <input id="repsd" class="form-control" placeholder="Re-Enter password" type="password" required>
-			    </div>                      
+			    </div>
+   
 			    <div class="col-lg-4 offset-lg-4">            
 			    <div class="form-group">
 			        <button id="ssubmit" type="submit" class="btn btn-primary btn-block">Update</button>
