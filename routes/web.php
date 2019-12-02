@@ -25,6 +25,9 @@ use App\answer;
 use Illuminate\Support\Facades\DB;
 
 Route::get('/', function () {
+	if(isset($_COOKIE["scientistid"])){
+		video::where(['scientist_id'=>$_COOKIE["scientistid"],'youtube_video_id'=>'0'])->delete();
+	}
     return view('welcome');
 });
 

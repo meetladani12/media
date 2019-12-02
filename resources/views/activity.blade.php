@@ -50,7 +50,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="StartDate" id="startDate" class="form-control" data-toggle="tooltip" title="Select date of join" type="Date" required>
+				    	<input name="StartDate" id="startDate" class="form-control" data-toggle="tooltip" title="Select date of join" type="Date" max="" required>
 			    	</div>
 				</td>
 
@@ -59,7 +59,7 @@
 				    	<div class="input-group-prepend">
 						    <span class="input-group-text"><i class="fa fa-calendar" aria-hidden="true"></i></span>
 						</div>
-				    	<input name="EndDate" id="endDate" class="form-control" data-toggle="tooltip" title="Select date of join" type="Date" required>
+				    	<input name="EndDate" id="endDate" class="form-control" data-toggle="tooltip" title="Select date of join" type="Date" max="" required>
 			    	</div>
 				</td>
 			</tr>
@@ -84,6 +84,18 @@
 		<label id='total'></label>
 	</div>
 </div>
+
+<script>
+$(window).bind("load", function() { 
+	var tdate = new Date();
+	var dd = tdate.getDate(); //yields day
+   	var mm = tdate.getMonth(); //yields month
+   	var yyyy = tdate.getFullYear(); //yields year
+   	var currentDate= yyyy + "-" +( mm+1) + "-" + dd;
+	$('#startDate').attr("max", currentDate);
+	$('#endDate').attr("max", currentDate);			
+});
+</script>
 
 <script>
 $("#ssubmit").click(function(e){

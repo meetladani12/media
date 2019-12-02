@@ -216,7 +216,6 @@ $("#mail").focusout(function(){
 	var email=$('#mail').val();
 	var pattern=/^([a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4})$/;
 	if(!email.match(pattern)){
-		alert('');
 		$("#ml").html('<font color="red">Email is not in correct format</font>');
 		$("#ml").show();
 	}

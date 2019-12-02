@@ -96,6 +96,7 @@ class AddinfoController extends Controller
     	return redirect('/departmentType?err=2');
     }
 
+
     public function department_type()
     {
         $dept=department_type::get();
